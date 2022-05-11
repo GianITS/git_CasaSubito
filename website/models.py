@@ -1,3 +1,14 @@
+from pymongo import MongoClient
+import certifi
+
+
+cluster = MongoClient("mongodb+srv://GianITS:ProjectITS33@clusterits.do6lt.mongodb.net", tlsCAFile=certifi.where())
+db = cluster['Agenzia_Immo']
+clients_collection = db['Clienti']
+properties_collection = db['Immobili']
+agents_collection = db['Agenti']
+
+
 class Agent():
     def __init__(self, firstName, lastName, userName, password):
         self.firstName = firstName
