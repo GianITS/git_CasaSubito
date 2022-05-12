@@ -12,25 +12,22 @@
 
     <title>Login CasaSubito</title>
 </head>
-<body>
-    <h2><a href="/HomePage">HOME</a></h2>
+<body class="bodyLog">
+    <h1>CasaSubito</h1>
     <div class="container">
-        <h1>Login</h1>
-    <form action="" method="post" id="form" enctype="multipart/form-data">
-        {{form.hidden_tag()}}
-        <div class="utente">
-            {{form.utente.label(class_="utente")}}
-            {{form.utente()}}
-        </div>
-        <div class="password">
-            {{form.password.label(class_="password")}}
-            {{form.password()}}
-        </div>
-        {{form.submit()}}
-    </form>
-    <h3>Info Inserite</h3>
-    <p>Utente: <b>{{ utente }}</b></p>
-    <p>Password: <b>{{ password }}</b></p>
+        <h2>Login</h2>
+        <form action="" method="post" id="form" enctype="multipart/form-data">
+            {{form.hidden_tag()}}
+            <div class="utente">
+                {{form.utente.label(class_="utente")}}
+                {{form.utente(placeholder="Username...")}}
+            </div>
+            <div class="password">
+                {{form.password.label(class_="password")}}
+                {{form.password(placeholder="Password...")}}
+            </div>
+            {{form.submit(class_="btnSub")}}
+        </form>
     </div>
 </body>
 </html>
