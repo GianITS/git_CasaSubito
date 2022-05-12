@@ -19,9 +19,17 @@ def home():
 def clients():
     return render_template('clients.html')
 
+@views.route('/Inserimento_Clienti')
+def insert_clients():
+    return render_template('insert_clients.html')
+
 @views.route('/Immobili')
 def properties():
     return render_template('properties.html')
+
+@views.route('/Inserimento_Immobili')
+def insert_properties():
+    return render_template('insert_properties.html')
 
 @views.route('/RichiesteImmobiliari')
 def properties_request():

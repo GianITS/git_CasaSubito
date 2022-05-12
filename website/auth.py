@@ -3,7 +3,7 @@ from flask import Blueprint, render_template, redirect, request, url_for, sessio
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired
-from .models import agents_collection
+from .models import agents_collection, Agent
 
 auth = Blueprint('auth', __name__)
 
