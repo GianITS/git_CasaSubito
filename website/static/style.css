@@ -12,9 +12,12 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: url('/../static/images/Casa5.jpg') no-repeat center;
+    background-image: linear-gradient(to bottom, rgba(255,255,255,.6), rgba(255,255,255,.6)), url('/../static/images/Casa5.jpg');
     background-size: cover;
 }
+
+/* login.html -----------------------------------------------------------*/
+
 h2{
     position: absolute;
     top: 20px;
@@ -23,6 +26,7 @@ h2{
 }
 a{
     text-decoration: none;
+    color: black;
 }
 .container{
     display: flex;
@@ -48,4 +52,97 @@ a{
 }
 h3{
     margin: 40px 0 20px;
+}
+
+/* base.html -----------------------------------------------------------*/
+
+.bodyBase{
+    display: block;
+}
+.header{
+    max-width: 1200px;
+    height: 70px;
+    left: 50%;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: burlywood;
+    transform: translateX(-50%);
+}
+#search{
+    width: 250px;
+    height: 50px;
+    padding: 5px 0 5px 10px;
+    font-size: 32px;
+}
+.menu{
+    width: 100%;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.menu .contUp{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.menu .contUp a{
+    margin: 0 10px;
+    padding: 5px 10px;
+    font-size: 24px;
+    font-weight: 600;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, .3);
+    transition: all .3s;
+}
+.menu .contUp a:hover{
+    transform: scale(1.1);
+}
+.menu .contDown{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.menu .contDown .btninsert{
+    position: relative;
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: red;
+    transition: all .3s;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, .3);
+}
+.menu .contDown .btninsert::before,
+.menu .contDown .btninsert::after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 25px;
+    height: 3px;
+    border-radius: 5px;
+    background-color: aliceblue;
+    transform: translate(-50%,-50%);
+}
+.menu .contDown .btninsert::after{
+    transform: translate(-50%,-50%) rotate(90deg);
+}
+.menu .contDown .btninsert:hover{
+    transform: rotate(180deg) scale(1.1);
+    box-shadow: -3px -3px 10px rgba(0, 0, 0, .3);
+}
+.mainHome .hero{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.mainHome .hero h2{
+    position: relative;
+    left: 0;
 }

@@ -4,20 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+
     <title>{% block title%} {% endblock title %}</title>
 </head>
-<body>
+<body class="bodyBase">
     <div class="header">
-        <div class="logo"><p>LOGO</p></div>
+        <div class="logo">
+            <a href="/HomePage"><p>LOGO</p></a></div>
         <div class="search">
             <input type="search" name="search" id="search">
         </div>
         <div class="logout"><a href="/">LOGOUT</a></div>
     </div>
     <div class="menu">
-        <a href="/Clienti">CLIENTI</a>
-        <a href="/Immobili">IMMOBILI</a>
-        <a href="/RichiesteImmobiliari">RICHIESTE IMMOBILIARI</a>
+        <div class="contUp">
+            <a href="/Clienti">CLIENTI</a>
+            <a href="/Immobili">IMMOBILI</a>
+            <a href="/RichiesteImmobiliari">RICHIESTE IMMOBILIARI</a>
+        </div>
+        <div class="contDown">
+            <a href="" class="btninsert"></a>
+        </div>
     </div>
     {% block content %}
     {% endblock content %}

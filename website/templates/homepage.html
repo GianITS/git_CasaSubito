@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% block title %} HomePage {% endblock title %}
 {% block content %}
-    <h1>Homepage</h1>
-    <h2>{{ session["agent"]["nome"] }}</h2>
+    <div class="mainHome">
+        <div class="hero">
+            <h1>Homepage</h1>
+            <h2>{{ session["agent"]["nome"] }}</h2>
+        </div>
+    </div>
 {% endblock content %}
