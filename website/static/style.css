@@ -408,3 +408,50 @@ h1{
 }
 
 /* clients.html -----------------------------------------------------------*/
+
+.mainClient{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 220px 0;
+}
+.tbClient{
+    width: 900px;
+    border: 1px solid #000;
+    border-spacing: 0;
+}
+.tbClient thead{
+    height: 70px;
+}
+.tbClient th{
+    width: 30%;
+    border: 1px solid rgb(200, 200, 200);
+}
+.tbClient th:nth-child(3){
+    width: 10%;
+    border: 1px solid rgb(200, 200, 200);
+}
+.tbClient td{
+    height: 50px;
+    border: 1px solid rgb(200, 200, 200);
+}
+
+/* properties.html -----------------------------------------------------------*/
+
+.mainProp{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 220px 0;
+}
+.tbProp{
+    width: 900px;
+    height: 700px;
+    border: 1px solid #000;
+}
