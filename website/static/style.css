@@ -1,0 +1,478 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+}
+body{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+li{
+    list-style: none;
+}
+input{
+    padding: 5px 0 5px 10px;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid #000;
+}
+
+/* login.html -----------------------------------------------------------*/
+
+.bodyLog{
+    background-image: linear-gradient(to bottom, rgba(255,255,255,.6), rgba(255,255,255,.6)), url('/../static/images/Casa5.jpg');
+    background-size: cover;
+}
+h1{
+    margin-bottom: 50px;
+}
+.container{
+    display: flex;
+    width: 300px;
+    height: 350px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: burlywood;
+    border-radius: 15px;
+    animation: fade-in 1s ease-in-out;
+}
+#form{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.utente,
+.password{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+}
+.btnSub{
+    padding: 4px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+/* base.html -----------------------------------------------------------*/
+
+.bodyBase{
+    display: flex;
+    justify-content: flex-start;
+    background-color: whitesmoke;
+}
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: burlywood;
+    z-index: 2;
+}
+.search{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 286px;
+    display: flex;
+    background-color: #fff;
+    border-radius: 10px;
+    transform: translate(-50%, -50%);
+}
+#search{
+    width: 250px;
+    padding: 5px 0 5px 10px;
+    font-size: 16px;
+    border-radius: 10px 0 0 10px;
+    border-top:    1px solid  #000;
+    border-right:  0 solid #000;
+    border-bottom: 1px solid #000;
+    border-left:   1px solid  #000;
+    outline: none;
+}
+.search .icon{
+    width: 36px;
+    aspect-ratio: 1;
+    border-radius: 0 10px 10px 0;
+    background: url('images/search.png')no-repeat center;
+    border: 1px solid black;
+    cursor: pointer;
+}
+.header .logout{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.header .logout p{
+    font-size: 18px;
+    font-weight: 600;
+}
+.header .logout .user{
+    position: relative;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: darkcyan;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.header .logout .user .btnUser{
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: url('images/user.png')no-repeat center;
+    cursor: pointer;
+}
+.header .logout .user .userMenu{
+    position: absolute;
+    bottom: -150%;
+    left: -45px;
+    width: 100px;
+    height: 80px;
+    background-color: burlywood;
+    z-index: -1;
+    opacity: 0;
+    transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: default;
+}
+.header .logout .user .visible{
+    bottom: -230%;
+    opacity: 1;
+    z-index: 2;
+}
+.header .logout .user .userMenu ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 10px;
+    cursor: default;
+}
+.header .logout .user .userMenu ul li{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 10px;
+    cursor: default;
+}
+.header .logout .user .userMenu.visible ul li span.userico{
+    width: 25px;
+    aspect-ratio: 1;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    border-radius: 50%;
+    cursor: default;
+}
+.userMenu.visible .one{
+    background-color: darkcyan;
+}
+.userMenu.visible .two{
+    background-color: crimson;
+}
+.header .logout .user .userMenu.visible ul li span.iconLogout{
+    display: inline-flex;
+    width: 20px;
+    aspect-ratio: 1;
+    margin-right: 10px;
+    background: url('images/logout.png')no-repeat center;
+}
+.main{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.menu{
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: linear-gradient(to bottom, rgba(245,245,245,1) 0%, rgba(245,245,245,1) 90%, rgba(245,245,245,.4) 100%);
+    z-index: 1;
+}
+.extend{
+    height: 300px;
+}
+.menu .contUp{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.menu .contUp a{
+    margin: 0 10px;
+    padding: 5px 10px;
+    font-size: 24px;
+    font-weight: 600;
+    transition: all .3s;
+}
+.menu .contUp a:hover{
+    color: burlywood;
+}
+.menu .contDown{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.menu .contDown .btninsert{
+    position: relative;
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: red;
+    margin-top: 20px;
+    transition: all .3s;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, .3);
+    cursor: pointer;
+}
+.menu .contDown .btninsert::before,
+.menu .contDown .btninsert::after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 25px;
+    height: 3px;
+    border-radius: 5px;
+    background-color: aliceblue;
+    transform: translate(-50%,-50%);
+}
+.menu .contDown .btninsert::after{
+    transform: translate(-50%,-50%) rotate(90deg);
+}
+.menu .contDown .btninsert.active{
+    transform: rotate(225deg) scale(1.1);
+    box-shadow: -3px -3px 10px rgba(0, 0, 0, .3);
+}
+.menu .contDown .dpList{
+    position: absolute;
+    top: -50%;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    z-index: -2;
+    transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.menu.extend .show{
+    top: 100%;
+    opacity: 1;
+    z-index: 1;
+}
+.menu .contDown .dpList .innerIns{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.menu .contDown .dpList .innerIns .spanIns1,
+.menu .contDown .dpList .innerIns .spanIns2{
+    font-weight: 600;
+    font-size: 20px;
+    opacity: 0;
+    transition: all .5s linear;
+    transition-delay: .3s;
+}
+.menu .contDown .dpList .innerIns .spanIns2{
+    transition-delay: .7s;
+}
+.menu.extend .dpList.show .animate{
+    opacity: 1;
+}
+.menu .contDown .dpList .btninsert{
+    display: flex;
+    aspect-ratio: 1;
+    background-color: blue;
+    margin: 0 20px 0 0;
+}
+.menu.extend .dpList.show .mt-20{
+    margin: 20px 20px 20px 0;
+}
+.menu .contDown .dpList .btninsert:hover{
+    transform: rotate(180deg) scale(1.1);
+    box-shadow: -3px -3px 10px rgba(0, 0, 0, .3);
+}
+
+/* HomePage.html -----------------------------------------------------------*/
+
+.mainHome{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 230px;
+
+}
+
+/* insert_client.html -----------------------------------------------------------*/
+
+.section{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to top, rgba(0,0,0,.4), rgba(0,0,0,.4));
+    z-index: 3;
+    
+}
+.section .container{
+    position: relative;
+    width: 900px;
+    height: 600px;
+    backdrop-filter: blur(5px);
+    background-color: rgba(255,255,255,.8);
+    border: 1px solid black;
+    animation: fade-in .3s ease-in-out;
+}
+@keyframes fade-in {
+    0%{
+        opacity: 0;
+    }
+    10%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.container .btnclose{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: red;
+    transform: rotate(45deg);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, .3);
+    transition: all .3s;
+}
+.container .btnclose::before,
+.container .btnclose::after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 25px;
+    height: 3px;
+    border-radius: 5px;
+    background-color: aliceblue;
+    transform: translate(-50%,-50%);
+}
+.container .btnclose::after{
+    transform: translate(-50%,-50%) rotate(90deg);
+}
+.container .btnclose:hover{
+    transform: rotate(225deg);
+    box-shadow: -3px -3px 10px rgba(0, 0, 0, .3);
+}
+
+/* clients.html -----------------------------------------------------------*/
+
+.mainClient{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 220px 0;
+}
+.tbClient{
+    width: 900px;
+    border: 1px solid #000;
+    border-spacing: 0;
+}
+.tbClient thead{
+    height: 70px;
+}
+.tbClient th{
+    width: 30%;
+    border: 1px solid rgb(200, 200, 200);
+}
+.tbClient th:nth-child(3){
+    width: 10%;
+    border: 1px solid rgb(200, 200, 200);
+}
+.tbClient td{
+    height: 50px;
+    text-align: center;
+    border: 1px solid rgb(200, 200, 200);
+}
+
+/* properties.html -----------------------------------------------------------*/
+
+.mainProp{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 220px 0;
+}
+.tbProp{
+    width: 900px;
+    border: 1px solid #000;
+    border-spacing: 0;
+}
+.tbProp thead{
+    height: 70px;
+}
+.tbProp tbody{
+    max-height: 350px;
+}
+.tbProp th{
+    width: 17%;
+    border: 1px solid rgb(200, 200, 200);
+}
+.tbProp th:nth-child(4),
+.tbProp th:nth-child(5){
+    width: 12%;
+    border: 1px solid rgb(200, 200, 200);
+}
+.tbProp td{
+    height: 50px;
+    text-align: center;
+    border: 1px solid rgb(200, 200, 200);
+}

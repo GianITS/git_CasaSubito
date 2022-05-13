@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+
+    <title>Login CasaSubito</title>
+</head>
+<body class="bodyLog">
+    <h1>CasaSubito</h1>
+    <div class="container">
+        <h2>Login</h2>
+        <form action="" method="post" id="form" enctype="multipart/form-data">
+            {{form.hidden_tag()}}
+            <div class="utente">
+                {{form.utente.label(class_="utente")}}
+                {{form.utente(placeholder="Username...")}}
+            </div>
+            <div class="password">
+                {{form.password.label(class_="password")}}
+                {{form.password(placeholder="Password...")}}
+            </div>
+            {{form.submit(class_="btnSub")}}
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="message">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </form>
+    </div>
+</body>
+</html>

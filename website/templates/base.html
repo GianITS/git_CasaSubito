@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+
+    <title>{% block title%} {% endblock title %}</title>
+</head>
+<body class="bodyBase">
+    <div class="header">
+        <div class="logo">
+            <a href="/HomePage"><p>LOGO</p></a></div>
+        <div class="search">
+            <input type="search" name="search" id="search" placeholder="Cerca...">
+            <div class="icon"></div>
+        </div>
+        <div class="logout">
+            <p>{{ session["agent"] }}</p>
+            <div class="user">
+                <div class="btnUser"></div>
+                <div class="userMenu">
+                    <ul>
+                        <li>
+                            {% if session['agent'] == "Mario" %}
+                            <span class="userico one">
+                                M
+                            </span>
+                            {% elif session['agent'] == "Gianluca" %}
+                            <span class="userico two">
+                                G
+                            </span>
+                            {% endif %}
+                            Profilo
+                        </li>
+                        <li><span class="iconLogout"></span><a href="/">Esci</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="menu" id="menu">
+            <div class="contUp">
+                <a href="/Clienti">CLIENTI</a>
+                <a href="/Immobili">IMMOBILI</a>
+                <a href="/RichiesteImmobiliari">RICHIESTE IMMOBILIARI</a>
+            </div>
+            <div class="contDown">
+                <div class="btninsert" id="btninsert"></div>
+                <div class="dpList" id="dpList">
+                    <div class="innerIns">
+                        <a href="/Inserimento_Clienti" class="btninsert mt-20"></a><span class="spanIns1">Clienti</span>
+                    </div>
+                    <div class="innerIns">
+                        <a href="/Inserimento_Immobili" class="btninsert"></a><span class="spanIns2">Immobile</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% block content %}
+        {% endblock content %}
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js')}}"></script>
+</body>
+</html>
