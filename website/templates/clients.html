@@ -3,35 +3,25 @@
 {% block content %}
     <div class="mainClient">
         <h1>Clienti</h1>
-    <table class="tbClient">
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Cognome</th>
-            <th>eta</th>
-            <th>Data di nascita</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
+        <table class="tbClient">
+            <thead>
+            {% for cliente in clienti %}
+            <tr>
+                {% for k in cliente.keys() if loop.first %}
+                    <th>{{ k }}</th>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+            </thead>
+            <tbody>
+            {% for cliente in clienti %}
+                <tr>
+                    {% for k,v in cliente.items() %}
+                        <td>{{ v }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+            </tbody>
         </table>
     </div>
 {% endblock content %}

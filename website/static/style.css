@@ -436,6 +436,7 @@ h1{
 }
 .tbClient td{
     height: 50px;
+    text-align: center;
     border: 1px solid rgb(200, 200, 200);
 }
 
@@ -452,6 +453,26 @@ h1{
 }
 .tbProp{
     width: 900px;
-    height: 700px;
     border: 1px solid #000;
+    border-spacing: 0;
+}
+.tbProp thead{
+    height: 70px;
+}
+.tbProp tbody{
+    max-height: 350px;
+}
+.tbProp th{
+    width: 17%;
+    border: 1px solid rgb(200, 200, 200);
+}
+.tbProp th:nth-child(4),
+.tbProp th:nth-child(5){
+    width: 12%;
+    border: 1px solid rgb(200, 200, 200);
+}
+.tbProp td{
+    height: 50px;
+    text-align: center;
+    border: 1px solid rgb(200, 200, 200);
 }

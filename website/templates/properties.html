@@ -1,36 +1,31 @@
 {% extends 'base.html' %}
 {% block title %} Immobili {% endblock title %}
 {% block content %}
-<div class="mainClient">
+<div class="mainProp">
     <h1>Immobili</h1>
-    <table class="tbClient">
+    <table class="tbProp">
         <thead>
-        <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
+            {% for immobile in immobili %}
+            <tr>
+                {% for k in immobile.keys() if loop.first %}
+                    {% if k != "immagini" %}
+                        <th>{{ k }}</th>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            {% endfor %}
+            </thead>
+            <tbody>
+                {% for immobile in immobili %}
+                <tr>
+                    {% for k,v in immobile.items() %}
+                        {% if k != "immagini" %}
+                        <td>{{ v }}</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+            </tbody>
         </tbody>
         </table>
     </div>
