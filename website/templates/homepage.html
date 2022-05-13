@@ -2,8 +2,9 @@
 {% block title %} HomePage {% endblock title %}
 {% block content %}
     <div class="mainHome">
-        <div class="hero">
-            <h1>Homepage</h1>
-        </div>
+        <h1>Homepage</h1>
+        <p>{{ lipsum(n=5, html=True, min=20, max=400) }}</p>
+        {% block contentHome %}
+        {% endblock contentHome %}
     </div>
 {% endblock content %}

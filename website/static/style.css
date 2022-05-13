@@ -70,64 +70,141 @@ h1{
 /* base.html -----------------------------------------------------------*/
 
 .bodyBase{
-    display: block;
+    display: flex;
+    justify-content: flex-start;
+    background-color: whitesmoke;
 }
 .header{
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 70px;
-    display: flex;
-    justify-content: center;
-    background-color: burlywood;
-}
-.innerHeader{
-    width: 1200px;
-    height: 100%;
-    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    background-color: transparent;
+    background-color: burlywood;
+    z-index: 2;
 }
-.header .logout{
+.search{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 286px;
     display: flex;
-}
-.header .logout a{
-    margin-left: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    transform: translate(-50%, -50%);
 }
 #search{
     width: 250px;
     padding: 5px 0 5px 10px;
     font-size: 16px;
-    border-radius: 10px;
-    border: 1px solid black;
+    border-radius: 10px 0 0 10px;
+    border-top:    1px solid  #000;
+    border-right:  0 solid #000;
+    border-bottom: 1px solid #000;
+    border-left:   1px solid  #000;
     outline: none;
 }
-.menu{
-    width: 100%;
-    height: 200px;
+.search .icon{
+    width: 36px;
+    aspect-ratio: 1;
+    border-radius: 0 10px 10px 0;
+    background: url('images/search.png')no-repeat center;
+    border: 1px solid black;
+    cursor: pointer;
+}
+.header .logout{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.header .logout p{
+    font-size: 18px;
+    font-weight: 600;
+}
+.header .logout .userMenu{
+    position: absolute;
+    bottom: -100%;
+    left: -12px;
+    background-color: burlywood;
+    padding: 0 10px 5px;
+    z-index: 2;
+    opacity: 0;
+    transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.header .logout .visible{
+    bottom: -150%;
+    opacity: 1;
+}
+.header .logout .userMenu ul{
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
+}
+.header .logout .user{
+    position: relative;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: darkcyan;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.header .logout .user .btnUser{
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: url('images/user.png')no-repeat center;
+    cursor: pointer;
+}
+.main{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.menu{
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: linear-gradient(to bottom, rgba(245,245,245,1) 0%, rgba(245,245,245,1) 90%, rgba(245,245,245,.4) 100%);
+    z-index: 1;
+}
+.extend{
+    height: 300px;
 }
 .menu .contUp{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 20px;
 }
 .menu .contUp a{
     margin: 0 10px;
     padding: 5px 10px;
     font-size: 24px;
     font-weight: 600;
-    border-radius: 10px;
-    backdrop-filter: blur(5px);
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, .3);
     transition: all .3s;
 }
 .menu .contUp a:hover{
-    transform: scale(1.1);
+    color: burlywood;
 }
 .menu .contDown{
     position: relative;
@@ -142,8 +219,10 @@ h1{
     aspect-ratio: 1;
     border-radius: 50%;
     background-color: red;
+    margin-top: 20px;
     transition: all .3s;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, .3);
+    cursor: pointer;
 }
 .menu .contDown .btninsert::before,
 .menu .contDown .btninsert::after{
@@ -164,7 +243,7 @@ h1{
     transform: rotate(225deg) scale(1.1);
     box-shadow: -3px -3px 10px rgba(0, 0, 0, .3);
 }
-.menu .contDown .dpList.hidden{
+.menu .contDown .dpList{
     position: absolute;
     top: -50%;
     left: 0;
@@ -173,27 +252,22 @@ h1{
     justify-content: center;
     opacity: 0;
     z-index: -2;
+    transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.menu .contDown .dpList{
-    position: absolute;
+.menu.extend .show{
     top: 100%;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     opacity: 1;
     z-index: 1;
-    transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    backdrop-filter: blur(4px);
 }
 .menu .contDown .dpList .innerIns{
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin-top: 20px;
 }
 .menu .contDown .dpList .innerIns .spanIns1,
 .menu .contDown .dpList .innerIns .spanIns2{
+    font-weight: 600;
+    font-size: 20px;
     opacity: 0;
     transition: all .5s linear;
     transition-delay: .3s;
@@ -201,15 +275,17 @@ h1{
 .menu .contDown .dpList .innerIns .spanIns2{
     transition-delay: .7s;
 }
-.menu .contDown .dpList .innerIns .spanIns1.animate,
-.menu .contDown .dpList .innerIns .spanIns2.animate{
+.menu.extend .dpList.show .animate{
     opacity: 1;
 }
 .menu .contDown .dpList .btninsert{
     display: flex;
     aspect-ratio: 1;
     background-color: blue;
-    margin-right: 20px;
+    margin: 0 20px 0 0;
+}
+.menu.extend .dpList.show .mt-20{
+    margin: 20px 20px 20px 0;
 }
 .menu .contDown .dpList .btninsert:hover{
     transform: rotate(180deg) scale(1.1);
@@ -218,18 +294,20 @@ h1{
 
 /* HomePage.html -----------------------------------------------------------*/
 
-.mainHome .hero{
+.mainHome{
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 150px;
+    padding-top: 230px;
+
 }
 
 /* insert_client.html -----------------------------------------------------------*/
 
 .section{
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100vh;
     top: 0;
@@ -239,6 +317,8 @@ h1{
     justify-content: center;
     align-items: center;
     background: linear-gradient(to top, rgba(0,0,0,.4), rgba(0,0,0,.4));
+    z-index: 3;
+    
 }
 .section .container{
     position: relative;

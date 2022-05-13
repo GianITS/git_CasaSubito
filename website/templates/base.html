@@ -14,38 +14,47 @@
 </head>
 <body class="bodyBase">
     <div class="header">
-        <div class="innerHeader">
-            <div class="logo">
-                <a href="/HomePage"><p>LOGO</p></a></div>
-            <div class="search">
-                <input type="search" name="search" id="search" placeholder="Cerca...">
-            </div>
-            <div class="logout">
-                <p>{{ session["agent"]["nome"] }}</p>
-                <a href="/">LOGOUT</a>
-            </div>
+        <div class="logo">
+            <a href="/HomePage"><p>LOGO</p></a></div>
+        <div class="search">
+            <input type="search" name="search" id="search" placeholder="Cerca...">
+            <div class="icon"></div>
         </div>
-    </div>
-    <div class="menu">
-        <div class="contUp">
-            <a href="/Clienti">CLIENTI</a>
-            <a href="/Immobili">IMMOBILI</a>
-            <a href="/RichiesteImmobiliari">RICHIESTE IMMOBILIARI</a>
-        </div>
-        <div class="contDown">
-            <a href="#" class="btninsert" id="btninsert"></a>
-            <div class="dpList hidden" id="dplist">
-                <div class="innerIns">
-                    <a href="/Inserimento_Clienti" class="btninsert"></a><span class="spanIns1">Clienti</span>
-                </div>
-                <div class="innerIns">
-                    <a href="/Inserimento_Immobili" class="btninsert"></a><span class="spanIns2">Immobile</span>
+        <div class="logout">
+            <p>{{ session["agent"]["nome"] }}</p>
+            <div class="user">
+                <div class="btnUser"></div>
+                <div class="userMenu">
+                    <ul>
+                        <li>Profilo</li>
+                        <li><a href="/">Esci</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
-    {% block content %}
-    {% endblock content %}
+    <div class="main">
+        <div class="menu" id="menu">
+            <div class="contUp">
+                <a href="/Clienti">CLIENTI</a>
+                <a href="/Immobili">IMMOBILI</a>
+                <a href="/RichiesteImmobiliari">RICHIESTE IMMOBILIARI</a>
+            </div>
+            <div class="contDown">
+                <div class="btninsert" id="btninsert"></div>
+                <div class="dpList" id="dpList">
+                    <div class="innerIns">
+                        <a href="/Inserimento_Clienti" class="btninsert mt-20"></a><span class="spanIns1">Clienti</span>
+                    </div>
+                    <div class="innerIns">
+                        <a href="/Inserimento_Immobili" class="btninsert"></a><span class="spanIns2">Immobile</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% block content %}
+        {% endblock content %}
+    </div>
 
     <script src="{{ url_for('static', filename='app.js')}}"></script>
 </body>
