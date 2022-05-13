@@ -21,13 +21,24 @@
             <div class="icon"></div>
         </div>
         <div class="logout">
-            <p>{{ session["agent"]["nome"] }}</p>
+            <p>{{ session["agent"] }}</p>
             <div class="user">
                 <div class="btnUser"></div>
                 <div class="userMenu">
                     <ul>
-                        <li>Profilo</li>
-                        <li><a href="/">Esci</a></li>
+                        <li>
+                            {% if session['agent'] == "Mario" %}
+                            <span class="userico one">
+                                M
+                            </span>
+                            {% elif session['agent'] == "Gianluca" %}
+                            <span class="userico two">
+                                G
+                            </span>
+                            {% endif %}
+                            Profilo
+                        </li>
+                        <li><span class="iconLogout"></span><a href="/">Esci</a></li>
                     </ul>
                 </div>
             </div>
