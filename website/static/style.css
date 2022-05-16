@@ -532,3 +532,34 @@ h1{
     text-align: center;
     border: 1px solid rgb(200, 200, 200);
 }
+
+/* property_page.html -----------------------------------------------------------*/
+
+
+
+/* show_img.html -----------------------------------------------------------*/
+
+.container.showImg{
+    width: 1000px;
+    height: 700px;
+    align-items: flex-start;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+.container.showImg .carousel{
+    width: 1000px;
+    display: flex;
+    margin-top: 10px;
+    padding-right: 30px;
+    overflow-x: scroll;
+}
+.container.showImg img{
+    width: 100%;
+    height: 450px;
+    border-radius: 10px;
+}
+.container.showImg .carousel img{
+    width: 250px;
+    height: 150px;
+    margin-right: 10px;
+}
