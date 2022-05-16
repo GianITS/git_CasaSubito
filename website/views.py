@@ -1,7 +1,6 @@
-from flask import Blueprint, Flask, render_template
+from flask import Blueprint, Flask, render_template, request, session, redirect, url_for, flash
 from flask_pymongo import PyMongo
 import certifi
-from .models import clients_collection, properties_collection
 
 views = Blueprint('views', __name__)
 
@@ -15,6 +14,9 @@ mongo = PyMongo(app, tlsCAFile=certifi.where())
 def home():
     return render_template('homepage.html')
 
+# import
+from .models import clients_collection
+
 @views.route('/Clienti')
 def clients():
     clienti = list(clients_collection.find({},{"_id":0}))
@@ -24,14 +26,94 @@ def clients():
 def insert_clients():
     return render_template('insert_clients.html')
 
+# import
+from .models import properties_collection
+
 @views.route('/Immobili')
 def properties():
     immobili = list(properties_collection.find({},{"_id":0}))
     return render_template('properties.html', immobili=immobili)
 
-@views.route('/Inserimento_Immobili')
+# import
+import gridfs
+from urllib import response
+from .models import db
+# recupero le immagini dal db
+@views.route('/image/<filename>')
+def image(filename):
+    fs = gridfs.GridFS(db)
+    gridout = fs.get_last_version(filename=filename)
+    response.content_type = 'image/jpeg'
+    return gridout.read()
+
+# importo i moduli relativi al form
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField, IntegerField, RadioField, MultipleFileField
+from wtforms.validators import DataRequired
+
+#creo la classe form dell inserimento degli immobili
+class FormInsertProperties(FlaskForm):
+    owner = StringField("Proprietario", validators=[DataRequired()])
+    sqMeters = IntegerField("Dimensioni", validators=[DataRequired()])
+    position = StringField("Posizione", validators=[DataRequired()])
+    vendAff = RadioField("Vendita/Affitto", validators=[DataRequired()], choices=[('Vendita','Vendita'),('Affitto','Affitto')], default="Vendita")
+    images = MultipleFileField("Carica immagini", validators=[DataRequired()])
+    agent = StringField("agent")
+    submit = SubmitField("Inserisci")
+
+@views.route('/Inserimento_Immobili', methods=["GET", "POST"])
 def insert_properties():
-    return render_template('insert_properties.html')
+    # resetto tutte le variabili
+    # assegno la variabile agente col nome dell agente loggato
+    # assegno alla variabile form il form che ho appena creato
+    owner = ""
+    sqMeters = ""
+    position = ""
+    vendAff = ""
+    images = ""
+    agent = session['agent']
+    form = FormInsertProperties()
+
+    if form.validate_on_submit():
+        owner = form.owner.data
+        sqMeters = form.sqMeters.data
+        position = form.position.data
+        vendAff = form.vendAff.data
+        images = request.files.getlist('images')
+        listImg = []
+        for image in images:
+            #mongo.save_file(image.filename, image)
+            listImg.append(image.filename)
+        for img in listImg:
+            print(img)
+    
+    #resetto i dati ricevutid dal form
+    form.owner.data = ""
+    form.sqMeters.data = ""
+    form.position.data = ""
+    form.vendAff.data = ""
+
+    return render_template('insert_properties.html', form=form, owner=owner, sqMeters=sqMeters, position=position, vandAff=vendAff, images=images, agent=agent)
+
+# pagina scheda immobile
+# @app.route('/profile/<nome>')
+# def profile(nome):
+#     agenti = collection.find_one({"nome": nome}, {"agente":1, "_id":0})
+#     for k,v in agenti.items():
+#         agente = v
+#     img = collection.find_one({"nome": nome}, {"immagini":1, "_id":0})
+#     print(img)
+#     for k,va in img.items():
+#         listImg = va
+#         for x in va:
+#             print(x)
+#     data = collection.find_one({"nome": nome})
+#     print(data)
+#     if data:
+#         for k,v in data.items():
+#             print(k,v)
+#         return render_template('profile.html', listImg=listImg, dict=data)
+#     return render_template('profile.html')
 
 @views.route('/RichiesteImmobiliari')
 def properties_request():

@@ -3,9 +3,25 @@
     <div class="section">
         <div class="container">
             <a href="/HomePage" class="btnclose"></a>
-            <form action="" method="post">
-                
+            <form action="" method="post" enctype="multipart/form-data">
+                {{form.hidden_tag()}}
+                {{form.owner.label}}{{form.owner()}}
+                {{form.sqMeters.label}}{{form.sqMeters()}}
+                {{form.position.label}}{{form.position()}}
+                {{form.vendAff.label}}{{form.vendAff()}}
+                {{form.images.label}}{{form.images()}}
+                {{form.agent.label}}: {{session["agent"]}}
+                {{form.submit()}}
             </form>
+            <p>{{owner}}</p>
+            <p>{{sqMeters}}</p>
+            <p>{{position}}</p>
+            <p>{{vendAff}}</p>
+            <p>{{agent}}</p>
+            {% for image in images %}
+                <p>{{image.filename}}</p>
+                <img src="{{url_for('views.image', filename=image.filename)}}" alt="" style="width:400px;height:400px;">
+            {% endfor %}
         </div>
     </div>
 {% endblock contentHome %}
