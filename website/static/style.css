@@ -416,23 +416,43 @@ h1{
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 220px 0;
+    padding: 220px 0 0;
+    overflow-y: hidden;
+}
+.mainClient h1{
+    margin: 10px 0 20px;
+}
+.mainClient .containerClient{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 1020px;
+    height: 480px;
+    overflow: auto;
 }
 .tbClient{
-    width: 900px;
+    width: 1020px;
     border: 1px solid #000;
     border-spacing: 0;
 }
 .tbClient thead{
+    position: sticky;
+    top: 0;
     height: 70px;
+    background-color: lightblue;
 }
 .tbClient th{
-    width: 30%;
+    width: 26%;
     border: 1px solid rgb(200, 200, 200);
 }
 .tbClient th:nth-child(3){
     width: 10%;
-    border: 1px solid rgb(200, 200, 200);
+}
+.tbClient th:nth-child(4){
+    width: 20%;
+}
+.tbClient th:nth-child(5){
+    width: 15%;
 }
 .tbClient td{
     height: 50px;
@@ -452,33 +472,44 @@ h1{
     padding: 220px 0 0;
     overflow-y: hidden;
 }
+.mainProp h1{
+    margin-bottom: 10px;
+}
 .mainProp .containerProp{
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 920px;
-    overflow: scroll;
+    width: 1020px;
+    height: 480px;
+    overflow: auto;
 }
 .tbProp{
-    width: 900px;
-    border: 1px solid #000;
+    width: 1200px;
     border-spacing: 0;
+    border: 1px solid #000;
+    border-top: none;
 }
 .tbProp thead{
     height: 70px;
-}
-.tbProp tbody{
-    max-height: 350px;
+    position: sticky;
+    top: 0;
+    background-color: lightblue;
 }
 .tbProp th{
-    width: 17%;
-    border: 1px solid rgb(200, 200, 200);
+    width: 16%;
+    border: 1px solid rgb(0,0,0);
+}
+.tbProp th:nth-child(1),
+.tbProp th:nth-child(2){
+    width: 25%;
 }
 .tbProp th:nth-child(4),
 .tbProp th:nth-child(5){
-    width: 12%;
-    border: 1px solid rgb(200, 200, 200);
+    width: 8%;
+}
+.tbProp th:nth-child(6),
+.tbProp th:nth-child(7){
+    width: 10%;
 }
 .tbProp td{
     height: 50px;

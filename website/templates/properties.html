@@ -15,20 +15,19 @@
                     {% endfor %}
                 </tr>
                 {% endfor %}
-                </thead>
-                <tbody>
-                    {% for immobile in immobili %}
-                    <tr>
-                        {% for k,v in immobile.items() %}
-                            {% if loop.index == 1 %}
-                                <td><a href="{{url_for('views.clients')}}">{{ v }}</a></td>
-                            {% elif k != "immagini" %}
-                                <td>{{ v }}</td>
-                            {% endif %}
-                        {% endfor %}
-                    </tr>
+            </thead>
+            <tbody>
+                {% for immobile in immobili %}
+                <tr>
+                    {% for k,v in immobile.items() %}
+                        {% if loop.index == 1 %}
+                            <td><a href="{{url_for('views.clients')}}">{{ v }}</a></td>
+                        {% elif k != "immagini" %}
+                            <td>{{ v }}</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
                 {% endfor %}
-                </tbody>
             </tbody>
         </table>
     </div>
