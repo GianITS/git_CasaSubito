@@ -338,6 +338,95 @@ h1{
     padding-top: 230px;
 
 }
+.obiettivi{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.6rem;
+}
+.obiettivi > div{
+    background: white;
+    padding: 1.8rem;
+    border-radius: 2rem;
+    margin-top: 1rem;
+    box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
+    transition: all 300ms ease;
+}
+.obiettivi > div:hover{
+    box-shadow: none;
+}
+.obiettivi > div span{
+    background: lightcoral;
+    padding: 0.5rem;
+    border-radius: 50%;
+    color: white;
+    font-size: 2rem;
+}
+.obiettivi >div .middle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.obiettivi h3{
+    margin: 1rem 0 0.6rem;
+    font-size: 1rem;
+}
+.obiettivi .progress{
+    position: relative;
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+}
+.obiettivi svg{
+    width: 7rem;
+    height: 7rem;
+}
+.obiettivi svg circle{
+    fill: none;
+    stroke: lightblue;
+    stroke-width: 14;
+    stroke-linecap: round;
+    transform: translate(5px, 5px);
+    stroke-dasharray: 110;
+    stroke-dashoffset: 92;
+}
+
+.obiettivi .IN21 svg circle{
+    stroke-dashoffset: -170;
+    stroke-dasharray: 200;
+}
+.obiettivi .NT11 svg circle{
+    stroke-dashoffset: -130;
+    stroke-dasharray: 200;
+}
+.obiettivi .NT17 svg circle{
+    stroke-dashoffset: -80;
+    stroke-dasharray: 200;
+}
+.obiettivi .R4 svg circle{
+    stroke-dashoffset: -70;
+    stroke-dasharray: 200;
+}
+.obiettivi .R6 svg circle{
+    stroke-dashoffset: -160;
+    stroke-dasharray: 200;
+}
+.obiettivi .REP17 svg circle{
+    stroke-dashoffset: -200;
+    stroke-dasharray: 200;
+}
+.obiettivi .progress .number{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.text-muted{
+    color: #7d8da1;
+}
 
 /* insert_client.html -----------------------------------------------------------*/
 
