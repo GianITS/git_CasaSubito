@@ -21,7 +21,7 @@
             <p>{{agent}}</p>
             {% for image in images %}
                 <p>{{image.filename}}</p>
-                <img src="{{url_for('views.image', filename=image.filename)}}" alt="" style="width:400px;height:400px;">
+                <img src="{{url_for('views.image', filename=image.filename)}}" alt="" style="width:200px;height:100px;">
             {% endfor %}
         </div>
     </div>

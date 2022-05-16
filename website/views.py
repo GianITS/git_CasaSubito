@@ -48,15 +48,17 @@ def image(filename):
 
 # importo i moduli relativi al form
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, IntegerField, RadioField, MultipleFileField
+from wtforms import StringField, SubmitField, IntegerField, RadioField, MultipleFileField, SelectField
 from wtforms.validators import DataRequired
 
 #creo la classe form dell inserimento degli immobili
 class FormInsertProperties(FlaskForm):
     owner = StringField("Proprietario", validators=[DataRequired()])
     sqMeters = IntegerField("Dimensioni", validators=[DataRequired()])
-    position = StringField("Posizione", validators=[DataRequired()])
+    address = StringField("Posizione", validators=[DataRequired()])
+    city = StringField("Posizione", validators=[DataRequired()])
     vendAff = RadioField("Vendita/Affitto", validators=[DataRequired()], choices=[('Vendita','Vendita'),('Affitto','Affitto')], default="Vendita")
+    specifichePrinc = SelectField(u"Specifiche Principali", choices=[('Soggiorno con angolo cottura', 'Soggiorno con angolo cottura'),('Cucina','Cucina'),('Soggiorno','Soggiorno'),('Sala da pranzo','Sala da pranzo'),('Sala da pranzo','Sala da pranzo')])
     images = MultipleFileField("Carica immagini", validators=[DataRequired()])
     agent = StringField("agent")
     submit = SubmitField("Inserisci")
