@@ -495,21 +495,37 @@ h1{
     top: 0;
     background-color: lightblue;
 }
+.tbProp .open.th{
+    width: 5%;
+    aspect-ratio: 1;
+    background-color: whitesmoke;
+}
 .tbProp th{
     width: 16%;
     border: 1px solid rgb(0,0,0);
 }
-.tbProp th:nth-child(1),
-.tbProp th:nth-child(2){
+.tbProp th:nth-child(2),
+.tbProp th:nth-child(3){
     width: 25%;
 }
-.tbProp th:nth-child(4),
-.tbProp th:nth-child(5){
+.tbProp th:nth-child(5),
+.tbProp th:nth-child(6){
     width: 8%;
 }
-.tbProp th:nth-child(6),
-.tbProp th:nth-child(7){
+.tbProp th:nth-child(7),
+.tbProp th:nth-child(8){
     width: 10%;
+}
+.tbProp .open{
+    width: 50px;
+    aspect-ratio: 1;
+    background-color: blue;
+}
+.tbProp .open a{
+    display: flex;
+    width: 100%;
+    aspect-ratio: 1;
+    background-color: red;
 }
 .tbProp td{
     height: 50px;

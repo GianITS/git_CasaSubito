@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="mainProp">
+        <h1>pagina immobile</h1>
+        <h2>{{ nome }}</h2>
+        <h2>{{ session['agent'] }}</h2>
+        <a href="{{url_for('views.showImg', nome=nome)}}">guarda le immagini</a>
+        {% block PropPage %}
+        {% endblock %}
+    </div>
+{% endblock %}

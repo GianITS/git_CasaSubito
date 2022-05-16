@@ -7,18 +7,22 @@
         <table class="tbProp">
             <thead>
                 {% for immobile in immobili %}
+                {% if loop.index == 1 %}
                 <tr>
+                    <th class="open th"></th>
                     {% for k in immobile.keys() if loop.first %}
                         {% if k != "immagini" %}
                             <th>{{ k }}</th>
                         {% endif %}
                     {% endfor %}
                 </tr>
+                {% endif %}
                 {% endfor %}
             </thead>
             <tbody>
                 {% for immobile in immobili %}
                 <tr>
+                    <td class="open"><a href="{{url_for('views.PropPage', nome=immobile['nome'])}}"></a></td>
                     {% for k,v in immobile.items() %}
                         {% if loop.index == 1 %}
                             <td><a href="{{url_for('views.clients')}}">{{ v }}</a></td>
@@ -31,5 +35,7 @@
             </tbody>
         </table>
     </div>
+    {% block PropPage %}
+    {% endblock %}
 </div>
 {% endblock content %}

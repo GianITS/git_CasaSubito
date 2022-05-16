@@ -96,24 +96,42 @@ def insert_properties():
     return render_template('insert_properties.html', form=form, owner=owner, sqMeters=sqMeters, position=position, vandAff=vendAff, images=images, agent=agent)
 
 # pagina scheda immobile
-# @app.route('/profile/<nome>')
-# def profile(nome):
-#     agenti = collection.find_one({"nome": nome}, {"agente":1, "_id":0})
-#     for k,v in agenti.items():
-#         agente = v
-#     img = collection.find_one({"nome": nome}, {"immagini":1, "_id":0})
-#     print(img)
-#     for k,va in img.items():
-#         listImg = va
-#         for x in va:
-#             print(x)
-#     data = collection.find_one({"nome": nome})
-#     print(data)
-#     if data:
-#         for k,v in data.items():
-#             print(k,v)
-#         return render_template('profile.html', listImg=listImg, dict=data)
-#     return render_template('profile.html')
+#import
+from .models import properties_collection
+@views.route('/PaginaImmobile/<nome>')
+def PropPage(nome):
+    img = properties_collection.find_one({"nome": nome}, {"immagini":1, "_id":0})
+    print(img)
+    for k,v in img.items():
+        listImg = v
+        for x in v:
+            print(x)
+    # data = .find_one({"nome": nome})
+    # print(data)
+    # if data:
+    #     for k,v in data.items():
+    #         print(k,v)
+    #     return render_template('profile.html', listImg=listImg, dict=data)
+    return render_template('property_page.html', nome=nome, listImg=listImg)
+
+# pagina immagini immobile
+#import
+from .models import properties_collection
+@views.route('/PaginaImmobile/<nome>/Immagini')
+def showImg(nome):
+    img = properties_collection.find_one({"nome": nome}, {"immagini":1, "_id":0})
+    print(img)
+    for k,v in img.items():
+        listImg = v
+        for x in v:
+            print(x)
+    # data = .find_one({"nome": nome})
+    # print(data)
+    # if data:
+    #     for k,v in data.items():
+    #         print(k,v)
+    #     return render_template('profile.html', listImg=listImg, dict=data)
+    return render_template('show_img.html', nome=nome, listImg=listImg)
 
 @views.route('/RichiesteImmobiliari')
 def properties_request():
