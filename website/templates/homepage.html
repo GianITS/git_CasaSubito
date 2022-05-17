@@ -1,9 +1,134 @@
 {% extends 'base.html' %}
 {% block title %} HomePage {% endblock title %}
 {% block content %}
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+    <link rel="stylesheet" 
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
     <div class="mainHome">
-        <h1>Homepage</h1>
-        <p>{{ lipsum(n=5, html=True, min=20, max=400) }}</p>
+        <main>
+            <h1>Gestione Obiettivi</h1>
+            <div class="obiettivi">
+                <div class="IN21">
+                    <span class="material-symbols-outlined">query_stats</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>IN21</h3>
+                            <h1>5/24</h1>
+                        </div>
+                        <div class="progress">
+                            <svg>
+                                <circle cx='38' cy='38' r='36'></circle>
+                            </svg>
+                            <div class="number">
+                                <p>21%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-muted">Ultimo aggiornamento: 6 ore fa</small>
+                </div>
+            <!-----------------  FINE IN21  ---------------->
+                <div class="NT11">
+                    <span class="material-symbols-outlined">schema</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>NT11</h3>
+                            <h1>3/8</h1>
+                        </div>
+                        <div class="progress">
+                            <svg>
+                                <circle cx='38' cy='38' r='36'></circle>
+                            </svg>
+                            <div class="number">
+                                <p>37%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-muted">Ultimo aggiornamento: 6 ore fa</small>
+                </div>
+            <!-----------------  FINE NT11  ---------------->
+                <div class="NT17">
+                    <span class="material-symbols-outlined">bubble_chart</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>NT17</h3>
+                            <h1>16/24</h1>
+                        </div>
+                        <div class="progress">
+                            <svg>
+                                <circle cx='38' cy='38' r='36'></circle>
+                            </svg>
+                            <div class="number">
+                                <p>67%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-muted">Ultimo aggiornamento: 6 ore fa</small>
+                </div>   
+            <!-----------------  FINE NT17  ---------------->
+                <div class="R4">
+                    <span class="material-symbols-outlined">area_chart</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>R4</h3>
+                            <h1>150/200</h1>
+                        </div>
+                        <div class="progress">
+                            <svg>
+                                <circle cx='38' cy='38' r='36'></circle>
+                            </svg>
+                            <div class="number">
+                                <p>75%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-muted">Ultimo aggiornamento: 6 ore fa</small>
+                </div>
+            <!-----------------  FINE R4  ---------------->
+                <div class="R6">
+                    <span class="material-symbols-outlined">donut_small</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>R6</h3>
+                            <h1>50/200</h1>
+                        </div>
+                        <div class="progress">
+                            <svg>
+                                <circle cx='38' cy='38' r='36'></circle>
+                            </svg>
+                            <div class="number">
+                                <p>25%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-muted">Ultimo aggiornamento: 6 ore fa</small>
+                </div>
+            <!-----------------  FINE R6  ---------------->
+                <div class="REP17">
+                    <span class="material-symbols-outlined">trending_down</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>REP17</h3>
+                            <h1>2/40</h1>
+                        </div>
+                        <div class="progress">
+                            <svg>
+                                <circle cx='38' cy='38' r='36'></circle>
+                            </svg>
+                            <div class="number">
+                                <p>5%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-muted">Ultimo aggiornamento: 6 ore fa</small>
+                </div>
+            <!-----------------  FINE REP17  ---------------->
+            </div>
+            <!--------------  FINE OBIETTIVI  --------------->
+        </main>
         {% block contentHome %}
         {% endblock contentHome %}
     </div>
