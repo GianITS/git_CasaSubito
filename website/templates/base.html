@@ -8,9 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800;900&display=swap" rel="stylesheet">
 
+    <link rel="icon" href="{{ url_for('static', filename='images/user.png')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
 
-    <title>{% block title%} {% endblock title %}</title>
+    <title>CasaSubito - {% block title%} {% endblock title %}</title>
 </head>
 <body class="bodyBase">
     <div class="header">
@@ -27,9 +28,9 @@
                 <div class="userMenu">
                     <ul>
                         <li>
-                            {% if session['agent'] == "Mario" %}
+                            {% if session['agent'] == "Imran" %}
                             <span class="userico one">
-                                M
+                                I
                             </span>
                             {% elif session['agent'] == "Gianluca" %}
                             <span class="userico two">

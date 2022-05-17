@@ -1,0 +1,14 @@
+{% extends 'property_page.html' %}
+{% block PropPage %}
+<div class="section">
+    <div class="container showImg">
+        <a href="{{url_for('views.PropPage', nome=nome)}}" class="btnclose"></a>
+        <img src="{{url_for('views.image', filename=listImg[0])}}" alt="">
+        <div class="carousel">
+            {% for image in listImg %}
+                <img src="{{url_for('views.image', filename=image)}}" alt="">
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
