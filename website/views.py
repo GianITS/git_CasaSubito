@@ -63,24 +63,29 @@ class FormInsertProperties(FlaskForm):
     agent = StringField("agent")
     submit = SubmitField("Inserisci")
 
-@views.route('/Inserimento_Immobili', methods=["GET", "POST"])
+@views.route('/Inserimento_Immobili', methods=["GET","POST"])
 def insert_properties():
     # resetto tutte le variabili
     # assegno la variabile agente col nome dell agente loggato
     # assegno alla variabile form il form che ho appena creato
     owner = ""
     sqMeters = ""
-    position = ""
+    address = ""
+    city = ""
     vendAff = ""
+    specifichePrinc = ""
     images = ""
     agent = session['agent']
     form = FormInsertProperties()
+    print("ciao")
 
     if form.validate_on_submit():
         owner = form.owner.data
         sqMeters = form.sqMeters.data
-        position = form.position.data
+        address = form.address.data
+        city = form.city.data
         vendAff = form.vendAff.data
+        specifichePrinc = form.specifichePrinc.data
         images = request.files.getlist('images')
         listImg = []
         for image in images:
@@ -88,14 +93,18 @@ def insert_properties():
             listImg.append(image.filename)
         for img in listImg:
             print(img)
+        
     
     #resetto i dati ricevutid dal form
     form.owner.data = ""
-    form.sqMeters.data = ""
-    form.position.data = ""
+    form.sqMeters.data = None
+    form.address.data = ""
+    form.city.data = ""
     form.vendAff.data = ""
+    form.specifichePrinc.data = ""
+    form.images.data = ""
 
-    return render_template('insert_properties.html', form=form, owner=owner, sqMeters=sqMeters, position=position, vandAff=vendAff, images=images, agent=agent)
+    return render_template('insert_properties.html', form=form, owner=owner, sqMeters=sqMeters, address=address, city=city, vandAff=vendAff, specifichePrinc=specifichePrinc, images=images, agent=agent)
 
 # pagina scheda immobile
 
