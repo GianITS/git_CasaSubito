@@ -53,13 +53,13 @@ from wtforms.validators import DataRequired
 
 #creo la classe form dell inserimento degli immobili
 class FormInsertProperties(FlaskForm):
-    owner = StringField("Proprietario", validators=[DataRequired()])
-    sqMeters = IntegerField("Dimensioni", validators=[DataRequired()])
-    address = StringField("Posizione", validators=[DataRequired()])
-    city = StringField("Posizione", validators=[DataRequired()])
-    vendAff = RadioField("Vendita/Affitto", validators=[DataRequired()], choices=[('Vendita','Vendita'),('Affitto','Affitto')], default="Vendita")
+    owner = StringField("Proprietario")
+    sqMeters = IntegerField("Dimensioni")
+    address = StringField("Posizione")
+    city = StringField("Posizione")
+    vendAff = RadioField("Vendita/Affitto", choices=[('Vendita','Vendita'),('Affitto','Affitto')], default="Vendita")
     specifichePrinc = SelectField(u"Specifiche Principali", choices=[('Soggiorno con angolo cottura', 'Soggiorno con angolo cottura'),('Cucina','Cucina'),('Soggiorno','Soggiorno'),('Sala da pranzo','Sala da pranzo'),('Sala da pranzo','Sala da pranzo')])
-    images = MultipleFileField("Carica immagini", validators=[DataRequired()])
+    images = MultipleFileField("Carica immagini")
     agent = StringField("agent")
     submit = SubmitField("Inserisci")
 

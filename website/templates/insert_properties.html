@@ -11,17 +11,18 @@
                 {{form.address.label}}{{form.address()}}
                 {{form.city.label}}{{form.city()}}
                 {{form.vendAff.label}}{{form.vendAff()}}
+                {{form.specifichePrinc.label}}{{form.specifichePrinc()}}
                 {{form.images.label}}{{form.images()}}
                 {{form.agent.label}}: {{session["agent"]}}
                 {{form.submit()}}
             </form>
             <p>{{owner}}</p>
             <p>{{sqMeters}}</p>
-            <p>{{position}}</p>
+            <p>{{address}}</p>
+            <p>{{city}}</p>
             <p>{{vendAff}}</p>
             <p>{{agent}}</p>
             {% for image in images %}
-                <p>{{image.filename}}</p>
                 <img src="{{url_for('views.image', filename=image.filename)}}" alt="" style="width:200px;height:100px;">
             {% endfor %}
         </div>

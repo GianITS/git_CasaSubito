@@ -338,6 +338,13 @@ h1{
     padding-top: 230px;
 
 }
+.mainHome main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+}
 .obiettivi{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -640,7 +647,7 @@ h1{
     display: flex;
     margin-top: 10px;
     padding-right: 30px;
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 .container.showImg img{
     width: 100%;
