@@ -3,30 +3,39 @@
 {% block content %}
 <div class="mainProp">
     <h1>Immobili</h1>
-    <table class="tbProp">
-        <thead>
-            {% for immobile in immobili %}
-            <tr>
-                {% for k in immobile.keys() if loop.first %}
-                    {% if k != "immagini" %}
-                        <th>{{ k }}</th>
-                    {% endif %}
+    <div class="containerProp">
+        <table class="tbProp">
+            <thead>
+                {% for immobile in immobili %}
+                {% if loop.index == 1 %}
+                <tr>
+                    <th class="open th"></th>
+                    {% for k in immobile.keys() if loop.first %}
+                        {% if k != "immagini" %}
+                            <th>{{ k }}</th>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                {% endif %}
                 {% endfor %}
-            </tr>
-            {% endfor %}
             </thead>
             <tbody>
                 {% for immobile in immobili %}
                 <tr>
+                    <td class="open"><a href="{{url_for('views.PropPage', nome=immobile['nome'])}}"></a></td>
                     {% for k,v in immobile.items() %}
-                        {% if k != "immagini" %}
-                        <td>{{ v }}</td>
+                        {% if loop.index == 1 %}
+                            <td><a href="{{url_for('views.clients')}}">{{ v }}</a></td>
+                        {% elif k != "immagini" %}
+                            <td>{{ v }}</td>
                         {% endif %}
                     {% endfor %}
                 </tr>
-            {% endfor %}
+                {% endfor %}
             </tbody>
-        </tbody>
         </table>
     </div>
+    {% block PropPage %}
+    {% endblock %}
+</div>
 {% endblock content %}
