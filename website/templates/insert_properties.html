@@ -6,29 +6,18 @@
             <a href="/HomePage" class="btnclose"></a>
             <form action="" method="post" id="form0" enctype="multipart/form-data">
                 {{form.hidden_tag()}}
-                {{form.owner.label}}{{form.owner()}}
-                {{form.sqMeters.label}}{{form.sqMeters()}}
-                {{form.address.label}}{{form.address()}}
-                {{form.city.label}}{{form.city()}}
-                {{form.vendAff.label}}{{form.vendAff()}}
-                {{form.images.label}}{{form.images()}}
-                {{form.agent.label}}{{session["agent"]}}
-                <div></div>
-                <div></div>
-                {{form.specifichePrinc.label}}{{form.specifichePrinc()}}
-                {{form.number.label}}{{form.number()}} <div class="btnIns"></div>
+                <ul class="ulForm">
+                    <li class="liForm"><div>{{form.owner.label}}{{form.owner()}}</div><div>{{form.tipologia.label}}{{form.tipologia()}}</div></li>
+                    <li class="liForm"><div>{{form.address.label}}{{form.address()}}</div><div>{{form.city.label}}{{form.city()}}</div></li>
+                    <li class="liForm"><div>{{form.vendAff.label}}{{form.vendAff()}}</div><div>{{form.sqMeters.label}}{{form.sqMeters()}}</div></li>
+                </ul>
+                <ul class="ulForm">
+                    <li class="liForm one"><div>{{form.specifichePrinc.label}}{{form.specifichePrinc()}}</div><div class="inpNum">{{form.number.label}}{{form.number()}}</div><div class="btnIns"></div></li>
+                </ul>
+                <div>{{form.images.label}}{{form.images(class_="imgForm")}}</div>
+                <div>{{form.agent.label}}{{session["agent"]}}</div>                    
                 {{form.submit()}}
             </form>
-            <p>{{owner}}</p>
-            <p>{{sqMeters}}</p>
-            <p>{{address}}</p>
-            <p>{{city}}</p>
-            <p>{{vendAff}}</p>
-            <p>{{specifichePrinc}}</p>
-            <p>{{agent}}</p>
-            {% for image in images %}
-                <img src="{{url_for('views.image', filename=image.filename)}}" alt="" style="width:200px;height:100px;">
-            {% endfor %}
         </div>
     </div>
 {% endblock contentHome %}

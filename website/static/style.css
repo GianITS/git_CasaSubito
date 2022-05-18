@@ -630,29 +630,70 @@ h1{
 
 /* insert_properties.html -----------------------------------------------------------*/
 
-.section.prop{
-    justify-content: flex-start;
-}
 .section.prop .container.scroll{
-    height: max-content;
+    height: 700px;
     justify-content: flex-start;
     margin: 40px 0;
     overflow: auto;
 }
 .section.prop .container.scroll form{
-    display: grid;
-    grid-template-columns: repeat(4, 180px);
-    gap: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 40px 10px;
 }
-.section.prop .container.scroll form .btnIns{
+.section.prop .container.scroll form .ulForm{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.section.prop .container.scroll form .liForm{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #000;
+}
+.section.prop .container.scroll form .liForm div{
+    width: 50%;
+    display: flex;
+}
+ul#vendAff{
+    display: flex;
+}
+ul#vendAff input{
+    width: 20px;
+}
+.section.prop .container.scroll form .liForm .inpNum{
+    
+}
+.section.prop .container.scroll form .liForm .inpNum #number{
+    width: 30px;
+}
+.section.prop .container.scroll form .liForm label{
+    width: 160px;
+    display: flex;
+    align-items: center;
+    border: 1px solid red;
+}
+.section.prop .container.scroll form .liForm input,
+.section.prop .container.scroll form .liForm select{
+    width: 200px;
+}
+.section.prop .container.scroll form .liForm.one .btnIns{
     width: 40px;
     aspect-ratio: 1;
     border-radius: 50%;
     background-color: aquamarine;
     cursor: pointer;
+}
+.imgForm{
+    border: none;
 }
 
 /* properties.html -----------------------------------------------------------*/
