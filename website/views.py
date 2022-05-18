@@ -14,18 +14,36 @@ mongo = PyMongo(app, tlsCAFile=certifi.where())
 def home():
     return render_template('homepage.html')
 
+# pagina inserimento cliente
 # import
 from .models import clients_collection
+
+@views.route('/Inserimento_Clienti')
+def insert_clients():
+    return render_template('insert_clients.html')
+
+# pagina clienti totali
 
 @views.route('/Clienti')
 def clients():
     clienti = list(clients_collection.find({},{"_id":0}))
     return render_template('clients.html', clienti=clienti)
 
-@views.route('/Inserimento_Clienti')
-def insert_clients():
-    return render_template('insert_clients.html')
+# pagina singolo cliente
 
+@views.route('/PaginaCliente/<nome>')
+def ClientPage(nome):
+    client = clients_collection.find_one({"nome": nome}, {"_id":0})
+    client =list(client.values())
+    cognome=client[1]
+    indirizzo=client[2]
+    citta=client[3]
+    cellulare=client[4]
+    mail=client[5]
+    azione=client[6]
+    return render_template('clients_page.html', nome=nome, cognome=cognome, indirizzo=indirizzo, citta=citta, cellulare=cellulare, mail=mail, azione=azione)
+
+# pagina immobili totali
 # import
 from .models import properties_collection
 
@@ -34,11 +52,12 @@ def properties():
     immobili = list(properties_collection.find({},{"_id":0}))
     return render_template('properties.html', immobili=immobili)
 
+# recupero le immagini dal db
 # import
 import gridfs
 from urllib import response
 from .models import db
-# recupero le immagini dal db
+
 @views.route('/image/<filename>')
 def image(filename):
     fs = gridfs.GridFS(db)
@@ -52,15 +71,20 @@ from wtforms import StringField, SubmitField, IntegerField, RadioField, Multiple
 from wtforms.validators import DataRequired
 
 #creo la classe form dell inserimento degli immobili
+
+
+#  inserire tipologia immobile:
+# (appartamento/casa indipendente/casa semindipendente/villa a schiera/rustico)
 class FormInsertProperties(FlaskForm):
-    owner = StringField("Proprietario", validators=[DataRequired()])
-    sqMeters = IntegerField("Dimensioni", validators=[DataRequired()])
-    address = StringField("Posizione", validators=[DataRequired()])
-    city = StringField("Posizione", validators=[DataRequired()])
-    vendAff = RadioField("Vendita/Affitto", validators=[DataRequired()], choices=[('Vendita','Vendita'),('Affitto','Affitto')], default="Vendita")
-    specifichePrinc = SelectField(u"Specifiche Principali", choices=[('Soggiorno con angolo cottura', 'Soggiorno con angolo cottura'),('Cucina','Cucina'),('Soggiorno','Soggiorno'),('Sala da pranzo','Sala da pranzo'),('Sala da pranzo','Sala da pranzo')])
-    images = MultipleFileField("Carica immagini", validators=[DataRequired()])
-    agent = StringField("agent")
+    owner = StringField("Proprietario: ")
+    sqMeters = IntegerField("Dimensioni: ")
+    address = StringField("Indirizzo: ")
+    city = StringField("Citta: ")
+    vendAff = RadioField("Vendita/Affitto: ", choices=[('Vendita','Vendita'),('Affitto','Affitto')], default="Vendita")
+    specifichePrinc = SelectField(u"Specifiche Principali: ", choices=[('Soggiorno con angolo cottura', 'Soggiorno con angolo cottura'),('Cucina','Cucina'),('Soggiorno','Soggiorno'),('Sala da pranzo','Sala da pranzo'),('Sala da pranzo','Sala da pranzo')])
+    number = IntegerField("Numero: ")
+    images = MultipleFileField("Carica immagini: ")
+    agent = StringField("Agente: ")
     submit = SubmitField("Inserisci")
 
 @views.route('/Inserimento_Immobili', methods=["GET","POST"])
@@ -74,10 +98,10 @@ def insert_properties():
     city = ""
     vendAff = ""
     specifichePrinc = ""
+    number = ""
     images = ""
     agent = session['agent']
     form = FormInsertProperties()
-    print("ciao")
 
     if form.validate_on_submit():
         owner = form.owner.data
@@ -86,6 +110,7 @@ def insert_properties():
         city = form.city.data
         vendAff = form.vendAff.data
         specifichePrinc = form.specifichePrinc.data
+        number = form.number.data
         images = request.files.getlist('images')
         listImg = []
         for image in images:
@@ -97,14 +122,15 @@ def insert_properties():
     
     #resetto i dati ricevutid dal form
     form.owner.data = ""
-    form.sqMeters.data = None
+    form.sqMeters.data = ""
     form.address.data = ""
     form.city.data = ""
     form.vendAff.data = ""
     form.specifichePrinc.data = ""
+    form.number.data = ""
     form.images.data = ""
 
-    return render_template('insert_properties.html', form=form, owner=owner, sqMeters=sqMeters, address=address, city=city, vandAff=vendAff, specifichePrinc=specifichePrinc, images=images, agent=agent)
+    return render_template('insert_properties.html', form=form, owner=owner, sqMeters=sqMeters, address=address, city=city, vandAff=vendAff, specifichePrinc=specifichePrinc, number=number, images=images, agent=agent)
 
 # pagina scheda immobile
 
