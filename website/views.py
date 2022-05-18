@@ -77,10 +77,11 @@ from wtforms.validators import DataRequired
 # (appartamento/casa indipendente/casa semindipendente/villa a schiera/rustico)
 class FormInsertProperties(FlaskForm):
     owner = StringField("Proprietario: ")
-    sqMeters = IntegerField("Dimensioni: ")
+    tipologia = SelectField(u"Tipologia: ", choices=[('Appartamento', 'Appartamento'),('Casa indipendente','Casa indipendente'),('Casa semindipendente','Casa semindipendente'),('Villa a schiera','Villa a schiera'),('Rustico','Rustico')])
     address = StringField("Indirizzo: ")
     city = StringField("Citta: ")
     vendAff = RadioField("Vendita/Affitto: ", choices=[('Vendita','Vendita'),('Affitto','Affitto')], default="Vendita")
+    sqMeters = IntegerField("Dimensioni: ")
     specifichePrinc = SelectField(u"Specifiche Principali: ", choices=[('Soggiorno con angolo cottura', 'Soggiorno con angolo cottura'),('Cucina','Cucina'),('Soggiorno','Soggiorno'),('Sala da pranzo','Sala da pranzo'),('Sala da pranzo','Sala da pranzo')])
     number = IntegerField("Numero: ")
     images = MultipleFileField("Carica immagini: ")
@@ -93,10 +94,11 @@ def insert_properties():
     # assegno la variabile agente col nome dell agente loggato
     # assegno alla variabile form il form che ho appena creato
     owner = ""
-    sqMeters = ""
+    tipologia = ""
     address = ""
     city = ""
     vendAff = ""
+    sqMeters = ""
     specifichePrinc = ""
     number = ""
     images = ""
@@ -105,10 +107,11 @@ def insert_properties():
 
     if form.validate_on_submit():
         owner = form.owner.data
-        sqMeters = form.sqMeters.data
+        tipologia = form.tipologia.data
         address = form.address.data
         city = form.city.data
         vendAff = form.vendAff.data
+        sqMeters = form.sqMeters.data
         specifichePrinc = form.specifichePrinc.data
         number = form.number.data
         images = request.files.getlist('images')
@@ -122,15 +125,16 @@ def insert_properties():
     
     #resetto i dati ricevutid dal form
     form.owner.data = ""
-    form.sqMeters.data = ""
+    form.tipologia.data = ""
     form.address.data = ""
     form.city.data = ""
     form.vendAff.data = ""
+    form.sqMeters.data = ""
     form.specifichePrinc.data = ""
     form.number.data = ""
     form.images.data = ""
 
-    return render_template('insert_properties.html', form=form, owner=owner, sqMeters=sqMeters, address=address, city=city, vandAff=vendAff, specifichePrinc=specifichePrinc, number=number, images=images, agent=agent)
+    return render_template('insert_properties.html', form=form, owner=owner, tipologia=tipologia, address=address, city=city, vandAff=vendAff, sqMeters=sqMeters, specifichePrinc=specifichePrinc, number=number, images=images, agent=agent)
 
 # pagina scheda immobile
 

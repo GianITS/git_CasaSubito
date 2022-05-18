@@ -1,8 +1,14 @@
+:root{
+    --primary-color: rgba(255,247,0,1);
+    --secondary-color: rgba(198,192,0,1);
+}
+
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: 'Poppins';
+    font-family: 'Quattrocento Sans', sans-serif;
 }
 body{
     width: 100%;
@@ -22,7 +28,7 @@ li{
 }
 input{
     padding: 5px 0 5px 10px;
-    border-radius: 10px;
+    border-radius: 8px;
     outline: none;
     border: 1px solid #000;
 }
@@ -30,8 +36,13 @@ input{
 /* login.html -----------------------------------------------------------*/
 
 .bodyLog{
-    background-image: linear-gradient(to bottom, rgba(255,255,255,.6), rgba(255,255,255,.6)), url('/../static/images/Casa5.jpg');
+    background: linear-gradient(to bottom, rgba(255,255,255,.6), rgba(255,255,255,.6)), url('/../static/images/Casa6.jpeg')no-repeat center;
     background-size: cover;
+    font-size: 22px;
+}
+.large{
+    width: 300px;
+    font-size: 20px;
 }
 h1{
     margin-bottom: 50px;
@@ -54,6 +65,7 @@ h1{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 70px;
 }
 .utente,
 .password{
@@ -64,6 +76,8 @@ h1{
 .btnSub{
     padding: 4px 20px;
     margin-top: 20px;
+    font-size: 20px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     cursor: pointer;
 }
 
@@ -84,8 +98,28 @@ h1{
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    background-color: burlywood;
+    background: linear-gradient(135deg, var(--primary-color)0%, var(--secondary-color)100%);
     z-index: 2;
+}
+.header .logo{
+    width: 70px;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+}
+.header .logo a{
+    display: flex;
+    align-items: center;
+}
+.header .logo img{
+    position: relative;
+    top: -3px;
+    left: 5px;
+    width: 70px;
+    aspect-ratio: 1;
+}
+.header .logo p{
+    font-size: 28px;
 }
 .search{
     position: absolute;
@@ -137,6 +171,21 @@ h1{
     cursor: pointer;
     margin-left: 10px;
 }
+.header .logout .one{
+    background-color: darkcyan;
+}
+.header .logout .two{
+    background-color: crimson;
+}
+.header .logout .three{
+    background-color: blueviolet;
+}
+.header .logout .four{
+    background-color: yellowgreen;
+}
+.header .logout .five{
+    background-color: skyblue;
+}
 .header .logout .user .btnUser{
     width: 100%;
     aspect-ratio: 1;
@@ -150,7 +199,7 @@ h1{
     left: -45px;
     width: 100px;
     height: 80px;
-    background-color: burlywood;
+    background: var(--secondary-color);
     z-index: -1;
     opacity: 0;
     transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -191,6 +240,15 @@ h1{
 }
 .userMenu.visible .two{
     background-color: crimson;
+}
+.userMenu.visible .three{
+    background-color: blueviolet;
+}
+.userMenu.visible .four{
+    background-color: yellowgreen;
+}
+.userMenu.visible .five{
+    background-color: skyblue;
 }
 .header .logout .user .userMenu.visible ul li span.iconLogout{
     display: inline-flex;
@@ -253,11 +311,15 @@ h1{
     width: 50px;
     aspect-ratio: 1;
     border-radius: 50%;
-    background-color: red;
+    background: #1adb47;
     margin-top: 20px;
     transition: all .3s;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, .3);
     cursor: pointer;
+    transition: all .3s;
+}
+.menu .contDown .btninsert:hover{
+    transform: scale(1.1);
 }
 .menu .contDown .btninsert::before,
 .menu .contDown .btninsert::after{
@@ -268,7 +330,7 @@ h1{
     width: 25px;
     height: 3px;
     border-radius: 5px;
-    background-color: aliceblue;
+    background-color: black;
     transform: translate(-50%,-50%);
 }
 .menu .contDown .btninsert::after{
@@ -316,11 +378,16 @@ h1{
 .menu .contDown .dpList .btninsert{
     display: flex;
     aspect-ratio: 1;
-    background-color: blue;
     margin: 0 20px 0 0;
 }
-.menu.extend .dpList.show .mt-20{
-    margin: 20px 20px 20px 0;
+.menu .contDown .dpList .btninsert.one{
+    background: linear-gradient(135deg, var(--secondary-color)0%, var(--primary-color)100%);
+    margin-top: 20px;
+}
+.menu .contDown .dpList .btninsert.two{
+    background: linear-gradient(135deg, var(--secondary-color)0%, var(--primary-color)100%);
+    margin-top: 20px;
+
 }
 .menu .contDown .dpList .btninsert:hover{
     transform: rotate(180deg) scale(1.1);
@@ -563,29 +630,70 @@ h1{
 
 /* insert_properties.html -----------------------------------------------------------*/
 
-.section.prop{
-    justify-content: flex-start;
-}
 .section.prop .container.scroll{
-    height: max-content;
+    height: 700px;
     justify-content: flex-start;
     margin: 40px 0;
     overflow: auto;
 }
 .section.prop .container.scroll form{
-    display: grid;
-    grid-template-columns: repeat(4, 180px);
-    gap: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 40px 10px;
 }
-.section.prop .container.scroll form .btnIns{
+.section.prop .container.scroll form .ulForm{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.section.prop .container.scroll form .liForm{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #000;
+}
+.section.prop .container.scroll form .liForm div{
+    width: 50%;
+    display: flex;
+}
+ul#vendAff{
+    display: flex;
+}
+ul#vendAff input{
+    width: 20px;
+}
+.section.prop .container.scroll form .liForm .inpNum{
+    
+}
+.section.prop .container.scroll form .liForm .inpNum #number{
+    width: 30px;
+}
+.section.prop .container.scroll form .liForm label{
+    width: 160px;
+    display: flex;
+    align-items: center;
+    border: 1px solid red;
+}
+.section.prop .container.scroll form .liForm input,
+.section.prop .container.scroll form .liForm select{
+    width: 200px;
+}
+.section.prop .container.scroll form .liForm.one .btnIns{
     width: 40px;
     aspect-ratio: 1;
     border-radius: 50%;
     background-color: aquamarine;
     cursor: pointer;
+}
+.imgForm{
+    border: none;
 }
 
 /* properties.html -----------------------------------------------------------*/
