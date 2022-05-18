@@ -628,6 +628,37 @@ h1{
     border: 1px solid rgb(200, 200, 200);
 }
 
+/*clients_page.html & property_page.html-----------------------------------------------------------------*/
+
+.pagina table{
+    background: white;
+    width: 100%;
+    padding: 1.8rem;
+    border-radius: 2rem;
+    text-align:center;
+    box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
+    transition: all 300ms ease;
+}
+.pagina table:hover{
+    box-shadow: none;
+}
+.pagina .linea{
+    height: 2.8rem;
+    border-bottom: 1px solid rgba(132, 139, 200, 0.18);
+    padding: 0.8rem;
+}
+.pagina .dati{
+    border-radius: 1.8rem;
+    background-color: #454DF1;
+    padding: 0rem 2rem;
+    text-align: center;
+    color: white;
+}
+.side{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.6rem;
+}
 /* insert_properties.html -----------------------------------------------------------*/
 
 .section.prop .container.scroll{
