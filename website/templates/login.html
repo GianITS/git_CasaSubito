@@ -7,36 +7,36 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800;900&display=swap" rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
-
-    <title>CasaSubito - Login</title>
+    <title>Login CasaSubito</title>
 </head>
 <body class="bodyLog">
-    <h1>CasaSubito</h1>
-    <div class="container">
-        <h2>Login</h2>
-        <form action="" method="post" id="form">
-            {{form.hidden_tag()}}
-            <div class="utente">
-                {{form.utente.label(class_="utente")}}
-                {{form.utente(placeholder="Username...")}}
+    <img src="../static/images/logo.png" alt="">
+    <!-- <h1>CasaSubito</h1> -->
+    <h2>Accedi</h2>
+    <form action="" method="post" id="form" enctype="multipart/form-data">
+        {{form.hidden_tag()}}
+        <div class="utente">
+            {{form.utente.label(class_="utente")}}
+            {{form.utente( class_="large",placeholder="Username...")}}
+        </div>
+        <div class="password" >
+            {{form.password.label(class_="password")}}
+            {{form.password(class_="large", placeholder="Password...")}}
+        </div>
+        {{form.submit(class_="btnSub")}}
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="message">
+                {{ message }}
             </div>
-            <div class="password">
-                {{form.password.label(class_="password")}}
-                {{form.password(placeholder="Password...")}}
-            </div>
-            {{form.submit(class_="btnSub")}}
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                <div class="message">
-                    {{ message }}
-                </div>
-                {% endfor %}
-            {% endif %}
-            {% endwith %}
-        </form>
-    </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </form>
 </body>
 </html>
