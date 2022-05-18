@@ -522,12 +522,13 @@ h1{
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 1020px;
+    align-items: center;
+    width: 1200px;
     height: 480px;
     overflow: auto;
 }
 .tbClient{
-    width: 1020px;
+    width: 1100px;
     border: 1px solid #000;
     border-spacing: 0;
 }
@@ -538,8 +539,12 @@ h1{
     background-color: lightblue;
 }
 .tbClient th{
-    width: 26%;
+    width: 20%;
     border: 1px solid rgb(200, 200, 200);
+}
+.tbClient .open.th{
+    width: 6%;
+    background-color: whitesmoke;
 }
 .tbClient th:nth-child(3){
     width: 10%;
@@ -554,6 +559,33 @@ h1{
     height: 50px;
     text-align: center;
     border: 1px solid rgb(200, 200, 200);
+}
+
+/* insert_properties.html -----------------------------------------------------------*/
+
+.section.prop{
+    justify-content: flex-start;
+}
+.section.prop .container.scroll{
+    height: max-content;
+    justify-content: flex-start;
+    margin: 40px 0;
+    overflow: auto;
+}
+.section.prop .container.scroll form{
+    display: grid;
+    grid-template-columns: repeat(4, 180px);
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 10px;
+}
+.section.prop .container.scroll form .btnIns{
+    width: 40px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: aquamarine;
+    cursor: pointer;
 }
 
 /* properties.html -----------------------------------------------------------*/
@@ -575,12 +607,13 @@ h1{
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 1020px;
+    align-items: center;
+    width: 1150px;
     height: 480px;
     overflow: auto;
 }
 .tbProp{
-    width: 1200px;
+    width: 1100px;
     border-spacing: 0;
     border: 1px solid #000;
     border-top: none;
@@ -591,9 +624,8 @@ h1{
     top: 0;
     background-color: lightblue;
 }
-.tbProp .open.th{
-    width: 5%;
-    aspect-ratio: 1;
+.open.th{
+    width: 4%;
     background-color: whitesmoke;
 }
 .tbProp th{
@@ -602,7 +634,10 @@ h1{
 }
 .tbProp th:nth-child(2),
 .tbProp th:nth-child(3){
-    width: 25%;
+    width: 15%;
+}
+.tbProp th:nth-child(4){
+    width: 10%;
 }
 .tbProp th:nth-child(5),
 .tbProp th:nth-child(6){
@@ -612,16 +647,19 @@ h1{
 .tbProp th:nth-child(8){
     width: 10%;
 }
-.tbProp .open{
+.open{
     width: 50px;
-    aspect-ratio: 1;
-    background-color: blue;
+    height: 50px;
 }
-.tbProp .open a{
+.open a{
     display: flex;
     width: 100%;
     aspect-ratio: 1;
-    background-color: red;
+    background: url('/../static/images/occhio-chiuso.png')no-repeat center;
+    transition: all .4s;
+}
+.open a:hover{
+    background: url('/../static/images/eye.png')no-repeat center;
 }
 .tbProp td{
     height: 50px;

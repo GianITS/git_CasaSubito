@@ -1,19 +1,22 @@
 {% extends 'HomePage.html' %}
 {% block title %} Inserimento immobile {% endblock title %}
 {% block contentHome %}
-    <div class="section">
-        <div class="container">
+    <div class="section prop">
+        <div class="container scroll">
             <a href="/HomePage" class="btnclose"></a>
-            <form action="" method="post" enctype="multipart/form-data">
+            <form action="" method="post" id="form0" enctype="multipart/form-data">
                 {{form.hidden_tag()}}
                 {{form.owner.label}}{{form.owner()}}
                 {{form.sqMeters.label}}{{form.sqMeters()}}
                 {{form.address.label}}{{form.address()}}
                 {{form.city.label}}{{form.city()}}
                 {{form.vendAff.label}}{{form.vendAff()}}
-                {{form.specifichePrinc.label}}{{form.specifichePrinc()}}
                 {{form.images.label}}{{form.images()}}
-                {{form.agent.label}}: {{session["agent"]}}
+                {{form.agent.label}}{{session["agent"]}}
+                <div></div>
+                <div></div>
+                {{form.specifichePrinc.label}}{{form.specifichePrinc()}}
+                {{form.number.label}}{{form.number()}} <div class="btnIns"></div>
                 {{form.submit()}}
             </form>
             <p>{{owner}}</p>
@@ -21,6 +24,7 @@
             <p>{{address}}</p>
             <p>{{city}}</p>
             <p>{{vendAff}}</p>
+            <p>{{specifichePrinc}}</p>
             <p>{{agent}}</p>
             {% for image in images %}
                 <img src="{{url_for('views.image', filename=image.filename)}}" alt="" style="width:200px;height:100px;">

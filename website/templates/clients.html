@@ -7,16 +7,20 @@
             <table class="tbClient">
                 <thead>
                 {% for cliente in clienti %}
+                {% if loop.index == 1 %}
                 <tr>
+                    <th class="open th"></th>
                     {% for k in cliente.keys() if loop.first %}
                         <th>{{ k }}</th>
                     {% endfor %}
                 </tr>
+                {% endif %}
                 {% endfor %}
                 </thead>
                 <tbody>
                 {% for cliente in clienti %}
                     <tr>
+                        <td class="open"><a href="{{url_for('views.ClientPage', nome=cliente['nome'])}}"></a></td>
                         {% for k,v in cliente.items() %}
                             <td>{{ v }}</td>
                         {% endfor %}
