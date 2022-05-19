@@ -18,9 +18,59 @@ def home():
 # import
 from .models import clients_collection
 
-@views.route('/Inserimento_Clienti')
+from wtforms import StringField, SubmitField, RadioField, EmailField
+from wtforms.validators import DataRequired
+from flask_wtf import FlaskForm
+
+class FormInsertClient(FlaskForm):
+    nome = StringField("Nome", [DataRequired()])
+    cognome = StringField("Cognome", [DataRequired()])
+    indirizzo = StringField("Indirizzo", [DataRequired()])
+    citta = StringField("citta", [DataRequired()])
+    cellulare = StringField("Cellulare", [DataRequired()])
+    mail = EmailField("Email", [DataRequired()])
+    azione = RadioField("azione", choices = ["Compra", "Vende"])
+    submit = SubmitField("Inserisci")
+
+@views.route('/Inserimento_Clienti', methods=["GET", "POST"])
 def insert_clients():
-    return render_template('insert_clients.html')
+    nome = ""
+    cognome = ""
+    indirizzo = ""
+    citta = ""
+    cellulare = ""
+    mail = ""
+    azione =""
+
+    form=FormInsertClient()
+    if form.validate_on_submit():
+        nome = form.nome.data
+        cognome = form.cognome.data
+        indirizzo = form.indirizzo.data
+        citta = form.citta.data
+        cellulare = form.cellulare.data
+        mail = form.mail.data
+        azione = form.azione.data
+
+        new_client = {"nome":nome, "cognome":cognome, "indirizzo":indirizzo, "citta":citta, "cellulare":cellulare, "mail":mail, "azione":azione}
+
+        if clients_collection.find_one({"cellulare":cellulare},{}):
+            flash("Numero di telefono utilizzato da un altro cliente")
+        elif clients_collection.find_one({"mail":mail},{}):
+            flash("Mail utilizzata da un altro cliente")
+        else:
+            clients_collection.insert_one(new_client)
+            flash("Cliente aggiutno con successo")
+            return redirect(url_for("views.clients"))
+        
+    form.nome.data = ""
+    form.cognome.data = ""
+    form.indirizzo.data = ""
+    form.citta.data = ""
+    form.cellulare.data = ""
+    form.mail.data = ""
+    form.azione.data = ""
+    return render_template('insert_clients.html', form=form, nome=nome, cognome=cognome, indirizzo=azione, citta=citta, cellulare=cellulare, mail=mail, azione=azione)
 
 # pagina clienti totali
 
@@ -28,7 +78,7 @@ def insert_clients():
 def clients():
     clienti = list(clients_collection.find({},{"_id":0}))
     return render_template('clients.html', clienti=clienti)
-
+    
 # pagina singolo cliente
 
 @views.route('/PaginaCliente/<nome>')
