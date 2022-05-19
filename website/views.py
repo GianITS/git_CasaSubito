@@ -17,6 +17,7 @@ def home():
 # pagina inserimento cliente
 # import
 from .models import clients_collection
+
 from wtforms import StringField, SubmitField, RadioField, EmailField
 from wtforms.validators import DataRequired
 from flask_wtf import FlaskForm
