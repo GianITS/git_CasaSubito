@@ -34,32 +34,41 @@ textarea{
     border: 1px solid #000;
 }
 textarea{
-    height: 75px;
+    height: 50px;
     resize: none;
 }
 input:focus {
     box-shadow: 0 0 3pt 2pt var(--primary-color);
 }
 .message{
-    position: absolute;
-    top: 100px;
-    right: -200px;
-    width: 200px;
-    height: 100px;
+    position: fixed;
+    top: 150px;
+    right: -300px;
+    width: 300px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #1adb47;
+    border-radius: 8px;
+    padding: 5px 20px;
+    font-size: 18px;
     z-index: 1000;
-    animation: animate1 2s linear;
+    animation: animate1 7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     animation-delay: 1s;
 }
 @keyframes animate1 {
     0%{
-        right: -200px;
+        right: -300px;
     }
-    50%{
-        right: 100px;
+    20%{
+        right: 30px;
+    }
+    80%{
+        right: 30px;
     }
     100%{
-        right: -200px;
+        right: -300px;
     }
 }
 
@@ -105,7 +114,7 @@ h1{
 }
 .btnSub{
     padding: 4px 20px;
-    margin-top: 20px;
+    margin: 20px 0 100px;
     font-size: 20px;
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     cursor: pointer;
@@ -290,7 +299,6 @@ h1{
 .main{
     position: relative;
     width: 100%;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -327,7 +335,7 @@ h1{
     transition: all .3s;
 }
 .menu .contUp a:hover{
-    color: burlywood;
+    text-shadow: 0 0 10px var(--primary-color);
 }
 .menu .contDown{
     position: relative;
@@ -390,6 +398,7 @@ h1{
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    margin-top: 20px;
 }
 .menu .contDown .dpList .innerIns .spanIns1,
 .menu .contDown .dpList .innerIns .spanIns2{
@@ -410,17 +419,17 @@ h1{
     aspect-ratio: 1;
     margin: 0 20px 0 0;
     cursor: default;
+    z-index: -2;
 }
 .menu .contDown .dpList.show .btninsert{
     cursor: pointer;
+    z-index: 1;
 }
 .menu .contDown .dpList .btninsert.one{
     background: linear-gradient(135deg, var(--secondary-color)0%, var(--primary-color)100%);
-    margin-top: 20px;
 }
 .menu .contDown .dpList .btninsert.two{
     background: linear-gradient(135deg, var(--secondary-color)0%, var(--primary-color)100%);
-    margin-top: 20px;
 
 }
 .menu .contDown .dpList .btninsert:hover{
@@ -592,6 +601,15 @@ h1{
     border: 1px solid black;
     animation: fade-in .3s ease-in-out;
 }
+.section.prop .container.scroll.client{
+    position: relative;
+    width: 900px;
+    height: 450px;
+    backdrop-filter: blur(5px);
+    background-color: rgba(255,255,255,.8);
+    border: 1px solid black;
+    animation: fade-in .3s ease-in-out;
+}
 @keyframes fade-in {
     0%{
         opacity: 0;
@@ -634,69 +652,39 @@ h1{
     transform: rotate(225deg);
     box-shadow: -3px -3px 10px rgba(0, 0, 0, .3);
 }
+.section.prop .container.scroll.client form{
+    margin: 10px 0 0;
+}
+.section.prop .container.scroll form #azione{
+    display: flex;
+}
+.section.prop .container.scroll form #azione input{
+    margin-right: 5px;
+}
+.section.prop .container.scroll form #azione li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 15px;
+}
+.section.prop .container.scroll.client form .btnCenter .btnSub{
+    margin: 20px 0 0;
+}
+.msg{
+    text-align: center;
+    grid-column-start: 1;
+    grid-column-end: 5;
+    padding: 5px 50px;
+}
 
 /* clients.html -----------------------------------------------------------*/
 
-.mainClient{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 220px 0 0;
-    overflow-y: hidden;
-}
-.mainClient h1{
-    margin: 10px 0 20px;
-}
-.mainClient .containerClient{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 1200px;
-    height: 480px;
-    overflow: auto;
-}
-.tbClient{
-    width: 1100px;
-    border: 1px solid #000;
-    border-spacing: 0;
-}
-.tbClient thead{
-    position: sticky;
-    top: 0;
-    height: 70px;
-    background-color: lightblue;
-}
-.tbClient th{
-    width: 20%;
-    border: 1px solid rgb(200, 200, 200);
-}
-.tbClient .open.th{
-    width: 6%;
-    background-color: whitesmoke;
-}
-.tbClient th:nth-child(3){
-    width: 10%;
-}
-.tbClient th:nth-child(4){
-    width: 20%;
-}
-.tbClient th:nth-child(5){
-    width: 15%;
-}
-.tbClient td{
-    height: 50px;
-    text-align: center;
-    border: 1px solid rgb(200, 200, 200);
-}
+
 
 /* insert_properties.html -----------------------------------------------------------*/
 
 .section.prop .container.scroll{
-    height: 700px;
+    height: 80%;
     justify-content: center;
     align-items: center;
     margin: 40px 0;
@@ -708,6 +696,7 @@ h1{
     gap: 20px;
     padding: 40px 10px 30px;
     font-size: 18px;
+    margin-top: 50px;
 }
 .section.prop .container.scroll form .lblOwner{
     grid-column-start: 1;
@@ -719,7 +708,7 @@ h1{
     background-color: rgba(0,0,0,.3);
     grid-column-start: 1;
     grid-column-end: 5;
-    margin: 10px 0;
+    margin: 5px 0;
 }
 .section.prop .container.scroll form label{
     display: flex;
@@ -789,7 +778,7 @@ h1{
 .section.prop .container.scroll form .btnCenter .btnSub{
     font-size: 18px;
     padding: 6px 50px;
-    margin-top: 30px;
+    margin: 30px;
     border: transparent;
     transition: all .3s;
 }
@@ -807,19 +796,10 @@ h1{
     align-items: center;
     width: 100%;
     padding: 220px 0 0;
-    overflow-y: hidden;
+    overflow-x: hidden;
 }
 .mainProp h1{
-    margin-bottom: 10px;
-}
-.mainProp .containerProp{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 1150px;
-    height: 480px;
-    overflow: auto;
+    margin: 0 0 30px;
 }
 .tbProp{
     width: 1100px;
@@ -828,9 +808,7 @@ h1{
     border-top: none;
 }
 .tbProp thead{
-    height: 70px;
-    position: sticky;
-    top: 0;
+    height: 60px;
     background-color: lightblue;
 }
 .open.th{

@@ -15,10 +15,12 @@
         <br>
         <br>
         <br>
-        {% for k,v in immobile.items() %}
-            {% if k != "immagini" and k != "agente" %}
-                <p>{{ k }}: {{ v }}</p>
-            {% endif %}
-        {% endfor %}
+        {% if immobile != "" %}
+            {% for k,v in immobile.items() %}
+                {% if k != "immagini" and k != "agente" %}
+                    <p>{{ k }}: {{ v }}</p>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
     </div>
 {% endblock %}

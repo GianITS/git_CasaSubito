@@ -1,45 +1,25 @@
 {% extends 'HomePage.html' %}
 {% block contentHome %}
-    <div class="section">
-        <div class="container">
+    <div class="section prop">
+        <div class="container scroll client">
             <a href="/HomePage" class="btnclose"></a>
-            <form action="" method="post" id="form" enctype="multipart/form-data">
+            <form action="" method="post" id="form1" enctype="multipart/form-data">
                 {{form.hidden_tag()}}
-                <div class="nome">
-                    {{form.nome.label(class_="nome")}}
-                    {{form.nome(placeholder="Nome...")}}
-                </div>
-                <div class="cognome">
-                    {{form.cognome.label(class_="cognome")}}
-                    {{form.cognome(placeholder="Cognome...")}}
-                </div>
-                <div class="indirizzo">
-                    {{form.indirizzo.label(class_="indirizzo")}}
-                    {{form.indirizzo(placeholder="Indirizzo...")}}
-                </div>
-                <div class="citta">
-                    {{form.citta.label(class_="citta")}}
-                    {{form.citta(placeholder="Citta...")}}
-                </div>
-                <div class="cellulare">
-                    {{form.cellulare.label(class_="cellulare")}}
-                    {{form.cellulare(placeholder="Numero di cellulare...")}}
-                </div>
-                <div class="mail">
-                    {{form.mail.label(class_="mail")}}
-                    {{form.mail(placeholder="Email...")}}
-                </div>
-                <div class="azione">
-                    {{form.azione.label(class_="azione")}}
-                    {{form.azione()}}
-                </div>
-                {{form.submit(class_="btnSub")}}
+                {{form.nome.label(class_="nome")}}{{form.nome(placeholder="Nome...")}}
+                {{form.cognome.label(class_="cognome")}}{{form.cognome(placeholder="Cognome...")}}
+                {{form.indirizzo.label(class_="indirizzo")}}{{form.indirizzo(placeholder="Indirizzo...")}}
+                {{form.citta.label(class_="citta")}} {{form.citta(placeholder="Citta...")}}
+                {{form.cellulare.label(class_="cellulare")}}{{form.cellulare(placeholder="Numero di cellulare...")}}
+                {{form.mail.label(class_="mail")}}{{form.mail(placeholder="Email...")}}
+                {{form.azione.label(class_="azione")}}{{form.azione()}}<div class="vuoto"></div><div class="vuoto"></div>
+                {{form.agent.label(class_="lblAgent")}}<div class="agent">{{session["agent"]}}</div>
+                <div class="btnCenter">{{form.submit(class_="btnSub")}}</div>
                 {% with messages = get_flashed_messages() %}
                 {% if messages %}
                     {% for message in messages %}
-                    <div class="message">
-                        {{ message }}
-                    </div>
+                        <div class="msg">
+                            {{ message }}
+                        </div>
                     {% endfor %}
                 {% endif %}
                 {% endwith %}

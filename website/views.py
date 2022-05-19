@@ -16,20 +16,22 @@ def home():
 
 # pagina inserimento cliente
 # import
-from .models import clients_collection
+from .models import Agent, clients_collection
 
-from wtforms import StringField, SubmitField, RadioField, EmailField
-from wtforms.validators import DataRequired
+# importo i moduli relativi al form
 from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField, IntegerField, RadioField, MultipleFileField, SelectField, TextAreaField, EmailField
+from wtforms.validators import DataRequired
 
 class FormInsertClient(FlaskForm):
-    nome = StringField("Nome", [DataRequired()])
-    cognome = StringField("Cognome", [DataRequired()])
-    indirizzo = StringField("Indirizzo", [DataRequired()])
-    citta = StringField("citta", [DataRequired()])
-    cellulare = StringField("Cellulare", [DataRequired()])
-    mail = EmailField("Email", [DataRequired()])
-    azione = RadioField("azione", choices = ["Compra", "Vende"])
+    nome = StringField("Nome:", [DataRequired()])
+    cognome = StringField("Cognome:", [DataRequired()])
+    indirizzo = StringField("Indirizzo:", [DataRequired()])
+    citta = StringField("citta:", [DataRequired()])
+    cellulare = IntegerField("Cellulare:", [DataRequired()])
+    mail = EmailField("Email:", [DataRequired()])
+    azione = RadioField("Compra/Vende:", choices = ["Compra", "Vende"])
+    agent = StringField("Agente:")
     submit = SubmitField("Inserisci")
 
 @views.route('/Inserimento_Clienti', methods=["GET", "POST"])
@@ -41,6 +43,7 @@ def insert_clients():
     cellulare = ""
     mail = ""
     azione =""
+    agent = session['agent']
 
     form=FormInsertClient()
     if form.validate_on_submit():
@@ -52,7 +55,7 @@ def insert_clients():
         mail = form.mail.data
         azione = form.azione.data
 
-        new_client = {"nome":nome, "cognome":cognome, "indirizzo":indirizzo, "citta":citta, "cellulare":cellulare, "mail":mail, "azione":azione}
+        new_client = {"nome":nome, "cognome":cognome, "indirizzo":indirizzo, "citta":citta, "cell":cellulare, "mail":mail, "buysellrent":azione, "agente":agent}
 
         if clients_collection.find_one({"cellulare":cellulare},{}):
             flash("Numero di telefono utilizzato da un altro cliente")
@@ -60,24 +63,25 @@ def insert_clients():
             flash("Mail utilizzata da un altro cliente")
         else:
             clients_collection.insert_one(new_client)
-            flash("Cliente aggiutno con successo")
+            flash("Cliente aggiunto con successo")
             return redirect(url_for("views.clients"))
         
     form.nome.data = ""
     form.cognome.data = ""
     form.indirizzo.data = ""
     form.citta.data = ""
-    form.cellulare.data = ""
+    form.cellulare.data = 0
     form.mail.data = ""
     form.azione.data = ""
-    return render_template('insert_clients.html', form=form, nome=nome, cognome=cognome, indirizzo=azione, citta=citta, cellulare=cellulare, mail=mail, azione=azione)
+    return render_template('insert_clients.html', form=form, nome=nome, cognome=cognome, indirizzo=azione, citta=citta, cellulare=cellulare, mail=mail, azione=azione, agent=agent)
 
 # pagina clienti totali
 
+listHeadClient = ["Nome", "Cognome", "Telefono", "E-mail", "Compra\nAffitta", "Agente"]
 @views.route('/Clienti')
 def clients():
     clienti = list(clients_collection.find({},{"_id":0}))
-    return render_template('clients.html', clienti=clienti)
+    return render_template('clients.html', clienti=clienti, listHeadClient=listHeadClient)
     
 # pagina singolo cliente
 
@@ -85,20 +89,23 @@ def clients():
 def ClientPage(nome):
     client = clients_collection.find_one({"nome": nome}, {"_id":0})
     client =list(client.values())
-    cognome=client[1]
-    indirizzo=client[2]
-    citta=client[3]
-    cellulare=client[4]
-    mail=client[5]
-    azione=client[6]
-    immobile=client[7]
+    cognome = client[1]
+    indirizzo = client[2]
+    citta = client[3]
+    cellulare = client[4]
+    mail = client[5]
+    azione = client[6]
+    if client.__len__() == 9: 
+        immobile = client[8]
+    else:
+        immobile = ""
     return render_template('clients_page.html', nome=nome, cognome=cognome, indirizzo=indirizzo, citta=citta, cellulare=cellulare, mail=mail, azione=azione, immobile=immobile)
 
 # pagina immobili totali
 # import
 from .models import properties_collection
 
-listHead = ["Nome", "Cognome", "Indirizzo", "Citta", "Tipologia", "Vendita\nAffitto", "Metri\nquadri", "Totale\nStanze", "Agente"]
+listHead = ["Nome", "Cognome", "Indirizzo", "Citta", "Tipologia", "Vendita\nAffitto", "Metri\nquadri", "Agente"]
 @views.route('/Immobili')
 def properties():
     immobili = list(properties_collection.find({},{"_id":0}))
@@ -117,29 +124,23 @@ def image(filename):
     response.content_type = 'image/jpeg'
     return gridout.read()
 
-# importo i moduli relativi al form
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, IntegerField, RadioField, MultipleFileField, SelectField, TextAreaField
-from wtforms.validators import DataRequired
-
 #creo la classe form dell inserimento degli immobili
-
 
 #  inserire tipologia immobile:
 # (appartamento/casa indipendente/casa semindipendente/villa a schiera/rustico)
 class FormInsertProperties(FlaskForm):
-    owner = StringField("Proprietario: ")
-    ownerName = StringField("Nome: ")
-    ownerLastname = StringField("Cognome: ")
-    address = StringField("Indirizzo: ")
-    city = StringField("Citta: ")
-    tipologia = SelectField(u"Tipologia: ", choices=[('Appartamento', 'Appartamento'),('Casa indipendente','Casa indipendente'),('Casa semindipendente','Casa semindipendente'),('Villa a schiera','Villa a schiera'),('Rustico','Rustico')])
-    vendAff = RadioField("Vendita/Affitto: ", choices=[('Vendita','Vendita'),('Affitto','Affitto')], default="Vendita")
-    sqMeters = IntegerField("Dimensioni: ")
-    totRoom = IntegerField("Totale stanze: ")
-    description = TextAreaField("Descrizione: ")
-    images = MultipleFileField("Carica immagini: ")
-    agent = StringField("Agente: ")
+    owner = StringField("Proprietario:")
+    ownerName = StringField("Nome:", validators=[DataRequired()])
+    ownerLastname = StringField("Cognome:", validators=[DataRequired()])
+    address = StringField("Indirizzo:", validators=[DataRequired()])
+    city = StringField("Citta:", validators=[DataRequired()])
+    tipologia = SelectField(u"Tipologia:", choices=[('Appartamento', 'Appartamento'),('Casa indipendente','Casa indipendente'),('Casa semindipendente','Casa semindipendente'),('Villa a schiera','Villa a schiera'),('Rustico','Rustico')])
+    vendAff = RadioField("Vendita/Affitto:", choices=[('Vendita','Vendita'),('Affitto','Affitto')], default="Vendita")
+    sqMeters = IntegerField("Dimensioni:", validators=[DataRequired()])
+    totRoom = IntegerField("Totale stanze:", validators=[DataRequired()])
+    description = TextAreaField("Descrizione:", validators=[DataRequired()])
+    images = MultipleFileField("Carica immagini:")
+    agent = StringField("Agente:")
     submit = SubmitField("Inserisci")
 
 @views.route('/Inserimento_Immobili', methods=["GET","POST"])
@@ -175,10 +176,11 @@ def insert_properties():
         for image in images:
             mongo.save_file(image.filename, image)
             listImg.append(image.filename)
-        post1 = {"indirizzo":address, "citta":city, "tipologia":tipologia, "vendAff":vendAff, "dimensioni":sqMeters, "totStanze": totRoom, "descrizione":description, "immagini": listImg, "agente":agent}
-        clients_collection.update_one({"nome":ownerName, "cognome":ownerLastname},{"$set":{"Immobili":post1}})
-        post2 = {"nome":ownerName, "cognome":ownerLastname, "indirizzo":address, "citta":city, "tipologia":tipologia, "vendAff":vendAff, "dimensioni":sqMeters, "totStanze": totRoom, "descrizione":description, "immagini": listImg, "agente":agent}
+        post1 = {"indirizzo":address, "citta":city, "tipologia":tipologia, "vendAff":vendAff, "dimensioni":sqMeters, "totroom": totRoom, "textbox":description, "immagini": listImg, "agente":agent}
+        clients_collection.update_one({"nome":ownerName, "cognome":ownerLastname},{"$set":{"immobili":post1}})
+        post2 = {"nome":ownerName, "cognome":ownerLastname, "indirizzo":address, "citta":city, "typehouse":tipologia, "sellrent":vendAff, "dimensioni":sqMeters, "totroom": totRoom, "textbox":description, "immagini": listImg, "agente":agent}
         properties_collection.insert_one(post2)
+        flash("Immobile inserito con successo")
         return redirect(url_for('views.PropPage', nome=ownerName))
         
     
