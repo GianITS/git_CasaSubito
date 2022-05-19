@@ -18,18 +18,19 @@ def home():
 # import
 from .models import clients_collection
 
-from wtforms import StringField, SubmitField, RadioField, EmailField
-from wtforms.validators import DataRequired
+# importo i moduli relativi al form
 from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField, IntegerField, RadioField, MultipleFileField, SelectField, TextAreaField, EmailField
+from wtforms.validators import DataRequired
 
 class FormInsertClient(FlaskForm):
-    nome = StringField("Nome", [DataRequired()])
-    cognome = StringField("Cognome", [DataRequired()])
-    indirizzo = StringField("Indirizzo", [DataRequired()])
-    citta = StringField("citta", [DataRequired()])
-    cellulare = StringField("Cellulare", [DataRequired()])
-    mail = EmailField("Email", [DataRequired()])
-    azione = RadioField("azione", choices = ["Compra", "Vende"])
+    nome = StringField("Nome:", [DataRequired()])
+    cognome = StringField("Cognome:", [DataRequired()])
+    indirizzo = StringField("Indirizzo:", [DataRequired()])
+    citta = StringField("citta:", [DataRequired()])
+    cellulare = IntegerField("Cellulare:", [DataRequired()])
+    mail = EmailField("Email:", [DataRequired()])
+    azione = RadioField("Compra/Vende:", choices = ["Compra", "Vende"])
     submit = SubmitField("Inserisci")
 
 @views.route('/Inserimento_Clienti', methods=["GET", "POST"])
@@ -60,14 +61,14 @@ def insert_clients():
             flash("Mail utilizzata da un altro cliente")
         else:
             clients_collection.insert_one(new_client)
-            flash("Cliente aggiutno con successo")
+            flash("Cliente aggiunto con successo")
             return redirect(url_for("views.clients"))
         
     form.nome.data = ""
     form.cognome.data = ""
     form.indirizzo.data = ""
     form.citta.data = ""
-    form.cellulare.data = ""
+    form.cellulare.data = 0
     form.mail.data = ""
     form.azione.data = ""
     return render_template('insert_clients.html', form=form, nome=nome, cognome=cognome, indirizzo=azione, citta=citta, cellulare=cellulare, mail=mail, azione=azione)
@@ -117,13 +118,7 @@ def image(filename):
     response.content_type = 'image/jpeg'
     return gridout.read()
 
-# importo i moduli relativi al form
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, IntegerField, RadioField, MultipleFileField, SelectField, TextAreaField
-from wtforms.validators import DataRequired
-
 #creo la classe form dell inserimento degli immobili
-
 
 #  inserire tipologia immobile:
 # (appartamento/casa indipendente/casa semindipendente/villa a schiera/rustico)

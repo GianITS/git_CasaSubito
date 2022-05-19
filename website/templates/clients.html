@@ -3,6 +3,7 @@
 {% block content %}
     <div class="mainClient">
         <h1>Clienti</h1>
+        <div class="message">Cliente aggiunto con successo</div>
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in messages %}
@@ -31,7 +32,7 @@
                     <tr>
                         <td class="open"><a href="{{url_for('views.ClientPage', nome=cliente['nome'])}}"></a></td>
                         {% for k,v in cliente.items() %}
-                            {% if k != "Immobili" %}
+                            {% if k != "Immobili" and k != "indirizzo" %}
                                 <td>{{ v }}</td>
                             {% endif %}
                         {% endfor %}
