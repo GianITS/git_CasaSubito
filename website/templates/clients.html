@@ -3,7 +3,15 @@
 {% block content %}
     <div class="mainClient">
         <h1>Clienti</h1>
-        <div class="message"></div>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="message">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
         <div class="containerClient">
             <table class="tbClient">
                 <thead>
