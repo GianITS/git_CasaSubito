@@ -429,7 +429,7 @@ h1{
     box-shadow: none;
 }
 .obiettivi > div span{
-    background: lightcoral;
+    background: #454DF1;
     padding: 0.5rem;
     border-radius: 50%;
     color: white;
@@ -653,11 +653,20 @@ h1{
     padding: 0rem 2rem;
     text-align: center;
     color: white;
+    cursor: default;
 }
 .side{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.6rem;
+}
+.clickImmagine{
+    color: white;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    padding: 1.2rem;
+    border-radius: 100%;
+    font-size: 1.2rem;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, .3);
 }
 /* insert_properties.html -----------------------------------------------------------*/
 
