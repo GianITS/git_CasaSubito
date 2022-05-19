@@ -12,6 +12,7 @@
                 {{form.cellulare.label(class_="cellulare")}}{{form.cellulare(placeholder="Numero di cellulare...")}}
                 {{form.mail.label(class_="mail")}}{{form.mail(placeholder="Email...")}}
                 {{form.azione.label(class_="azione")}}{{form.azione()}}<div class="vuoto"></div><div class="vuoto"></div>
+                {{form.agent.label(class_="lblAgent")}}<div class="agent">{{session["agent"]}}</div>
                 <div class="btnCenter">{{form.submit(class_="btnSub")}}</div>
                 {% with messages = get_flashed_messages() %}
                 {% if messages %}
