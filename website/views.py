@@ -91,16 +91,18 @@ def ClientPage(nome):
     cellulare=client[4]
     mail=client[5]
     azione=client[6]
-    return render_template('clients_page.html', nome=nome, cognome=cognome, indirizzo=indirizzo, citta=citta, cellulare=cellulare, mail=mail, azione=azione)
+    immobile=client[7]
+    return render_template('clients_page.html', nome=nome, cognome=cognome, indirizzo=indirizzo, citta=citta, cellulare=cellulare, mail=mail, azione=azione, immobile=immobile)
 
 # pagina immobili totali
 # import
 from .models import properties_collection
 
+listHead = ["Nome", "Cognome", "Indirizzo", "Citta", "Tipologia", "Vendita\nAffitto", "Metri\nquadri", "Totale\nStanze", "Agente"]
 @views.route('/Immobili')
 def properties():
     immobili = list(properties_collection.find({},{"_id":0}))
-    return render_template('properties.html', immobili=immobili)
+    return render_template('properties.html', immobili=immobili, listHead=listHead)
 
 # recupero le immagini dal db
 # import
@@ -173,8 +175,10 @@ def insert_properties():
         for image in images:
             mongo.save_file(image.filename, image)
             listImg.append(image.filename)
-        post = {"nome":ownerName, "cognome":ownerLastname, "indirizzo":address, "citta":city, "tipologia":tipologia, "vendAff":vendAff, "dimensioni":sqMeters, "totStanze": totRoom, "descrizione":description, "immagini": listImg, "agente":agent}
-        properties_collection.insert_one(post)
+        post1 = {"indirizzo":address, "citta":city, "tipologia":tipologia, "vendAff":vendAff, "dimensioni":sqMeters, "totStanze": totRoom, "descrizione":description, "immagini": listImg, "agente":agent}
+        clients_collection.update_one({"nome":ownerName, "cognome":ownerLastname},{"$set":{"Immobili":post1}})
+        post2 = {"nome":ownerName, "cognome":ownerLastname, "indirizzo":address, "citta":city, "tipologia":tipologia, "vendAff":vendAff, "dimensioni":sqMeters, "totStanze": totRoom, "descrizione":description, "immagini": listImg, "agente":agent}
+        properties_collection.insert_one(post2)
         return redirect(url_for('views.PropPage', nome=ownerName))
         
     

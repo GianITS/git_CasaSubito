@@ -40,6 +40,28 @@ textarea{
 input:focus {
     box-shadow: 0 0 3pt 2pt var(--primary-color);
 }
+.message{
+    position: absolute;
+    top: 100px;
+    right: -200px;
+    width: 200px;
+    height: 100px;
+    background-color: #1adb47;
+    z-index: 1000;
+    animation: animate1 2s linear;
+    animation-delay: 1s;
+}
+@keyframes animate1 {
+    0%{
+        right: -200px;
+    }
+    50%{
+        right: 100px;
+    }
+    100%{
+        right: -200px;
+    }
+}
 
 /* login.html -----------------------------------------------------------*/
 
@@ -428,6 +450,18 @@ h1{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.6rem;
+    animation: showObiettivi 1s ease-in-out;
+}
+@keyframes showObiettivi {
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
 }
 .obiettivi > div{
     background: white;
@@ -436,7 +470,26 @@ h1{
     margin-top: 1rem;
     box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
     transition: all 300ms ease;
+    /* animation: showObiettivi .8s ease-in-out; */
 }
+/* .obiettivi > div:nth-child(1){
+    animation-delay: .2s;
+}
+.obiettivi > div:nth-child(2){
+    animation-delay: .4s;
+}
+.obiettivi > div:nth-child(3){
+    animation-delay: .6s;
+}
+.obiettivi > div:nth-child(4){
+    animation-delay: .8s;
+}
+.obiettivi > div:nth-child(5){
+    animation-delay: 1s;
+}
+.obiettivi > div:nth-child(6){
+    animation-delay: 1.2s;
+} */
 .obiettivi > div:hover{
     box-shadow: none;
 }

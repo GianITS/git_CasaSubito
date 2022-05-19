@@ -10,6 +10,15 @@
         <p>Cellulare:  {{ cellulare }}</p>
         <p>E-mail:  {{ mail }}</p>
         <p>Compra/Affitta-Vende:  {{ azione }}</p>
+        <br>
         <p>Agente:  {{ session['agent'] }}</p>
+        <br>
+        <br>
+        <br>
+        {% for k,v in immobile.items() %}
+            {% if k != "immagini" and k != "agente" %}
+                <p>{{ k }}: {{ v }}</p>
+            {% endif %}
+        {% endfor %}
     </div>
 {% endblock %}
