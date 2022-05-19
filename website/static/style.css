@@ -299,7 +299,6 @@ h1{
 .main{
     position: relative;
     width: 100%;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -669,7 +668,7 @@ h1{
     margin-right: 15px;
 }
 .section.prop .container.scroll.client form .btnCenter .btnSub{
-    margin: 0;
+    margin: 20px 0 0;
 }
 .msg{
     text-align: center;
@@ -680,61 +679,7 @@ h1{
 
 /* clients.html -----------------------------------------------------------*/
 
-.mainClient{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 220px 0 0;
-    overflow-y: hidden;
-}
-.mainClient h1{
-    margin: 10px 0 20px;
-}
-.mainClient .containerClient{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 1200px;
-    height: 480px;
-    overflow: auto;
-}
-.tbClient{
-    width: 1100px;
-    border: 1px solid #000;
-    border-spacing: 0;
-}
-.tbClient thead{
-    position: sticky;
-    top: 0;
-    height: 70px;
-    background-color: lightblue;
-}
-.tbClient th{
-    width: 20%;
-    border: 1px solid rgb(200, 200, 200);
-}
-.tbClient .open.th{
-    width: 6%;
-    background-color: whitesmoke;
-}
-.tbClient th:nth-child(3){
-    width: 10%;
-}
-.tbClient th:nth-child(4){
-    width: 20%;
-}
-.tbClient th:nth-child(5){
-    width: 15%;
-}
-.tbClient td{
-    height: 50px;
-    text-align: center;
-    border: 1px solid rgb(200, 200, 200);
-}
+
 
 /* insert_properties.html -----------------------------------------------------------*/
 
@@ -851,19 +796,10 @@ h1{
     align-items: center;
     width: 100%;
     padding: 220px 0 0;
-    overflow-y: hidden;
+    overflow-x: hidden;
 }
 .mainProp h1{
-    margin-bottom: 10px;
-}
-.mainProp .containerProp{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 1150px;
-    height: 480px;
-    overflow: auto;
+    margin: 0 0 30px;
 }
 .tbProp{
     width: 1100px;
@@ -872,9 +808,7 @@ h1{
     border-top: none;
 }
 .tbProp thead{
-    height: 70px;
-    position: sticky;
-    top: 0;
+    height: 60px;
     background-color: lightblue;
 }
 .open.th{
