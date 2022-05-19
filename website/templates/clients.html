@@ -12,25 +12,31 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
-        <table class="tbClient">
-            <thead>
-            {% for cliente in clienti %}
-            <tr>
-                {% for k in cliente.keys() if loop.first %}
-                    <th>{{ k }}</th>
-                {% endfor %}
-            </tr>
-            {% endfor %}
-            </thead>
-            <tbody>
-            {% for cliente in clienti %}
+        <div class="containerClient">
+            <table class="tbClient">
+                <thead>
+                {% for cliente in clienti %}
+                {% if loop.index == 1 %}
                 <tr>
-                    {% for k,v in cliente.items() %}
-                        <td>{{ v }}</td>
+                    <th class="open th"></th>
+                    {% for k in cliente.keys() if loop.first %}
+                        <th>{{ k }}</th>
                     {% endfor %}
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                {% endif %}
+                {% endfor %}
+                </thead>
+                <tbody>
+                {% for cliente in clienti %}
+                    <tr>
+                        <td class="open"><a href="{{url_for('views.ClientPage', nome=cliente['nome'])}}"></a></td>
+                        {% for k,v in cliente.items() %}
+                            <td>{{ v }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 {% endblock content %}

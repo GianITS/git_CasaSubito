@@ -1,10 +1,22 @@
 {% extends 'HomePage.html' %}
+{% block title %} Inserimento immobile {% endblock title %}
 {% block contentHome %}
-    <div class="section">
-        <div class="container">
+    <div class="section prop">
+        <div class="container scroll">
             <a href="/HomePage" class="btnclose"></a>
-            <form action="" method="post">
-                
+            <form action="" method="post" id="form0" enctype="multipart/form-data">
+                {{form.hidden_tag()}}
+                {{form.owner.label(class_="lblOwner")}}
+                {{form.ownerName.label}}{{form.ownerName(placeholder="Nome...")}}{{form.ownerLastname.label}}{{form.ownerLastname(placeholder="Cognome...")}}
+                <div class="line"></div>
+                {{form.address.label}}{{form.address(placeholder="Indirizzo...")}}{{form.city.label}}{{form.city(placeholder="Città...")}}
+                {{form.tipologia.label}}{{form.tipologia()}}{{form.vendAff.label}}{{form.vendAff()}}
+                {{form.sqMeters.label}}<div class="row-small">{{form.sqMeters(placeholder="0")}}</div>{{form.totRoom.label}}<div class="row-small">{{form.totRoom(placeholder="0")}}</div>
+                {{form.description.label}}{{form.description(class_="row-large",placeholder="Descrizione immobile...")}}
+                <div class="line"></div>
+                {{form.images.label}}{{form.images(class_="imgForm")}} <div class="vuoto"></div>
+                {{form.agent.label(class_="lblAgent")}}<div class="agent">{{session["agent"]}}</div>                 
+                <div class="btnCenter">{{form.submit(class_="btnSub")}}</div>
             </form>
         </div>
     </div>

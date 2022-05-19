@@ -1,8 +1,13 @@
+:root{
+    --primary-color: rgba(255,247,0,1);
+    --secondary-color: rgba(198,192,0,1);
+}
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: 'Poppins';
+    font-family: 'Quattrocento Sans', sans-serif;
 }
 body{
     width: 100%;
@@ -20,18 +25,32 @@ a{
 li{
     list-style: none;
 }
-input{
+input,
+select,
+textarea{
     padding: 5px 0 5px 10px;
-    border-radius: 10px;
+    border-radius: 8px;
     outline: none;
     border: 1px solid #000;
+}
+textarea{
+    height: 75px;
+    resize: none;
+}
+input:focus {
+    box-shadow: 0 0 3pt 2pt var(--primary-color);
 }
 
 /* login.html -----------------------------------------------------------*/
 
 .bodyLog{
-    background-image: linear-gradient(to bottom, rgba(255,255,255,.6), rgba(255,255,255,.6)), url('/../static/images/Casa5.jpg');
+    background: linear-gradient(to bottom, rgba(255,255,255,.6), rgba(255,255,255,.6)), url('/../static/images/Casa6.jpeg')no-repeat center;
     background-size: cover;
+    font-size: 22px;
+}
+.large{
+    width: 300px;
+    font-size: 20px;
 }
 h1{
     margin-bottom: 50px;
@@ -54,6 +73,7 @@ h1{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 40px;
 }
 .utente,
 .password{
@@ -64,6 +84,8 @@ h1{
 .btnSub{
     padding: 4px 20px;
     margin-top: 20px;
+    font-size: 20px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     cursor: pointer;
 }
 
@@ -84,8 +106,28 @@ h1{
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    background-color: burlywood;
+    background: linear-gradient(135deg, var(--primary-color)0%, var(--secondary-color)100%);
     z-index: 2;
+}
+.header .logo{
+    width: 70px;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+}
+.header .logo a{
+    display: flex;
+    align-items: center;
+}
+.header .logo img{
+    position: relative;
+    top: -3px;
+    left: 5px;
+    width: 70px;
+    aspect-ratio: 1;
+}
+.header .logo p{
+    font-size: 28px;
 }
 .search{
     position: absolute;
@@ -137,6 +179,21 @@ h1{
     cursor: pointer;
     margin-left: 10px;
 }
+.header .logout .one{
+    background-color: darkcyan;
+}
+.header .logout .two{
+    background-color: crimson;
+}
+.header .logout .three{
+    background-color: blueviolet;
+}
+.header .logout .four{
+    background-color: yellowgreen;
+}
+.header .logout .five{
+    background-color: skyblue;
+}
 .header .logout .user .btnUser{
     width: 100%;
     aspect-ratio: 1;
@@ -150,7 +207,7 @@ h1{
     left: -45px;
     width: 100px;
     height: 80px;
-    background-color: burlywood;
+    background: var(--secondary-color);
     z-index: -1;
     opacity: 0;
     transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -191,6 +248,15 @@ h1{
 }
 .userMenu.visible .two{
     background-color: crimson;
+}
+.userMenu.visible .three{
+    background-color: blueviolet;
+}
+.userMenu.visible .four{
+    background-color: yellowgreen;
+}
+.userMenu.visible .five{
+    background-color: skyblue;
 }
 .header .logout .user .userMenu.visible ul li span.iconLogout{
     display: inline-flex;
@@ -253,11 +319,15 @@ h1{
     width: 50px;
     aspect-ratio: 1;
     border-radius: 50%;
-    background-color: red;
+    background: #1adb47;
     margin-top: 20px;
     transition: all .3s;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, .3);
     cursor: pointer;
+    transition: all .3s;
+}
+.menu .contDown .btninsert:hover{
+    transform: scale(1.1);
 }
 .menu .contDown .btninsert::before,
 .menu .contDown .btninsert::after{
@@ -268,7 +338,7 @@ h1{
     width: 25px;
     height: 3px;
     border-radius: 5px;
-    background-color: aliceblue;
+    background-color: black;
     transform: translate(-50%,-50%);
 }
 .menu .contDown .btninsert::after{
@@ -316,11 +386,20 @@ h1{
 .menu .contDown .dpList .btninsert{
     display: flex;
     aspect-ratio: 1;
-    background-color: blue;
     margin: 0 20px 0 0;
+    cursor: default;
 }
-.menu.extend .dpList.show .mt-20{
-    margin: 20px 20px 20px 0;
+.menu .contDown .dpList.show .btninsert{
+    cursor: pointer;
+}
+.menu .contDown .dpList .btninsert.one{
+    background: linear-gradient(135deg, var(--secondary-color)0%, var(--primary-color)100%);
+    margin-top: 20px;
+}
+.menu .contDown .dpList .btninsert.two{
+    background: linear-gradient(135deg, var(--secondary-color)0%, var(--primary-color)100%);
+    margin-top: 20px;
+
 }
 .menu .contDown .dpList .btninsert:hover{
     transform: rotate(180deg) scale(1.1);
@@ -337,6 +416,102 @@ h1{
     align-items: center;
     padding-top: 230px;
 
+}
+.mainHome main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+}
+.obiettivi{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.6rem;
+}
+.obiettivi > div{
+    background: white;
+    padding: 1.8rem;
+    border-radius: 2rem;
+    margin-top: 1rem;
+    box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
+    transition: all 300ms ease;
+}
+.obiettivi > div:hover{
+    box-shadow: none;
+}
+.obiettivi > div span{
+    background: lightcoral;
+    padding: 0.5rem;
+    border-radius: 50%;
+    color: white;
+    font-size: 2rem;
+}
+.obiettivi >div .middle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.obiettivi h3{
+    margin: 1rem 0 0.6rem;
+    font-size: 1rem;
+}
+.obiettivi .progress{
+    position: relative;
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+}
+.obiettivi svg{
+    width: 7rem;
+    height: 7rem;
+}
+.obiettivi svg circle{
+    fill: none;
+    stroke: lightblue;
+    stroke-width: 14;
+    stroke-linecap: round;
+    transform: translate(5px, 5px);
+    stroke-dasharray: 110;
+    stroke-dashoffset: 92;
+}
+
+.obiettivi .IN21 svg circle{
+    stroke-dashoffset: -170;
+    stroke-dasharray: 200;
+}
+.obiettivi .NT11 svg circle{
+    stroke-dashoffset: -130;
+    stroke-dasharray: 200;
+}
+.obiettivi .NT17 svg circle{
+    stroke-dashoffset: -80;
+    stroke-dasharray: 200;
+}
+.obiettivi .R4 svg circle{
+    stroke-dashoffset: -70;
+    stroke-dasharray: 200;
+}
+.obiettivi .R6 svg circle{
+    stroke-dashoffset: -160;
+    stroke-dasharray: 200;
+}
+.obiettivi .REP17 svg circle{
+    stroke-dashoffset: -200;
+    stroke-dasharray: 200;
+}
+.obiettivi .progress .number{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.text-muted{
+    color: #7d8da1;
 }
 
 /* insert_client.html -----------------------------------------------------------*/
@@ -416,28 +591,157 @@ h1{
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 220px 0;
+    padding: 220px 0 0;
+    overflow-y: hidden;
+}
+.mainClient h1{
+    margin: 10px 0 20px;
+}
+.mainClient .containerClient{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1200px;
+    height: 480px;
+    overflow: auto;
 }
 .tbClient{
-    width: 900px;
+    width: 1100px;
     border: 1px solid #000;
     border-spacing: 0;
 }
 .tbClient thead{
+    position: sticky;
+    top: 0;
     height: 70px;
+    background-color: lightblue;
 }
 .tbClient th{
-    width: 30%;
+    width: 20%;
     border: 1px solid rgb(200, 200, 200);
+}
+.tbClient .open.th{
+    width: 6%;
+    background-color: whitesmoke;
 }
 .tbClient th:nth-child(3){
     width: 10%;
-    border: 1px solid rgb(200, 200, 200);
+}
+.tbClient th:nth-child(4){
+    width: 20%;
+}
+.tbClient th:nth-child(5){
+    width: 15%;
 }
 .tbClient td{
     height: 50px;
     text-align: center;
     border: 1px solid rgb(200, 200, 200);
+}
+
+/* insert_properties.html -----------------------------------------------------------*/
+
+.section.prop .container.scroll{
+    height: 700px;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0;
+}
+.section.prop .container.scroll form{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 0.75fr 1.25fr 0.75fr 1.25fr;
+    gap: 20px;
+    padding: 40px 10px 30px;
+    font-size: 18px;
+}
+.section.prop .container.scroll form .lblOwner{
+    grid-column-start: 1;
+    grid-column-end: 5;
+}
+.section.prop .container.scroll form .line{
+    width: 100%;
+    height: 1px;
+    background-color: rgba(0,0,0,.3);
+    grid-column-start: 1;
+    grid-column-end: 5;
+    margin: 10px 0;
+}
+.section.prop .container.scroll form label{
+    display: flex;
+    align-items: center;
+}
+.section.prop .container.scroll form input,
+.section.prop .container.scroll form select{
+    font-size: 16px;
+}
+.section.prop .container.scroll form #vendAff{
+    display: flex;
+}
+.section.prop .container.scroll form #vendAff input{
+    margin-right: 5px;
+}
+.section.prop .container.scroll form #vendAff li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 15px;
+}
+.row-small{
+    width: 100px;
+}
+.row-small input{
+    width: 100px;
+}
+.row-large{
+    grid-column-start: 2;
+    grid-column-end: 5;
+    font-size: 16px;
+    padding: 5px 10px;
+    line-height: 21px;
+}
+.imgForm{
+    border: none;
+    grid-column-start: 2;
+    grid-column-end: 4;
+}
+#file-upload-button{
+    padding: 3px 10px;
+    border-radius: 8px;
+}
+.vuoto{
+    grid-column-start: 4;
+    grid-column-end: 5;
+}
+.section.prop .container.scroll form .lblAgent{
+    justify-content: flex-end;
+    grid-column-start: 3;
+    grid-column-end: 4;
+}
+.section.prop .container.scroll form .agent{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    grid-column-start: 4;
+    grid-column-end: 5;
+}
+.section.prop .container.scroll form .btnCenter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-column-start: 1;
+    grid-column-end: 5;
+}
+.section.prop .container.scroll form .btnCenter .btnSub{
+    font-size: 18px;
+    padding: 6px 50px;
+    margin-top: 30px;
+    border: transparent;
+    transition: all .3s;
+}
+.section.prop .container.scroll form .btnCenter .btnSub:hover{
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, .3);
 }
 
 /* properties.html -----------------------------------------------------------*/
@@ -449,30 +753,103 @@ h1{
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 220px 0;
+    padding: 220px 0 0;
+    overflow-y: hidden;
+}
+.mainProp h1{
+    margin-bottom: 10px;
+}
+.mainProp .containerProp{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1150px;
+    height: 480px;
+    overflow: auto;
 }
 .tbProp{
-    width: 900px;
-    border: 1px solid #000;
+    width: 1100px;
     border-spacing: 0;
+    border: 1px solid #000;
+    border-top: none;
 }
 .tbProp thead{
     height: 70px;
+    position: sticky;
+    top: 0;
+    background-color: lightblue;
 }
-.tbProp tbody{
-    max-height: 350px;
+.open.th{
+    width: 4%;
+    background-color: whitesmoke;
 }
 .tbProp th{
-    width: 17%;
-    border: 1px solid rgb(200, 200, 200);
+    width: 16%;
+    border: 1px solid rgb(0,0,0);
 }
-.tbProp th:nth-child(4),
-.tbProp th:nth-child(5){
-    width: 12%;
-    border: 1px solid rgb(200, 200, 200);
+.tbProp th:nth-child(2),
+.tbProp th:nth-child(3){
+    width: 15%;
+}
+.tbProp th:nth-child(4){
+    width: 10%;
+}
+.tbProp th:nth-child(5),
+.tbProp th:nth-child(6){
+    width: 8%;
+}
+.tbProp th:nth-child(7),
+.tbProp th:nth-child(8){
+    width: 10%;
+}
+.open{
+    width: 50px;
+    height: 50px;
+}
+.open a{
+    display: flex;
+    width: 100%;
+    aspect-ratio: 1;
+    background: url('/../static/images/occhio-chiuso.png')no-repeat center;
+    transition: all .4s;
+}
+.open a:hover{
+    background: url('/../static/images/eye.png')no-repeat center;
 }
 .tbProp td{
     height: 50px;
     text-align: center;
     border: 1px solid rgb(200, 200, 200);
+}
+
+/* property_page.html -----------------------------------------------------------*/
+
+
+
+/* show_img.html -----------------------------------------------------------*/
+
+.container.showImg{
+    width: 1000px;
+    height: 700px;
+    align-items: flex-start;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+.container.showImg .carousel{
+    width: 1000px;
+    display: flex;
+    margin-top: 10px;
+    padding-right: 30px;
+    overflow-x: auto;
+}
+.container.showImg img{
+    width: 100%;
+    height: 450px;
+    border-radius: 10px;
+}
+.container.showImg .carousel img{
+    width: 250px;
+    height: 150px;
+    margin-right: 10px;
 }

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %} Dettaglio cliente {% endblock title %}
+{% block content %}
+    <div class="mainProp">
+        <h1>pagina cliente</h1>
+        <p>Nome:  {{ nome }}</p>
+        <p>Cognome:  {{ cognome }}</p>
+        <p>Indirizzo:  {{ indirizzo }}</p>
+        <p>Citta:  {{ citta }}</p>
+        <p>Cellulare:  {{ cellulare }}</p>
+        <p>E-mail:  {{ mail }}</p>
+        <p>Compra/Affitta-Vende:  {{ azione }}</p>
+        <p>Agente:  {{ session['agent'] }}</p>
+    </div>
+{% endblock %}

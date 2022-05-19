@@ -8,32 +8,55 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800;900&display=swap" rel="stylesheet">
 
+    <link rel="icon" href="{{ url_for('static', filename='images/user.png')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
 
-    <title>{% block title%} {% endblock title %}</title>
+    <title>CasaSubito - {% block title%} {% endblock title %}</title>
 </head>
 <body class="bodyBase">
     <div class="header">
         <div class="logo">
-            <a href="/HomePage"><p>LOGO</p></a></div>
+            <a href="/HomePage"><img src="../static/images/logo.png" alt=""><p>CasaSubito</p></a></div>
         <div class="search">
             <input type="search" name="search" id="search" placeholder="Cerca...">
             <div class="icon"></div>
         </div>
         <div class="logout">
             <p>{{ session["agent"] }}</p>
-            <div class="user">
+            {% if session['agent'] == "Imran" %}
+                <div class="user one">
+            {% elif session['agent'] == "Gianluca" %}
+                <div class="user two">
+            {% elif session['agent'] == "Elena" %}
+                <div class="user three">
+            {% elif session['agent'] == "Luca" %}
+                <div class="user four">
+            {% elif session['agent'] == "Lorraine" %}
+                <div class="user five">
+            {% endif %}
                 <div class="btnUser"></div>
                 <div class="userMenu">
                     <ul>
                         <li>
-                            {% if session['agent'] == "Mario" %}
+                            {% if session['agent'] == "Imran" %}
                             <span class="userico one">
-                                M
+                                I
                             </span>
                             {% elif session['agent'] == "Gianluca" %}
                             <span class="userico two">
                                 G
+                            </span>
+                            {% elif session['agent'] == "Elena" %}
+                            <span class="userico three">
+                                E
+                            </span>
+                            {% elif session['agent'] == "Luca" %}
+                            <span class="userico four">
+                                L
+                            </span>
+                            {% elif session['agent'] == "Lorraine" %}
+                            <span class="userico five">
+                                L
                             </span>
                             {% endif %}
                             Profilo
@@ -55,10 +78,10 @@
                 <div class="btninsert" id="btninsert"></div>
                 <div class="dpList" id="dpList">
                     <div class="innerIns">
-                        <a href="/Inserimento_Clienti" class="btninsert mt-20"></a><span class="spanIns1">Clienti</span>
+                        <a href="/Inserimento_Clienti" class="btninsert one"></a><span class="spanIns1">Clienti</span>
                     </div>
                     <div class="innerIns">
-                        <a href="/Inserimento_Immobili" class="btninsert"></a><span class="spanIns2">Immobile</span>
+                        <a href="/Inserimento_Immobili" class="btninsert two"></a><span class="spanIns2">Immobile</span>
                     </div>
                 </div>
             </div>
