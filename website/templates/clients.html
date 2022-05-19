@@ -22,7 +22,9 @@
                     <tr>
                         <td class="open"><a href="{{url_for('views.ClientPage', nome=cliente['nome'])}}"></a></td>
                         {% for k,v in cliente.items() %}
-                            <td>{{ v }}</td>
+                            {% if k != "Immobili" %}
+                                <td>{{ v }}</td>
+                            {% endif %}
                         {% endfor %}
                     </tr>
                 {% endfor %}
