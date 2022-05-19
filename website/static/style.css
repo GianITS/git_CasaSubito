@@ -2,7 +2,6 @@
     --primary-color: rgba(255,247,0,1);
     --secondary-color: rgba(198,192,0,1);
 }
-
 *{
     padding: 0;
     margin: 0;
@@ -26,11 +25,20 @@ a{
 li{
     list-style: none;
 }
-input{
+input,
+select,
+textarea{
     padding: 5px 0 5px 10px;
     border-radius: 8px;
     outline: none;
     border: 1px solid #000;
+}
+textarea{
+    height: 75px;
+    resize: none;
+}
+input:focus {
+    box-shadow: 0 0 3pt 2pt var(--primary-color);
 }
 
 /* login.html -----------------------------------------------------------*/
@@ -65,7 +73,7 @@ h1{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 70px;
+    margin-top: 40px;
 }
 .utente,
 .password{
@@ -379,6 +387,10 @@ h1{
     display: flex;
     aspect-ratio: 1;
     margin: 0 20px 0 0;
+    cursor: default;
+}
+.menu .contDown .dpList.show .btninsert{
+    cursor: pointer;
 }
 .menu .contDown .dpList .btninsert.one{
     background: linear-gradient(135deg, var(--secondary-color)0%, var(--primary-color)100%);
@@ -632,68 +644,104 @@ h1{
 
 .section.prop .container.scroll{
     height: 700px;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
     margin: 40px 0;
-    overflow: auto;
 }
 .section.prop .container.scroll form{
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 10px;
+    display: grid;
+    grid-template-columns: 0.75fr 1.25fr 0.75fr 1.25fr;
+    gap: 20px;
+    padding: 40px 10px 30px;
+    font-size: 18px;
 }
-.section.prop .container.scroll form .ulForm{
+.section.prop .container.scroll form .lblOwner{
+    grid-column-start: 1;
+    grid-column-end: 5;
+}
+.section.prop .container.scroll form .line{
     width: 100%;
+    height: 1px;
+    background-color: rgba(0,0,0,.3);
+    grid-column-start: 1;
+    grid-column-end: 5;
+    margin: 10px 0;
+}
+.section.prop .container.scroll form label{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
-.section.prop .container.scroll form .liForm{
-    width: 90%;
+.section.prop .container.scroll form input,
+.section.prop .container.scroll form select{
+    font-size: 16px;
+}
+.section.prop .container.scroll form #vendAff{
+    display: flex;
+}
+.section.prop .container.scroll form #vendAff input{
+    margin-right: 5px;
+}
+.section.prop .container.scroll form #vendAff li{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    border: 1px solid #000;
+    margin-right: 15px;
 }
-.section.prop .container.scroll form .liForm div{
-    width: 50%;
-    display: flex;
+.row-small{
+    width: 100px;
 }
-ul#vendAff{
-    display: flex;
+.row-small input{
+    width: 100px;
 }
-ul#vendAff input{
-    width: 20px;
-}
-.section.prop .container.scroll form .liForm .inpNum{
-    
-}
-.section.prop .container.scroll form .liForm .inpNum #number{
-    width: 30px;
-}
-.section.prop .container.scroll form .liForm label{
-    width: 160px;
-    display: flex;
-    align-items: center;
-    border: 1px solid red;
-}
-.section.prop .container.scroll form .liForm input,
-.section.prop .container.scroll form .liForm select{
-    width: 200px;
-}
-.section.prop .container.scroll form .liForm.one .btnIns{
-    width: 40px;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background-color: aquamarine;
-    cursor: pointer;
+.row-large{
+    grid-column-start: 2;
+    grid-column-end: 5;
+    font-size: 16px;
+    padding: 5px 10px;
+    line-height: 21px;
 }
 .imgForm{
     border: none;
+    grid-column-start: 2;
+    grid-column-end: 4;
+}
+#file-upload-button{
+    padding: 3px 10px;
+    border-radius: 8px;
+}
+.vuoto{
+    grid-column-start: 4;
+    grid-column-end: 5;
+}
+.section.prop .container.scroll form .lblAgent{
+    justify-content: flex-end;
+    grid-column-start: 3;
+    grid-column-end: 4;
+}
+.section.prop .container.scroll form .agent{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    grid-column-start: 4;
+    grid-column-end: 5;
+}
+.section.prop .container.scroll form .btnCenter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-column-start: 1;
+    grid-column-end: 5;
+}
+.section.prop .container.scroll form .btnCenter .btnSub{
+    font-size: 18px;
+    padding: 6px 50px;
+    margin-top: 30px;
+    border: transparent;
+    transition: all .3s;
+}
+.section.prop .container.scroll form .btnCenter .btnSub:hover{
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, .3);
 }
 
 /* properties.html -----------------------------------------------------------*/

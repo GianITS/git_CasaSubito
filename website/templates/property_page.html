@@ -3,14 +3,16 @@
 {% block content %}
     <div class="mainProp">
         <h1>pagina immobile</h1>
-        <p>Propretario:  {{ nome }}</p>
+        <p>Propretario:  {{ nome }} {{ cognome }}</p>
         <p>Indirizzo:  {{ indirizzo }}</p>
         <p>Citta:  {{ citta }}</p>
-        <p>Metri quadri:  {{ mQuadri }}</p>
-        <p>Numero stanze:  {{ numStanze }}</p>
+        <p>Tipologia:  {{ tipologia }}</p>
         <p>Vendita/Affitto:  {{ vendAff }}</p>
-        <p>Agente:  {{ session['agent'] }}</p>
+        <p>Metri quadri:  {{ mQuadri }}</p>
+        <p>Totale stanze:  {{ numStanze }}</p>
+        <p>Descrizione:  {{ descrizione }}</p>
         <a href="{{url_for('views.showImg', nome=nome)}}">guarda le immagini</a>
+        <p>Agente:  {{ session['agent'] }}</p>
         {% block PropPage %}
         {% endblock %}
     </div>

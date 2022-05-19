@@ -6,17 +6,17 @@
             <a href="/HomePage" class="btnclose"></a>
             <form action="" method="post" id="form0" enctype="multipart/form-data">
                 {{form.hidden_tag()}}
-                <ul class="ulForm">
-                    <li class="liForm"><div>{{form.owner.label}}{{form.owner()}}</div><div>{{form.tipologia.label}}{{form.tipologia()}}</div></li>
-                    <li class="liForm"><div>{{form.address.label}}{{form.address()}}</div><div>{{form.city.label}}{{form.city()}}</div></li>
-                    <li class="liForm"><div>{{form.vendAff.label}}{{form.vendAff()}}</div><div>{{form.sqMeters.label}}{{form.sqMeters()}}</div></li>
-                </ul>
-                <ul class="ulForm">
-                    <li class="liForm one"><div>{{form.specifichePrinc.label}}{{form.specifichePrinc()}}</div><div class="inpNum">{{form.number.label}}{{form.number()}}</div><div class="btnIns"></div></li>
-                </ul>
-                <div>{{form.images.label}}{{form.images(class_="imgForm")}}</div>
-                <div>{{form.agent.label}}{{session["agent"]}}</div>                    
-                {{form.submit()}}
+                {{form.owner.label(class_="lblOwner")}}
+                {{form.ownerName.label}}{{form.ownerName(placeholder="Nome...")}}{{form.ownerLastname.label}}{{form.ownerLastname(placeholder="Cognome...")}}
+                <div class="line"></div>
+                {{form.address.label}}{{form.address(placeholder="Indirizzo...")}}{{form.city.label}}{{form.city(placeholder="Città...")}}
+                {{form.tipologia.label}}{{form.tipologia()}}{{form.vendAff.label}}{{form.vendAff()}}
+                {{form.sqMeters.label}}<div class="row-small">{{form.sqMeters(placeholder="0")}}</div>{{form.totRoom.label}}<div class="row-small">{{form.totRoom(placeholder="0")}}</div>
+                {{form.description.label}}{{form.description(class_="row-large",placeholder="Descrizione immobile...")}}
+                <div class="line"></div>
+                {{form.images.label}}{{form.images(class_="imgForm")}} <div class="vuoto"></div>
+                {{form.agent.label(class_="lblAgent")}}<div class="agent">{{session["agent"]}}</div>                 
+                <div class="btnCenter">{{form.submit(class_="btnSub")}}</div>
             </form>
         </div>
     </div>

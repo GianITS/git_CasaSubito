@@ -22,14 +22,3 @@ const userMenu = document.querySelector(".userMenu")
 btnUser.addEventListener('click', function(){
     userMenu.classList.toggle("visible");
 })
-
-const btnIns = document.querySelector(".btnIns")
-const form = document.getElementById("form0")
-const specif = document.getElementById("specifichePrinc")
-const number = document.getElementById("number")
-
-btnUser.addEventListener('click', function(){
-    form.appendChild('li');
-    
-
-})
