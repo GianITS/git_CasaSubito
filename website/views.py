@@ -48,10 +48,11 @@ def ClientPage(nome):
 # import
 from .models import properties_collection
 
+listHead = ["Nome", "Cognome", "Indirizzo", "Citta", "Tipologia", "Vendita\nAffitto", "Metri\nquadri", "Totale\nStanze", "Agente"]
 @views.route('/Immobili')
 def properties():
     immobili = list(properties_collection.find({},{"_id":0}))
-    return render_template('properties.html', immobili=immobili)
+    return render_template('properties.html', immobili=immobili, listHead=listHead)
 
 # recupero le immagini dal db
 # import
