@@ -3,38 +3,39 @@
 {% block content %}
 <div class="mainProp">
     <h1>Immobili</h1>
-    <div class="containerProp">
-        <table class="tbProp">
-            <thead>
-                {% for immobile in immobili %}
-                {% if loop.index == 1 %}
-                <tr>
-                    <th class="open th"></th>
-                    {% for k in immobile.keys() if loop.first %}
-                        {% if k != "immagini" %}
-                            <th>{{ k }}</th>
-                        {% endif %}
-                    {% endfor %}
-                </tr>
-                {% endif %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="message">
+                {{ message }}
+            </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <table class="tbProp">
+        <thead>
+            <tr>
+                <th class="open th"></th>
+                {% for item in listHead %}
+                    <th>{{ item }}</th>
                 {% endfor %}
-            </thead>
-            <tbody>
-                {% for immobile in immobili %}
-                <tr>
-                    <td class="open"><a href="{{url_for('views.PropPage', nome=immobile['nome'])}}"></a></td>
-                    {% for k,v in immobile.items() %}
-                        {% if loop.index == 1 %}
-                            <td><a href="{{url_for('views.clients')}}">{{ v }}</a></td>
-                        {% elif k != "immagini" %}
-                            <td>{{ v }}</td>
-                        {% endif %}
-                    {% endfor %}
-                </tr>
+            </tr>
+        </thead>
+        <tbody>
+            {% for immobile in immobili %}
+            <tr>
+                <td class="open"><a href="{{url_for('views.PropPage', nome=immobile['nome'])}}"></a></td>
+                {% for k,v in immobile.items() %}
+                    {% if loop.index == 1 %}
+                        <td><a href="{{url_for('views.ClientPage', nome=immobile['nome'])}}">{{ v }}</a></td>
+                    {% elif k != "immagini" and k != "descrizione" and k != "textbox" and k != "dimensioni" %}
+                        <td>{{ v }}</td>
+                    {% endif %}
                 {% endfor %}
-            </tbody>
-        </table>
-    </div>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
     {% block PropPage %}
     {% endblock %}
 </div>

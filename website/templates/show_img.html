@@ -3,10 +3,26 @@
 <div class="section">
     <div class="container showImg">
         <a href="{{url_for('views.PropPage', nome=nome)}}" class="btnclose"></a>
-        <img src="{{url_for('views.image', filename=listImg[0])}}" alt="">
+        <div class="slider">
+            {% for image in listImg %}
+            {% set j=loop.index %}
+                <div class="slides s{{j}}">
+                    <img src="{{url_for('views.image', filename=image)}}" alt="">
+                </div>
+            {% endfor %}
+        </div>
         <div class="carousel">
             {% for image in listImg %}
-                <img src="{{url_for('views.image', filename=image)}}" alt="">
+                {% set i=loop.index %}
+                <div class="innerCar">
+                    {% if i==1 %}
+                        <input type="radio" name="carousel" id="inner{{i}}" checked>
+                        
+                    {% else %}
+                        <input type="radio" name="carousel" id="inner{{i}}">
+                    {% endif %}
+                    <img src="{{url_for('views.image', filename=image)}}" alt="">
+                </div>
             {% endfor %}
         </div>
     </div>

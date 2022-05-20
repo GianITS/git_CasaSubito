@@ -2,7 +2,6 @@
     --primary-color: rgba(255,247,0,1);
     --secondary-color: rgba(198,192,0,1);
 }
-
 *{
     padding: 0;
     margin: 0;
@@ -26,11 +25,51 @@ a{
 li{
     list-style: none;
 }
-input{
+input,
+select,
+textarea{
     padding: 5px 0 5px 10px;
     border-radius: 8px;
     outline: none;
     border: 1px solid #000;
+}
+textarea{
+    height: 50px;
+    resize: none;
+}
+input:focus {
+    box-shadow: 0 0 3pt 2pt var(--primary-color);
+}
+.message{
+    position: fixed;
+    top: 150px;
+    right: -300px;
+    width: 300px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1adb47;
+    border-radius: 8px;
+    padding: 5px 20px;
+    font-size: 18px;
+    z-index: 1000;
+    animation: animate1 7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation-delay: 1s;
+}
+@keyframes animate1 {
+    0%{
+        right: -300px;
+    }
+    20%{
+        right: 30px;
+    }
+    80%{
+        right: 30px;
+    }
+    100%{
+        right: -300px;
+    }
 }
 
 /* login.html -----------------------------------------------------------*/
@@ -65,7 +104,7 @@ h1{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 70px;
+    margin-top: 40px;
 }
 .utente,
 .password{
@@ -75,7 +114,7 @@ h1{
 }
 .btnSub{
     padding: 4px 20px;
-    margin-top: 20px;
+    margin: 20px 0 100px;
     font-size: 20px;
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     cursor: pointer;
@@ -99,7 +138,7 @@ h1{
     align-items: center;
     padding: 15px;
     background: linear-gradient(135deg, var(--primary-color)0%, var(--secondary-color)100%);
-    z-index: 2;
+    z-index: 10;
 }
 .header .logo{
     width: 70px;
@@ -208,7 +247,7 @@ h1{
 .header .logout .user .visible{
     bottom: -230%;
     opacity: 1;
-    z-index: 2;
+    z-index: 10;
 }
 .header .logout .user .userMenu ul{
     display: flex;
@@ -260,7 +299,6 @@ h1{
 .main{
     position: relative;
     width: 100%;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -278,7 +316,7 @@ h1{
     align-items: center;
     transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     background: linear-gradient(to bottom, rgba(245,245,245,1) 0%, rgba(245,245,245,1) 90%, rgba(245,245,245,.4) 100%);
-    z-index: 1;
+    z-index: 3;
 }
 .extend{
     height: 300px;
@@ -297,7 +335,7 @@ h1{
     transition: all .3s;
 }
 .menu .contUp a:hover{
-    color: burlywood;
+    text-shadow: 0 0 10px var(--primary-color);
 }
 .menu .contDown{
     position: relative;
@@ -354,12 +392,13 @@ h1{
 .menu.extend .show{
     top: 100%;
     opacity: 1;
-    z-index: 1;
+    z-index: 10;
 }
 .menu .contDown .dpList .innerIns{
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    margin-top: 20px;
 }
 .menu .contDown .dpList .innerIns .spanIns1,
 .menu .contDown .dpList .innerIns .spanIns2{
@@ -379,14 +418,18 @@ h1{
     display: flex;
     aspect-ratio: 1;
     margin: 0 20px 0 0;
+    cursor: default;
+    z-index: -2;
+}
+.menu .contDown .dpList.show .btninsert{
+    cursor: pointer;
+    z-index: 10;
 }
 .menu .contDown .dpList .btninsert.one{
     background: linear-gradient(135deg, var(--secondary-color)0%, var(--primary-color)100%);
-    margin-top: 20px;
 }
 .menu .contDown .dpList .btninsert.two{
     background: linear-gradient(135deg, var(--secondary-color)0%, var(--primary-color)100%);
-    margin-top: 20px;
 
 }
 .menu .contDown .dpList .btninsert:hover{
@@ -416,6 +459,18 @@ h1{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.6rem;
+    animation: showObiettivi 1s ease-in-out;
+}
+@keyframes showObiettivi {
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
 }
 .obiettivi > div{
     background: white;
@@ -424,7 +479,26 @@ h1{
     margin-top: 1rem;
     box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
     transition: all 300ms ease;
+    /* animation: showObiettivi .8s ease-in-out; */
 }
+/* .obiettivi > div:nth-child(1){
+    animation-delay: .2s;
+}
+.obiettivi > div:nth-child(2){
+    animation-delay: .4s;
+}
+.obiettivi > div:nth-child(3){
+    animation-delay: .6s;
+}
+.obiettivi > div:nth-child(4){
+    animation-delay: .8s;
+}
+.obiettivi > div:nth-child(5){
+    animation-delay: 1s;
+}
+.obiettivi > div:nth-child(6){
+    animation-delay: 1.2s;
+} */
 .obiettivi > div:hover{
     box-shadow: none;
 }
@@ -503,6 +577,74 @@ h1{
     color: #7d8da1;
 }
 
+    /* agenda -----------------------------------*/
+
+.h1Agenda{
+    margin-top: 80px;
+}
+.agenda{
+    position: relative;
+    width: 1000px;
+    border-spacing: 0;
+    margin-top: 20px;
+}
+.agenda thead{
+    height: 40px;
+}
+.agenda th{
+    width: 19%;
+    border: 1px solid #d1d4d6;
+}
+.agenda th:nth-child(1){
+    width: 6%;
+}
+.agenda td{
+    position: relative;
+    height: 40px;
+    border: 1px solid #d1d4d6;
+}
+.agenda td:nth-child(1){
+    text-align: center;
+    background-color: whitesmoke;
+}
+.card{
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    width: 90%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 8px;
+    background-color: #1adb47;
+    border-radius: 5px;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+.im{
+    background-color: cadetblue;
+    height: 100px;
+}
+.lu{
+    background-color: limegreen;
+}
+.el{
+    background-color: violet;
+    height: 100px;
+}
+.lo{
+    background-color: rgb(61, 151, 242);
+}
+.gi{
+    background-color: rgb(168, 168, 168);
+    height: 350px;
+}
+.card p{
+
+}
+
 /* insert_client.html -----------------------------------------------------------*/
 
 .section{
@@ -523,6 +665,15 @@ h1{
     position: relative;
     width: 900px;
     height: 600px;
+    backdrop-filter: blur(5px);
+    background-color: rgba(255,255,255,.8);
+    border: 1px solid black;
+    animation: fade-in .3s ease-in-out;
+}
+.section.prop .container.scroll.client{
+    position: relative;
+    width: 900px;
+    height: 450px;
     backdrop-filter: blur(5px);
     background-color: rgba(255,255,255,.8);
     border: 1px solid black;
@@ -570,65 +721,30 @@ h1{
     transform: rotate(225deg);
     box-shadow: -3px -3px 10px rgba(0, 0, 0, .3);
 }
-
-/* clients.html -----------------------------------------------------------*/
-
-.mainClient{
-    position: relative;
+.section.prop .container.scroll.client form{
+    margin: 10px 0 0;
+}
+.section.prop .container.scroll form #azione{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 220px 0 0;
-    overflow-y: hidden;
 }
-.mainClient h1{
-    margin: 10px 0 20px;
+.section.prop .container.scroll form #azione input{
+    margin-right: 5px;
 }
-.mainClient .containerClient{
-    position: relative;
+.section.prop .container.scroll form #azione li{
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    width: 1200px;
-    height: 480px;
-    overflow: auto;
+    margin-right: 15px;
 }
-.tbClient{
-    width: 1100px;
-    border: 1px solid #000;
-    border-spacing: 0;
+.section.prop .container.scroll.client form .btnCenter .btnSub{
+    margin: 20px 0 0;
 }
-.tbClient thead{
-    position: sticky;
-    top: 0;
-    height: 70px;
-    background-color: lightblue;
-}
-.tbClient th{
-    width: 20%;
-    border: 1px solid rgb(200, 200, 200);
-}
-.tbClient .open.th{
-    width: 6%;
-    background-color: whitesmoke;
-}
-.tbClient th:nth-child(3){
-    width: 10%;
-}
-.tbClient th:nth-child(4){
-    width: 20%;
-}
-.tbClient th:nth-child(5){
-    width: 15%;
-}
-.tbClient td{
-    height: 50px;
+.msg{
     text-align: center;
-    border: 1px solid rgb(200, 200, 200);
+    grid-column-start: 1;
+    grid-column-end: 5;
+    padding: 5px 50px;
 }
-
 /*clients_page.html & property_page.html-----------------------------------------------------------------*/
 
 .container2 .clickImmagine{
@@ -732,69 +848,106 @@ h1{
 /* insert_properties.html -----------------------------------------------------------*/
 
 .section.prop .container.scroll{
-    height: 700px;
-    justify-content: flex-start;
+    height: 80%;
+    justify-content: center;
+    align-items: center;
     margin: 40px 0;
-    overflow: auto;
 }
 .section.prop .container.scroll form{
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 10px;
+    display: grid;
+    grid-template-columns: 0.75fr 1.25fr 0.75fr 1.25fr;
+    gap: 20px;
+    padding: 40px 10px 30px;
+    font-size: 18px;
+    margin-top: 50px;
 }
-.section.prop .container.scroll form .ulForm{
+.section.prop .container.scroll form .lblOwner{
+    grid-column-start: 1;
+    grid-column-end: 5;
+}
+.section.prop .container.scroll form .line{
     width: 100%;
+    height: 1px;
+    background-color: rgba(0,0,0,.3);
+    grid-column-start: 1;
+    grid-column-end: 5;
+    margin: 5px 0;
+}
+.section.prop .container.scroll form label{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
-.section.prop .container.scroll form .liForm{
-    width: 90%;
+.section.prop .container.scroll form input,
+.section.prop .container.scroll form select{
+    font-size: 16px;
+}
+.section.prop .container.scroll form #vendAff{
+    display: flex;
+}
+.section.prop .container.scroll form #vendAff input{
+    margin-right: 5px;
+}
+.section.prop .container.scroll form #vendAff li{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    border: 1px solid #000;
+    margin-right: 15px;
 }
-.section.prop .container.scroll form .liForm div{
-    width: 50%;
-    display: flex;
+.row-small{
+    width: 100px;
 }
-ul#vendAff{
-    display: flex;
+.row-small input{
+    width: 100px;
 }
-ul#vendAff input{
-    width: 20px;
-}
-.section.prop .container.scroll form .liForm .inpNum{
-    
-}
-.section.prop .container.scroll form .liForm .inpNum #number{
-    width: 30px;
-}
-.section.prop .container.scroll form .liForm label{
-    width: 160px;
-    display: flex;
-    align-items: center;
-    border: 1px solid red;
-}
-.section.prop .container.scroll form .liForm input,
-.section.prop .container.scroll form .liForm select{
-    width: 200px;
-}
-.section.prop .container.scroll form .liForm.one .btnIns{
-    width: 40px;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background-color: aquamarine;
-    cursor: pointer;
+.row-large{
+    grid-column-start: 2;
+    grid-column-end: 5;
+    font-size: 16px;
+    padding: 5px 10px;
+    line-height: 21px;
 }
 .imgForm{
     border: none;
+    grid-column-start: 2;
+    grid-column-end: 4;
+}
+#file-upload-button{
+    padding: 3px 10px;
+    border-radius: 8px;
+}
+.vuoto{
+    grid-column-start: 4;
+    grid-column-end: 5;
+}
+.section.prop .container.scroll form .lblAgent{
+    justify-content: flex-end;
+    grid-column-start: 3;
+    grid-column-end: 4;
+}
+.section.prop .container.scroll form .agent{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    grid-column-start: 4;
+    grid-column-end: 5;
+}
+.section.prop .container.scroll form .btnCenter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-column-start: 1;
+    grid-column-end: 5;
+}
+.section.prop .container.scroll form .btnCenter .btnSub{
+    font-size: 18px;
+    padding: 6px 50px;
+    margin: 30px;
+    border: transparent;
+    transition: all .3s;
+}
+.section.prop .container.scroll form .btnCenter .btnSub:hover{
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, .3);
 }
 
 /* properties.html -----------------------------------------------------------*/
@@ -807,19 +960,10 @@ ul#vendAff input{
     align-items: center;
     width: 100%;
     padding: 220px 0 0;
-    overflow-y: hidden;
+    overflow-x: hidden;
 }
 .mainProp h1{
-    margin-bottom: 10px;
-}
-.mainProp .containerProp{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 1150px;
-    height: 480px;
-    overflow: auto;
+    margin: 0 0 30px;
 }
 .tbProp{
     width: 1100px;
@@ -828,9 +972,7 @@ ul#vendAff input{
     border-top: none;
 }
 .tbProp thead{
-    height: 70px;
-    position: sticky;
-    top: 0;
+    height: 60px;
     background-color: lightblue;
 }
 .open.th{
@@ -878,7 +1020,17 @@ ul#vendAff input{
 
 /* property_page.html -----------------------------------------------------------*/
 
-
+.mainSingle{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    padding: 220px 0 0;
+    overflow-x: hidden;
+}
 
 /* show_img.html -----------------------------------------------------------*/
 
@@ -889,20 +1041,67 @@ ul#vendAff input{
     justify-content: flex-end;
     overflow: hidden;
 }
-.container.showImg .carousel{
-    width: 1000px;
+.container.showImg .slider{
     display: flex;
-    margin-top: 10px;
-    padding-right: 30px;
-    overflow-x: auto;
+    justify-content: flex-start;
+}
+.container.showImg .slider .slides{
+    display: flex;
+    justify-content: center;
+    width: 960px;
+    margin-right: 20px;
+    transition: all 1s ease-in-out;
 }
 .container.showImg img{
     width: 100%;
     height: 450px;
     border-radius: 10px;
 }
+.container.showImg .carousel{
+    position: relative;
+    width: 1000px;
+    display: flex;
+    margin-top: 10px;
+    padding-right: 30px;
+    overflow-x: auto;
+}
+.container.showImg .carousel .innerCar{
+    position: relative;
+    width: 250px;
+    margin-right: 10px;
+}
+.container.showImg .carousel input{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+.container.showImg .carousel input:focus{
+    box-shadow: none;
+}
 .container.showImg .carousel img{
     width: 250px;
     height: 150px;
     margin-right: 10px;
+}
+.move1{
+    margin-left: 0;
+}
+.move2{
+    margin-left: -20%;
+}
+.move3{
+    margin-left: -40%;
+}
+.move4{
+    margin-left: -60%;
+}
+.move5{
+    margin-left: -80%;
+}
+.move6{
+    margin-left: -100%;
 }

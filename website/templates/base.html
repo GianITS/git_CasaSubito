@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800;900&display=swap" rel="stylesheet">
 
-    <link rel="icon" href="{{ url_for('static', filename='images/user.png')}}">
+    <link rel="icon" href="{{ url_for('static', filename='images/logo.png')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
 
     <link rel="stylesheet" 
@@ -22,7 +22,7 @@
 <body class="bodyBase">
     <div class="header">
         <div class="logo">
-            <a href="/HomePage"><img src="../static/images/logo.png" alt=""><p>CasaSubito</p></a></div>
+            <a href="/HomePage"><img src="{{ url_for('static', filename='/images/logo.png')}}" alt=""><p>CasaSubito</p></a></div>
         <div class="search">
             <input type="search" name="search" id="search" placeholder="Cerca...">
             <div class="icon"></div>
@@ -78,7 +78,6 @@
             <div class="contUp">
                 <a href="/Clienti">CLIENTI</a>
                 <a href="/Immobili">IMMOBILI</a>
-                <a href="/RichiesteImmobiliari">RICHIESTE IMMOBILIARI</a>
             </div>
             <div class="contDown">
                 <div class="btninsert" id="btninsert"></div>
