@@ -1,18 +1,65 @@
 {% extends 'base.html' %}
 {% block title %} Dettaglio immobile {% endblock title %}
 {% block content %}
-    <div class="mainSingle">
-        <h1>pagina immobile</h1>
-        <p>Propretario:  {{ nome }} {{ cognome }}</p>
-        <p>Indirizzo:  {{ indirizzo }}</p>
-        <p>Citta:  {{ citta }}</p>
-        <p>Tipologia:  {{ tipologia }}</p>
-        <p>Vendita/Affitto:  {{ vendAff }}</p>
-        <p>Metri quadri:  {{ mQuadri }}</p>
-        <p>Totale stanze:  {{ numStanze }}</p>
-        <p>Descrizione:  {{ descrizione }}</p>
-        <a href="{{url_for('views.showImg', nome=nome)}}">guarda le immagini</a>
-        <p>Agente:  {{ session['agent'] }}</p>
+    <div class="mainProp">
+        <div class="container2">
+            <div class="content1">
+                <h1 style="text-align:center; color:white">Immobile</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prorietario</th>
+                            <td class="linea">{{nome}}</td>
+                            <th>Città</th>
+                            <td class="linea">{{citta}}</td>
+                            <th>Indirizzo</th>
+                            <td class="linea">{{indirizzo}}</td>                    
+                        </tr>
+                            <th>Metri<br>Quadri</th>
+                            <td class="linea">{{mQuadri}}</td>
+                            <th>Numero<br>Stanze</th>
+                            <td class="linea">{{numStanze}}</td>
+                            <th>Stato<br>Immobile</th>
+                            <td class="linea">{{vendAff}}</td>
+                        </tr>
+                            <th>Agente</th>
+                            <td class="linea">{{ session['agent'] }}</td>
+                            <td></td>
+                            <td class="clickImmagine"><a href="{{url_for('views.showImg', nome=nome)}}"><span class="material-symbols-outlined">
+                                photo_library
+                                </span></a>
+                            </td>
+                        </tr>
+                    </thead>
+                </table>              
+            </div>
+            <div class="content2">
+                <h2 style="text-align:center;">Cliente</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <td class="linea">{{nome}}</td>
+                            <th>Cognome</th>
+                            <td class="linea">{{cognome}}</td>
+                            <th>Città</th>
+                            <td class="linea">{{citta}}</td>                    
+                        </tr>
+                            <th>Indirizzo</th>
+                            <td class="linea">{{indirizzo}}</td>
+                            <th>Cellulare</th>
+                            <td class="linea">{{cellulare}}</td>
+                            <th>E-mail</th>
+                            <td class="linea">{{mail}}</td>
+                       </tr>
+                    </thead>
+                </table>    
+             </div>
+            <div class="content3">
+                <h1 style="color:white;">Richieste Immobiliari</h1>
+            </div>
+        </div>
+
         {% block PropPage %}
         {% endblock %}
     </div>
