@@ -18,18 +18,18 @@ def home():
 # import
 from .models import clients_collection
 
-from wtforms import StringField, SubmitField, RadioField, EmailField
-from wtforms.validators import DataRequired
 from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField, IntegerField, RadioField, MultipleFileField, SelectField, TextAreaField, EmailField
+from wtforms.validators import DataRequired, InputRequired
 
 class FormInsertClient(FlaskForm):
     nome = StringField("Nome", [DataRequired()])
     cognome = StringField("Cognome", [DataRequired()])
     indirizzo = StringField("Indirizzo", [DataRequired()])
-    citta = StringField("citta", [DataRequired()])
-    cellulare = StringField("Cellulare", [DataRequired()])
+    citta = StringField("Citta", [DataRequired()])
+    cellulare = IntegerField("Cellulare", [DataRequired()])
     mail = EmailField("Email", [DataRequired()])
-    azione = RadioField("azione", choices = ["Compra", "Vende"])
+    azione = RadioField("Azione", choices = [(1,"vende"), (2,"compra"), (3,"affitta")], validators=[InputRequired()])
     submit = SubmitField("Inserisci")
 
 @views.route('/Inserimento_Clienti', methods=["GET", "POST"])
