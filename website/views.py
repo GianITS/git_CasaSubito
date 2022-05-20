@@ -102,10 +102,20 @@ def ClientPage(nome):
     mail = client[5]
     azione = client[6]
     if client.__len__() == 9: 
-        immobile = client[8]
+        immobile = list(client[8].values())
+        print(immobile)
+        indirizzo2 = immobile[0]
+        citta2 = immobile[1]
+        vendAff = immobile[3]
+        mQuadri = immobile[4]
+        totStanze = immobile[5]
     else:
-        immobile = ""
-    return render_template('clients_page.html', nome=nome, cognome=cognome, indirizzo=indirizzo, citta=citta, cellulare=cellulare, mail=mail, azione=azione, immobile=immobile)
+        indirizzo2 = ""
+        citta2 = ""
+        vendAff = ""
+        mQuadri = ""
+        totStanze = ""
+    return render_template('clients_page.html', nome=nome, cognome=cognome, indirizzo=indirizzo, citta=citta, cellulare=cellulare, mail=mail, azione=azione, immobile=immobile, indirizzo2=indirizzo2, citta2=citta2, vendAff=vendAff, mQuadri=mQuadri, numStanze=totStanze)
 
 # pagina immobili totali
 # import
@@ -210,7 +220,7 @@ from .models import properties_collection
 @views.route('/PaginaImmobile/<nome>')
 def PropPage(nome):
     prop = properties_collection.find_one({"nome": nome}, {"nome":0, "immagini":0, "_id":0})
-    prop =list(prop.values())
+    prop = list(prop.values())
     cognome=prop[0]
     indirizzo=prop[1]
     citta=prop[2]
@@ -219,7 +229,13 @@ def PropPage(nome):
     mQuadri=prop[5]
     numStanze=prop[6]
     descrizione=prop[7]
-    return render_template('property_page.html', nome=nome, cognome=cognome, indirizzo=indirizzo, citta=citta, tipologia=tipologia, mQuadri=mQuadri, numStanze=numStanze, vendAff=vendAff, descrizione=descrizione)
+    client = clients_collection.find_one({"nome": nome}, {"indirizzo":1, "citta":1, "cell":1, "mail":1, "_id":0})
+    client = list(client.values())
+    indirizzo2 = client[0]
+    citta2 = client[1]
+    cellulare = client[2]
+    mail = client[3]
+    return render_template('property_page.html', nome=nome, cognome=cognome, indirizzo=indirizzo, citta=citta, tipologia=tipologia, mQuadri=mQuadri, numStanze=numStanze, vendAff=vendAff, descrizione=descrizione, indirizzo2=indirizzo2, citta2=citta2, cellulare=cellulare, mail=mail)
 
 # pagina immagini immobile
 
