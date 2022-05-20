@@ -1,3 +1,6 @@
+import datetime
+from email.utils import format_datetime
+from flask_babel import format_datetime
 from flask import Blueprint, Flask, render_template, request, session, redirect, url_for, flash
 from flask_pymongo import PyMongo
 import certifi
@@ -6,13 +9,16 @@ views = Blueprint('views', __name__)
 
 # PyMongo ---------------------------------------------------------------------
 app = Flask(__name__)
-app.config['MONGO_URI'] = "mongodb+srv://GianITS:ProjectITS33@clusterits.do6lt.mongodb.net/Agenzia_Immo?retryWrites=true&w=majority"
+#app.config['MONGO_URI'] = "mongodb+srv://GianITS:ProjectITS33@clusterits.do6lt.mongodb.net/Agenzia_Immo?retryWrites=true&w=majority"
+app.config['MONGO_URI'] = "mongodb://admin:Passw0rd!@192.168.43.75/DB_prova?retryWrites=true&w=majority"
 mongo = PyMongo(app, tlsCAFile=certifi.where())
 
 
 @views.route('/HomePage')
 def home():
-    return render_template('homepage.html')
+    date = datetime.datetime.now()
+    date=date.strftime("%A %d %B %Y")
+    return render_template('homepage.html', date=date)
 
 # pagina inserimento cliente
 # import
@@ -80,7 +86,7 @@ def insert_clients():
 listHeadClient = ["Nome", "Cognome", "Telefono", "E-mail", "Compra\nAffitta", "Agente"]
 @views.route('/Clienti')
 def clients():
-    clienti = list(clients_collection.find({},{"_id":0}))
+    clienti = list(clients_collection.find({},{"_id":0}))[::-1]
     return render_template('clients.html', clienti=clienti, listHeadClient=listHeadClient)
     
 # pagina singolo cliente
@@ -108,7 +114,7 @@ from .models import properties_collection
 listHead = ["Nome", "Cognome", "Indirizzo", "Citta", "Tipologia", "Vendita\nAffitto", "Metri\nquadri", "Agente"]
 @views.route('/Immobili')
 def properties():
-    immobili = list(properties_collection.find({},{"_id":0}))
+    immobili = list(properties_collection.find({},{"_id":0}))[::-1]
     return render_template('properties.html', immobili=immobili, listHead=listHead)
 
 # recupero le immagini dal db

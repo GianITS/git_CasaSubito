@@ -138,7 +138,7 @@ h1{
     align-items: center;
     padding: 15px;
     background: linear-gradient(135deg, var(--primary-color)0%, var(--secondary-color)100%);
-    z-index: 2;
+    z-index: 10;
 }
 .header .logo{
     width: 70px;
@@ -247,7 +247,7 @@ h1{
 .header .logout .user .visible{
     bottom: -230%;
     opacity: 1;
-    z-index: 2;
+    z-index: 10;
 }
 .header .logout .user .userMenu ul{
     display: flex;
@@ -316,7 +316,7 @@ h1{
     align-items: center;
     transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     background: linear-gradient(to bottom, rgba(245,245,245,1) 0%, rgba(245,245,245,1) 90%, rgba(245,245,245,.4) 100%);
-    z-index: 1;
+    z-index: 3;
 }
 .extend{
     height: 300px;
@@ -392,7 +392,7 @@ h1{
 .menu.extend .show{
     top: 100%;
     opacity: 1;
-    z-index: 1;
+    z-index: 10;
 }
 .menu .contDown .dpList .innerIns{
     display: flex;
@@ -423,7 +423,7 @@ h1{
 }
 .menu .contDown .dpList.show .btninsert{
     cursor: pointer;
-    z-index: 1;
+    z-index: 10;
 }
 .menu .contDown .dpList .btninsert.one{
     background: linear-gradient(135deg, var(--secondary-color)0%, var(--primary-color)100%);
@@ -574,6 +574,74 @@ h1{
 }
 .text-muted{
     color: #7d8da1;
+}
+
+    /* agenda -----------------------------------*/
+
+.h1Agenda{
+    margin-top: 80px;
+}
+.agenda{
+    position: relative;
+    width: 1000px;
+    border-spacing: 0;
+    margin-top: 20px;
+}
+.agenda thead{
+    height: 40px;
+}
+.agenda th{
+    width: 19%;
+    border: 1px solid #d1d4d6;
+}
+.agenda th:nth-child(1){
+    width: 6%;
+}
+.agenda td{
+    position: relative;
+    height: 40px;
+    border: 1px solid #d1d4d6;
+}
+.agenda td:nth-child(1){
+    text-align: center;
+    background-color: whitesmoke;
+}
+.card{
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    width: 90%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 8px;
+    background-color: #1adb47;
+    border-radius: 5px;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+.im{
+    background-color: cadetblue;
+    height: 100px;
+}
+.lu{
+    background-color: limegreen;
+}
+.el{
+    background-color: violet;
+    height: 100px;
+}
+.lo{
+    background-color: rgb(61, 151, 242);
+}
+.gi{
+    background-color: rgb(168, 168, 168);
+    height: 350px;
+}
+.card p{
+
 }
 
 /* insert_client.html -----------------------------------------------------------*/
