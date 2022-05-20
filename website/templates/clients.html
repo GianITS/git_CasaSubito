@@ -1,44 +1,39 @@
 {% extends 'base.html' %}
 {% block title %} Clienti {% endblock title %}
 {% block content %}
-    <div class="mainClient">
-        <h1>Clienti</h1>
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                <div class="message">
-                    {{ message }}
-                </div>
+<div class="mainProp">
+    <h1 class="mt">Clienti</h1>
+    <div class="message">Cliente aggiunto con successo</div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="message">
+                {{ message }}
+            </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <table class="tbProp">
+        <thead>
+        <tr>
+            <th class="open th"></th>
+            {% for x in listHeadClient %}
+                <th>{{ x }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for cliente in clienti %}
+            <tr>
+                <td class="open"><a href="{{url_for('views.ClientPage', nome=cliente['nome'])}}"></a></td>
+                {% for k,v in cliente.items() %}
+                    {% if k != "Immobili" and k != "indirizzo" and k != "citta" and k != "immobili" %}
+                        <td>{{ v }}</td>
+                    {% endif %}
                 {% endfor %}
-            {% endif %}
-        {% endwith %}
-        <div class="containerClient">
-            <table class="tbClient">
-                <thead>
-                {% for cliente in clienti %}
-                {% if loop.index == 1 %}
-                <tr>
-                    <th class="open th"></th>
-                    {% for k in cliente.keys() if loop.first %}
-                        <th>{{ k }}</th>
-                    {% endfor %}
-                </tr>
-                {% endif %}
-                {% endfor %}
-                </thead>
-                <tbody>
-                {% for cliente in clienti %}
-                    <tr>
-                        <td class="open"><a href="{{url_for('views.ClientPage', nome=cliente['nome'])}}"></a></td>
-                        {% for k,v in cliente.items() %}
-                            {% if k != "Immobili" %}
-                                <td>{{ v }}</td>
-                            {% endif %}
-                        {% endfor %}
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock content %}
