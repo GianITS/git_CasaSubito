@@ -9,8 +9,8 @@ views = Blueprint('views', __name__)
 
 # PyMongo ---------------------------------------------------------------------
 app = Flask(__name__)
-#app.config['MONGO_URI'] = "mongodb+srv://GianITS:ProjectITS33@clusterits.do6lt.mongodb.net/Agenzia_Immo?retryWrites=true&w=majority"
-app.config['MONGO_URI'] = "mongodb://admin:Passw0rd!@192.168.43.75/DB_prova?retryWrites=true&w=majority"
+app.config['MONGO_URI'] = "mongodb+srv://GianITS:ProjectITS33@clusterits.do6lt.mongodb.net/Agenzia_Immo?retryWrites=true&w=majority"
+#app.config['MONGO_URI'] = "mongodb://admin:Passw0rd!@192.168.43.75/DB_prova?retryWrites=true&w=majority"
 mongo = PyMongo(app, tlsCAFile=certifi.where())
 
 
@@ -110,13 +110,15 @@ def ClientPage(nome):
         vendAff = immobile[3]
         mQuadri = immobile[4]
         totStanze = immobile[5]
+        string = ""
     else:
+        string = "Nessun immobile collegato"
         indirizzo2 = ""
         citta2 = ""
         vendAff = ""
         mQuadri = ""
         totStanze = ""
-    return render_template('clients_page.html', nome=nome, cognome=cognome, indirizzo=indirizzo, citta=citta, cellulare=cellulare, mail=mail, azione=azione, indirizzo2=indirizzo2, citta2=citta2, vendAff=vendAff, mQuadri=mQuadri, numStanze=totStanze)
+    return render_template('clients_page.html', nome=nome, cognome=cognome, indirizzo=indirizzo, citta=citta, cellulare=cellulare, mail=mail, azione=azione, indirizzo2=indirizzo2, citta2=citta2, vendAff=vendAff, mQuadri=mQuadri, numStanze=totStanze, string=string)
 
 # pagina immobili totali
 # import

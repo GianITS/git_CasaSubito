@@ -41,22 +41,29 @@
                 <center>
                     <table>
                         <thead>
-                            <tr>
-                                <th>Proprietario</th>
-                                <td class="linea">{{nome}}</td>
-                                <th>Città</th>
-                                <td class="linea">{{citta}}</td>
-                                <th>Indirizzo</th>
-                                <td class="linea">{{indirizzo}}</td>                    
-                            </tr>
-                            <tr>
-                                <th>Metri<br>Quadri</th>
-                                <td class="linea">{{mQuadri}}</td>
-                                <th>Numero<br>Stanze</th>
-                                <td class="linea">{{numStanze}}</td>
-                                <th>Stato<br>Immobile</th>
-                                <td class="linea">{{vendAff}}</td>
-                            </tr>
+                            {% if string == "" %}
+                                <tr>
+                                    <th>Proprietario</th>
+                                    <td class="linea">{{nome}}</td>
+                                    <th>Città</th>
+                                    <td class="linea">{{citta2}}</td>
+                                    <th>Indirizzo</th>
+                                    <td class="linea">{{indirizzo2}}</td>                    
+                                </tr>
+                                <tr>
+                                    <th>Metri<br>Quadri</th>
+                                    <td class="linea">{{mQuadri}}</td>
+                                    <th>Numero<br>Stanze</th>
+                                    <td class="linea">{{numStanze}}</td>
+                                    <th>Stato<br>Immobile</th>
+                                    <td class="linea">{{vendAff}}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <h2>{{ string }}</h2>
+                                </tr>
+                            {% endif %}
+                            
                         </thead>
                     </table>
                 </center>
