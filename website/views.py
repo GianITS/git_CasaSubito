@@ -27,7 +27,7 @@ from .models import Agent, clients_collection
 # importo i moduli relativi al form
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, IntegerField, RadioField, MultipleFileField, SelectField, TextAreaField, EmailField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, InputRequired
 
 class FormInsertClient(FlaskForm):
     nome = StringField("Nome:", [DataRequired()])
@@ -36,7 +36,7 @@ class FormInsertClient(FlaskForm):
     citta = StringField("citta:", [DataRequired()])
     cellulare = IntegerField("Cellulare:", [DataRequired()])
     mail = EmailField("Email:", [DataRequired()])
-    azione = RadioField("Compra/Vende:", choices = ["Compra", "Vende"])
+    azione = RadioField("Compra/Vende:", validators=[InputRequired()], choices = [("Compra", "Compra"), ("Vende", "Vende")])
     agent = StringField("Agente:")
     submit = SubmitField("Inserisci")
 
@@ -101,6 +101,7 @@ def ClientPage(nome):
     cellulare = client[4]
     mail = client[5]
     azione = client[6]
+    print(client)
     if client.__len__() == 9: 
         immobile = list(client[8].values())
         print(immobile)
@@ -151,7 +152,7 @@ class FormInsertProperties(FlaskForm):
     address = StringField("Indirizzo:", validators=[DataRequired()])
     city = StringField("Citta:", validators=[DataRequired()])
     tipologia = SelectField(u"Tipologia:", choices=[('Appartamento', 'Appartamento'),('Casa indipendente','Casa indipendente'),('Casa semindipendente','Casa semindipendente'),('Villa a schiera','Villa a schiera'),('Rustico','Rustico')])
-    vendAff = RadioField("Vendita/Affitto:", choices=[('Vendita','Vendita'),('Affitto','Affitto')], default="Vendita")
+    vendAff = RadioField("Vendita/Affitto:", validators=[InputRequired()], choices=[('Vendita','Vendita'),('Affitto','Affitto')])
     sqMeters = IntegerField("Dimensioni:", validators=[DataRequired()])
     totRoom = IntegerField("Totale stanze:", validators=[DataRequired()])
     description = TextAreaField("Descrizione:", validators=[DataRequired()])
