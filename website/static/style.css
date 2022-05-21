@@ -129,7 +129,8 @@ h1{
 .bodyBase{
     display: flex;
     justify-content: flex-start;
-    background-color: whitesmoke;
+    background: linear-gradient(to bottom, rgba(255,255,255,.8), rgba(255,255,255,.8)), url('images/bg.jpg') center;
+    background-size: cover;
 }
 .header{
     position: fixed;
@@ -171,17 +172,23 @@ h1{
     left: 50%;
     width: 286px;
     display: flex;
-    background-color: #fff;
-    border-radius: 10px;
+    background-color: transparent;
+    border-radius: 0;
     transform: translate(-50%, -50%);
 }
 #search{
     width: 250px;
     padding: 5px 0 5px 10px;
     font-size: 16px;
-    border-radius: 10px 0 0 10px;
+    border-radius: 0;
     border: 1px solid transparent;
+    border-bottom: 1px solid #d1d4d6;
     outline: none;
+    background-color: transparent;
+    color: #fff;
+}
+#search::placeholder{
+    color: rgba(255, 255, 255, 0.674);
 }
 #search:focus{
     box-shadow: none;
@@ -190,9 +197,20 @@ h1{
     width: 36px;
     aspect-ratio: 1;
     border-radius: 0 10px 10px 0;
-    background: url('images/search.png')no-repeat center;
+    background: url('images/searchW.png')no-repeat center;
     border: 1px solid transparent;
     cursor: pointer;
+}
+.search .icon:hover{
+    animation: zoom 1s ease-in-out infinite;
+}
+@keyframes zoom {
+    0%, 100%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.2);
+    }
 }
 .header .logout{
     position: relative;
@@ -323,7 +341,7 @@ h1{
     justify-content: flex-start;
     align-items: center;
     transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    background: linear-gradient(to bottom, rgba(245,245,245,1) 0%, rgba(245,245,245,1) 90%, rgba(245,245,245,.4) 100%);
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 90%, rgba(255,255,255,0) 100%);
     z-index: 3;
 }
 .extend{
@@ -454,7 +472,6 @@ h1{
     justify-content: center;
     align-items: center;
     padding-top: 230px;
-
 }
 .mainHome main{
     display: flex;
@@ -622,7 +639,8 @@ h1{
     padding: 20px 20px 40px;
     margin-top: 40px;
     box-shadow: 10px 15px 60px rgba(132,139,200,.3);
-    background-color: whitesmoke;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
     border-radius: 20px;
 }
 .containerAg h2{
@@ -655,7 +673,7 @@ h1{
 }
 .agenda td:nth-child(1){
     text-align: center;
-    background-color: whitesmoke;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 .card{
     position: absolute;
@@ -817,7 +835,7 @@ h1{
     align-items: center;
     width: 100%;
     min-height: 100vh;
-    padding: 250px 0 0;
+    padding: 225px 0 0;
     overflow-x: hidden;
 }
 .mainSingle h1{
@@ -912,14 +930,62 @@ h1{
     margin-bottom: 10px;
 }
 .content3{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%);
     grid-area: content3;
     padding: 1.8rem 1.2rem 1.2rem;
     border-radius: 2rem;
     margin-top: 1rem;
+    height: 100px;
     box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
-    transition: all 300ms ease;
+    transition: all .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    color: #fff;
+}
+.big{
+    height: 196px;
+}
+.content3 .up{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.content3 span.iconExtend{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    background: url("images/downExpandW.png")no-repeat center;
+    cursor: pointer;
+}
+.content3 span.iconExtend.rotate180{
+    transform: rotate(180deg);
+}
+.content3 span.iconExtend:hover{
+    animation: slideD 1s ease-in-out infinite;
+}
+.content3 span.iconExtend.rotate180:hover{
+    animation: slideU 1s ease-in-out infinite;
+}
+@keyframes slideD {
+    0%,100%{
+        transform: translateY(0);
+    }
+    50%{
+        transform: translateY(8px);
+    }
+}
+@keyframes slideU {
+    0%,100%{
+        transform: translateY(0) rotate(180deg);
+    }
+    50%{
+        transform: translateY(-8px) rotate(180deg);
+    }
 }
 /* insert_properties.html -----------------------------------------------------------*/
 
