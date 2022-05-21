@@ -42,6 +42,7 @@
                     <table>
                         <thead>
                             {% if string == "" %}
+                            <a href="{{url_for('views.PropPage', nome=nome)}}" style="color: #fff;">Immo</a>
                                 <tr>
                                     <th>Proprietario</th>
                                     <td class="linea">{{nome}}</td>
@@ -58,12 +59,12 @@
                                     <th>Stato<br>Immobile</th>
                                     <td class="linea">{{vendAff}}</td>
                                 </tr>
-                            {% else %}
+                                {% else %}
                                 <tr>
+                                    <a href="{{url_for('views.insert_properties')}}">inserisci</a>
                                     <h2>{{ string }}</h2>
                                 </tr>
                             {% endif %}
-                            
                         </thead>
                     </table>
                 </center>

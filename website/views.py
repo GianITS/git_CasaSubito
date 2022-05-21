@@ -101,10 +101,8 @@ def ClientPage(nome):
     cellulare = client[4]
     mail = client[5]
     azione = client[6]
-    print(client)
     if client.__len__() == 9: 
         immobile = list(client[8].values())
-        print(immobile)
         indirizzo2 = immobile[0]
         citta2 = immobile[1]
         vendAff = immobile[3]
@@ -249,9 +247,6 @@ def showImg(nome):
         listImg = v
     return render_template('show_img.html', nome=nome, listImg=listImg)
 
-@views.route('/RichiesteImmobiliari')
-def properties_request():
-    return render_template('properties_request.html')
 
 if __name__ == "__main__":
     query = clients_collection.find({})
