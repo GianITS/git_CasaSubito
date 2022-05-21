@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %} Dettaglio immobile {% endblock title %}
 {% block content %}
-    <div class="mainProp">
+    <div class="mainSingle">
         <div class="container2">
             <div class="content1">
                 <h1 style="text-align:center; color:white">Immobile</h1>
@@ -44,21 +44,22 @@
                             <td class="linea">{{nome}}</td>
                             <th>Cognome</th>
                             <td class="linea">{{cognome}}</td>
-                            <th>Indirizzo</th>
-                            <td class="linea">{{indirizzo2}}</td>                 
-                        </tr>
                             <th>Città</th>
                             <td class="linea">{{citta2}}</td>
+                                            
+                        <!-- </tr>
+                            <th>Indirizzo</th>
+                            <td class="linea">{{indirizzo2}}</td> 
                             <th>Cellulare</th>
                             <td class="linea">{{cellulare}}</td>
                             <th>E-mail</th>
                             <td class="linea">{{mail}}</td>
-                       </tr>
+                       </tr> -->
                     </thead>
                 </table>    
              </div>
             <div class="content3">
-                <h1 style="color:white;">Richieste Immobiliari</h1>
+                <h2 style="color:white;">Richieste Immobiliari</h2>
             </div>
         </div>
 
