@@ -22,6 +22,13 @@ const userMenu = document.querySelector(".userMenu")
 btnUser.addEventListener('click', function(){
     userMenu.classList.toggle("visible");
 })
+const btnEx = document.getElementById("btnEx")
+const content3 = document.querySelector(".content3")
+
+btnEx.addEventListener('click', function(){
+    content3.classList.toggle("big");
+    btnEx.classList.toggle("rotate180");
+})
 
 const inner1 = document.getElementById("inner1")
 const inner2 = document.getElementById("inner2")

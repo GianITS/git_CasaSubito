@@ -115,7 +115,7 @@ def ClientPage(nome):
         vendAff = ""
         mQuadri = ""
         totStanze = ""
-    return render_template('clients_page.html', nome=nome, cognome=cognome, indirizzo=indirizzo, citta=citta, cellulare=cellulare, mail=mail, azione=azione, immobile=immobile, indirizzo2=indirizzo2, citta2=citta2, vendAff=vendAff, mQuadri=mQuadri, numStanze=totStanze)
+    return render_template('clients_page.html', nome=nome, cognome=cognome, indirizzo=indirizzo, citta=citta, cellulare=cellulare, mail=mail, azione=azione, indirizzo2=indirizzo2, citta2=citta2, vendAff=vendAff, mQuadri=mQuadri, numStanze=totStanze)
 
 # pagina immobili totali
 # import

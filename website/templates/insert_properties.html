@@ -12,7 +12,7 @@
                 {{form.address.label}}{{form.address(placeholder="Indirizzo...")}}{{form.city.label}}{{form.city(placeholder="Città...")}}
                 {{form.tipologia.label}}{{form.tipologia()}}{{form.vendAff.label}}{{form.vendAff()}}
                 {{form.sqMeters.label}}<div class="row-small">{{form.sqMeters(placeholder="0")}}</div>{{form.totRoom.label}}<div class="row-small">{{form.totRoom(placeholder="0")}}</div>
-                {{form.description.label}}{{form.description(class_="row-large",placeholder="Descrizione immobile...")}}
+                {{form.description.label(class_="lblDesc")}}{{form.description(class_="row-large",placeholder="Descrizione immobile...")}}
                 <div class="line"></div>
                 {{form.images.label}}{{form.images(class_="imgForm")}} <div class="vuoto"></div>
                 {{form.agent.label(class_="lblAgent")}}<div class="agent">{{session["agent"]}}</div>                 
