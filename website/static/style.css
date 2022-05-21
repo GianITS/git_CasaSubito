@@ -41,9 +41,6 @@ textarea{
     border-radius: 0;
     background-color: transparent;
 }
-input:focus {
-    box-shadow: 0 0 3pt 2pt var(--primary-color);
-}
 .message{
     position: fixed;
     top: 150px;
@@ -904,6 +901,10 @@ h1{
     border-bottom: 1px solid rgb(42,42,42);
     padding: 0.5rem;
 }
+.container2 .linea.colLong{
+    border-bottom: 1px solid rgb(42,42,42);
+    padding: 0.5rem;
+}
 .content1 table{
     border-collapse: separate;
     border-spacing: 20px 20px;
@@ -934,7 +935,12 @@ h1{
 .content2 h2{
     color: whitesmoke;
     margin-top: -15px;
-    margin-bottom: 10px;
+    margin-bottom: 25px;
+}
+.content2.long h2{
+    color: whitesmoke;
+    margin-top: 0;
+    margin-bottom: 30px;
 }
 .content3{
     display: flex;
@@ -946,14 +952,18 @@ h1{
     padding: 1.8rem 1.2rem 1.2rem;
     border-radius: 2rem;
     margin-top: 1rem;
-    height: 100px;
+    height: 80px;
     box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
     transition: all .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     overflow: hidden;
     color: #fff;
 }
-.big{
-    height: 196px;
+.big,
+.long{
+    height: 173px;
+}
+.content3.long{
+    padding-top: 1rem;
 }
 .content3 .up{
     display: flex;
@@ -966,6 +976,7 @@ h1{
     align-items: center;
     width: 32px;
     height: 32px;
+    margin-left: 100px;
     background: url("images/downExpandW.png")no-repeat center;
     cursor: pointer;
 }
@@ -993,6 +1004,18 @@ h1{
     50%{
         transform: translateY(-8px) rotate(180deg);
     }
+}
+.maps{
+    width: 400px;
+    height: 135px;
+}
+.maps .imgGoogle{
+    width: 100%;
+    height: calc(100% - 28px);
+    margin-top: 10px;
+    border-radius: 1.8rem;
+    background: url("images/maps.png")no-repeat center;
+    background-size: cover;
 }
 /* insert_properties.html -----------------------------------------------------------*/
 

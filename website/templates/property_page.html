@@ -5,61 +5,72 @@
         <div class="container2">
             <div class="content1">
                 <h1 style="text-align:center; color:white">Immobile</h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Prorietario</th>
-                            <td class="linea">{{nome}}</td>
-                            <th>Città</th>
-                            <td class="linea">{{citta}}</td>
-                            <th>Indirizzo</th>
-                            <td class="linea">{{indirizzo}}</td>
-                            <th>Descrizione</th>
-                            <td class="linea rowLong" rowspan="2">{{descrizione}}</td>                                     
-                        </tr>
-                            <th>Metri<br>Quadri</th>
-                            <td class="linea">{{mQuadri}}</td>
-                            <th>Numero<br>Stanze</th>
-                            <td class="linea">{{numStanze}}</td>
-                            <th>Stato<br>Immobile</th>
-                            <td class="linea">{{vendAff}}</td>
-                        </tr>
-                            <th>Agente</th>
-                            <td class="linea">{{ session['agent'] }}</td>
-                            <td></td>
-                            <td class="clickImmagine"><a href="{{url_for('views.showImg', nome=nome)}}"><span class="material-symbols-outlined">
-                                photo_library
-                                </span></a>
-                            </td>
-                        </tr>
-                    </thead>
-                </table>              
+                <center>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Prorietario</th>
+                                <td class="linea">{{nome}}</td>
+                                <th>Città</th>
+                                <td class="linea">{{citta}}</td>
+                                <th>Indirizzo</th>
+                                <td class="linea">{{indirizzo}}</td>
+                                <th>Metri<br>Quadri</th>
+                                <td class="linea">{{mQuadri}}</td>
+                                                                    
+                            </tr>
+                                
+                                <th>Numero<br>Stanze</th>
+                                <td class="linea">{{numStanze}}</td>
+                                <th>Stato<br>Immobile</th>
+                                <td class="linea">{{vendAff}}</td>
+                                <th>Descrizione</th>
+                                <td class="linea colLong" rowspan="2">{{descrizione}}</td> 
+                            </tr>
+                                <th>Agente</th>
+                                <td class="linea">{{ session['agent'] }}</td>
+                                <td></td>
+                                <td class="clickImmagine"><a href="{{url_for('views.showImg', nome=nome)}}"><span class="material-symbols-outlined">
+                                    photo_library
+                                    </span></a>
+                                </td>
+                            </tr>
+                        </thead>
+                    </table>
+                </center>
             </div>
-            <div class="content2">
+            <div class="content2 long">
                 <h2 style="text-align:center;">Cliente</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <td class="linea">{{nome}}</td>
-                            <th>Cognome</th>
-                            <td class="linea">{{cognome}}</td>
-                            <th>Città</th>
-                            <td class="linea">{{citta2}}</td>
-                                            
-                        <!-- </tr>
-                            <th>Indirizzo</th>
-                            <td class="linea">{{indirizzo2}}</td> 
-                            <th>Cellulare</th>
-                            <td class="linea">{{cellulare}}</td>
-                            <th>E-mail</th>
-                            <td class="linea">{{mail}}</td>
-                       </tr> -->
-                    </thead>
-                </table>    
+                <center>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <td class="linea">{{nome}}</td>
+                                <th>Cognome</th>
+                                <td class="linea">{{cognome}}</td>
+                                <th>Città</th>
+                                <td class="linea">{{citta2}}</td>
+                                                
+                            <!-- </tr>
+                                <th>Indirizzo</th>
+                                <td class="linea">{{indirizzo2}}</td> 
+                                <th>Cellulare</th>
+                                <td class="linea">{{cellulare}}</td>
+                                <th>E-mail</th>
+                                <td class="linea">{{mail}}</td>
+                           </tr> -->
+                        </thead>
+                    </table>
+                </center>
              </div>
-            <div class="content3">
-                <h2 style="color:white;">Richieste Immobiliari</h2>
+             <div class="content3 long">
+             <center>
+                 <div class="maps">
+                     <h2>Ubicazione</h2>
+                     <div class="imgGoogle"></div>
+                 </div>
+            </center>
             </div>
         </div>
 
