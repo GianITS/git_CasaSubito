@@ -8,21 +8,22 @@ views = Blueprint('views', __name__)
 
 # PyMongo ---------------------------------------------------------------------
 app = Flask(__name__)
-app.config['MONGO_URI'] = "mongodb+srv://GianITS:ProjectITS33@clusterits.do6lt.mongodb.net/Agenzia_Immo?retryWrites=true&w=majority"
-#app.config['MONGO_URI'] = "mongodb://admin:Passw0rd!@192.168.43.75/DB_prova?retryWrites=true&w=majority"
+#app.config['MONGO_URI'] = "mongodb+srv://GianITS:ProjectITS33@clusterits.do6lt.mongodb.net/Agenzia_Immo?retryWrites=true&w=majority"
+app.config['MONGO_URI'] = "mongodb://admin:Passw0rd!@192.168.43.75/DB_prova?retryWrites=true&w=majority"
 mongo = PyMongo(app, tlsCAFile=certifi.where())
 
 
 @views.route('/HomePage')
 def home():
+    form0=FormSearch()
     date = datetime.datetime.now()
     date=date.strftime("%A %d %B %Y")
-    return render_template('homepage.html', date=date)
+    return render_template('homepage.html', date=date , form0=form0)
 
 @views.context_processor
 def base():
-    form = FormSearch()
-    return dict(form=form)
+    form0 = FormSearch()
+    return dict(form0=form0)
 
 # importo i moduli relativi al form
 from flask_wtf import FlaskForm
@@ -37,9 +38,9 @@ class FormSearch(FlaskForm):
 @views.route('/HomePage', methods=['GET','POST'])
 def search():
     testo = ""
-    form = FormSearch()
-    if form.validate_on_submit():
-        testo = form.testo.data
+    form0 = FormSearch()
+    if form0.validate_on_submit():
+        testo = form0.testo.data
         print(testo)
         resCN = list(clients_collection.find({"nome": testo}, {"nome":1,"_id":0}))
         resCC = list(clients_collection.find({"cognome": testo}, {"nome":1,"_id":0}))
@@ -57,8 +58,8 @@ def search():
             flash("Nessun risultato trovato")
         print(f"resCN = {resCN}\nresCC = {resCC}\nresI = {resI}")
 
-    form.testo.data = ""
-    return render_template("homepage.html", form=form)
+    form0.testo.data = ""
+    return render_template("homepage.html", form0=form0)
 
 #funzione rimuovi document dal db
 
@@ -104,6 +105,7 @@ def insert_clients():
     azione =""
     agent = session['agent']
 
+    form0=FormSearch()
     form=FormInsertClient()
     if form.validate_on_submit():
         nome = form.nome.data
@@ -132,7 +134,7 @@ def insert_clients():
     form.cellulare.data = 0
     form.mail.data = ""
     form.azione.data = ""
-    return render_template('insert_clients.html', form=form, nome=nome, cognome=cognome, indirizzo=azione, citta=citta, cellulare=cellulare, mail=mail, azione=azione, agent=agent)
+    return render_template('insert_clients.html', form=form, nome=nome, cognome=cognome, indirizzo=azione, citta=citta, cellulare=cellulare, mail=mail, azione=azione, agent=agent, form0=form0)
 
 # pagina clienti totali
 
