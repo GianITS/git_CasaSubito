@@ -71,7 +71,7 @@
                                 </tr>
                                 {% else %}
                                 <tr>
-                                    <a href="{{url_for('views.insert_properties')}}" class="btnNewImmo">Nuovo</a>
+                                    <a href="{{url_for('views.insert_properties', ownerName=nome, ownerLastname=cognome)}}" class="btnNewImmo">Nuovo</a>
                                     <h2 class="newH2">{{ string }}</h2>
                                 </tr>
                             {% endif %}

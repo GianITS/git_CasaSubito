@@ -151,6 +151,7 @@ def ClientPage(nome):
     client = clients_collection.find_one({"nome": nome}, {"_id":0})
     client =list(client.values())
     cognome = client[1]
+    print(cognome, nome)
     indirizzo = client[2]
     citta = client[3]
     cellulare = client[4]
@@ -213,13 +214,16 @@ class FormInsertProperties(FlaskForm):
     agent = StringField("Agente:")
     submit = SubmitField("Inserisci")
 
-@views.route('/Inserimento_Immobili', methods=["GET","POST"])
-def insert_properties():
+@views.route('/Inserimento_Immobili/<ownerName><ownerLastname>', methods=["GET","POST"])
+def insert_properties(ownerName, ownerLastname):
     # resetto tutte le variabili
     # assegno la variabile agente col nome dell agente loggato
     # assegno alla variabile form il form che ho appena creato
-    ownerName = ""
-    ownerLastname = ""
+    form = FormInsertProperties()
+    # form.ownerName.data = ownerName
+    # form.ownerLastname.data = ownerLastname
+    # print(ownerName)
+    
     address = ""
     city = ""
     tipologia = ""
@@ -229,7 +233,6 @@ def insert_properties():
     description = ""
     images = ""
     agent = session['agent']
-    form = FormInsertProperties()
 
     if form.validate_on_submit():
         ownerName = form.ownerName.data
@@ -255,8 +258,8 @@ def insert_properties():
         
     
     #resetto i dati ricevutid dal form
-    form.ownerName.data = ""
-    form.ownerLastname.data = ""
+    # form.ownerName.data = ""
+    # form.ownerLastname.data = ""
     form.address.data = ""
     form.city.data = ""
     form.tipologia.data = ""
