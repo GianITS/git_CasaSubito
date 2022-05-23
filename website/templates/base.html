@@ -24,8 +24,12 @@
         <div class="logo">
             <a href="/HomePage"><img src="{{ url_for('static', filename='/images/logo.png')}}" alt=""><p>CasaSubito</p></a></div>
         <div class="search">
-            <input type="search" name="search" id="search" placeholder="Cerca...">
-            <div class="icon"></div>
+            <form action="" method="post">
+                {{form0.hidden_tag()}}
+                {{form0.testo.label()}}{{form0.testo(id_="search",placeholder="Cerca...")}}{{form0.submit(class_="icon")}}
+            </form>
+            <!-- <input type="search" name="search" id="search" placeholder="Cerca..."> -->
+            <!-- <div class="icon"></div> -->
         </div>
         <div class="logout">
             <p>{{ session["agent"] }}</p>
@@ -86,7 +90,7 @@
                         <a href="/Inserimento_Clienti" class="btninsert one"></a><span class="spanIns1">Cliente</span>
                     </div>
                     <div class="innerIns">
-                        <a href="/Inserimento_Immobili" class="btninsert two"></a><span class="spanIns2">Immobile</span>
+                        <a href="{{ url_for('views.insert_properties', ownerName=' ', ownerLastname=' ') }}" class="btninsert two"></a><span class="spanIns2">Immobile</span>
                     </div>
                 </div>
             </div>
@@ -96,5 +100,6 @@
     </div>
 
     <script src="{{ url_for('static', filename='app.js')}}"></script>
+    <script src="{{ url_for('static', filename='image.js')}}"></script>
 </body>
 </html>

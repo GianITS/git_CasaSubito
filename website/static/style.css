@@ -1,6 +1,6 @@
 :root{
-    --primary-color: rgba(255,247,0,1);
-    --secondary-color: rgba(198,192,0,1);
+    --primary-color: rgb(255, 234, 0);
+    --secondary-color: rgb(240, 176, 0);
 }
 *{
     padding: 0;
@@ -44,19 +44,22 @@ textarea{
 .message{
     position: fixed;
     top: 150px;
-    right: -300px;
-    width: 300px;
+    right: -320px;
+    width: 320px;
     height: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #1adb47;
-    border-radius: 8px;
+    background: linear-gradient(90deg, rgb(175 242 51) 0%, rgb(26, 219, 71) 100%);
+    border-radius: 16px;
     padding: 5px 20px;
     font-size: 18px;
     z-index: 1000;
-    animation: animate1 7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: animate1 6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     animation-delay: 1s;
+}
+.message.error{
+    background: linear-gradient(90deg, rgb(242, 96, 51) 0%, rgb(238, 7, 7) 100%);
 }
 @keyframes animate1 {
     0%{
@@ -102,7 +105,6 @@ h1{
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background-color: burlywood;
     border-radius: 15px;
     animation: fade-in 1s ease-in-out;
 }
@@ -125,7 +127,15 @@ h1{
     margin: 20px 0 100px;
     font-size: 20px;
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    border: none;
     cursor: pointer;
+    transition: all .3s;
+}
+#form .btnSub{
+    padding: 4px 40px;
+}
+.btnSub:hover{
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, .3);
 }
 
 /* base.html -----------------------------------------------------------*/
@@ -158,7 +168,7 @@ h1{
 .header .logo a{
     display: flex;
     align-items: center;
-    color: var(--primary-color);
+    color: var(--secondary-color);
 }
 .header .logo img{
     position: relative;
@@ -176,9 +186,16 @@ h1{
     left: 50%;
     width: 286px;
     display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: transparent;
     border-radius: 0;
     transform: translate(-50%, -50%);
+}
+.search form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #search{
     width: 250px;
@@ -349,7 +366,7 @@ h1{
     z-index: 3;
 }
 .extend{
-    height: 300px;
+    height: 330px;
 }
 .menu .contUp{
     display: flex;
@@ -362,10 +379,14 @@ h1{
     padding: 5px 10px;
     font-size: 24px;
     font-weight: 600;
+    border-radius: 14px;
+    padding: 7px 40px;
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, .3);
     transition: all .3s;
 }
 .menu .contUp a:hover{
-    text-shadow: 0 0 10px var(--primary-color);
+    transform: scale(1.1);
 }
 .menu .contDown{
     position: relative;
@@ -379,7 +400,7 @@ h1{
     width: 50px;
     aspect-ratio: 1;
     border-radius: 50%;
-    background: #1adb47;
+    background: linear-gradient(90deg, rgb(175 242 51) 0%, rgb(26, 219, 71) 100%);
     margin-top: 20px;
     transition: all .3s;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, .3);
@@ -456,10 +477,10 @@ h1{
     z-index: 10;
 }
 .menu .contDown .dpList .btninsert.one{
-    background: linear-gradient(135deg, var(--secondary-color)0%, var(--primary-color)100%);
+    background: linear-gradient(-90deg, var(--secondary-color)0%, var(--primary-color)100%);
 }
 .menu .contDown .dpList .btninsert.two{
-    background: linear-gradient(135deg, var(--secondary-color)0%, var(--primary-color)100%);
+    background: linear-gradient(-90deg, var(--secondary-color)0%, var(--primary-color)100%);
 
 }
 .menu .contDown .dpList .btninsert:hover{
@@ -842,6 +863,39 @@ h1{
     padding: 225px 0 0;
     overflow-x: hidden;
 }
+.mainSingle .btnBack{
+    position: absolute;
+    top: 155px;
+    left: 50px;
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, .3);
+    transition: all .8s ease-in-out;
+    z-index: 100;
+}
+.mainSingle .btnBack .ico{
+    width: 100%;
+    height: 100%;
+    background: url("images/downExpand.png")no-repeat center center;
+    border-radius: 50%;
+    transform: rotate(90deg) translateY(2px);
+}
+.mainSingle .btnBack:hover{
+    animation: back 1.3s ease-in-out infinite;
+}
+@keyframes back {
+    0%,100%{
+        transform: translateX(0);
+    }
+    20%,80%{
+        transform: translateX(0);
+    }
+    50%{
+        transform: translateX(-10px);
+    }
+}
 .mainSingle h1{
     margin-bottom: 20px;
 }
@@ -910,6 +964,7 @@ h1{
     border-spacing: 20px 20px;
 }
 .content2{
+    position: relative;
     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%);
     grid-area: content2;
@@ -1017,6 +1072,25 @@ h1{
     background: url("images/maps.png")no-repeat center;
     background-size: cover;
 }
+.container2 .btnNewImmo{
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    padding: 6px 35px;
+    background-color: #1adb47;
+    font-size: 18px;
+    border-radius: 10px;
+}
+.content2 h2.newH2{
+    margin-top: 10px;
+}
+.btnRedirect{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+}
+
 /* insert_properties.html -----------------------------------------------------------*/
 
 .section.prop .container.scroll{
@@ -1163,11 +1237,11 @@ h1{
     border-top-left-radius: 10px;
 }
 .tbProp th{
-    width: 16%;
+    width: 3%;
 }
-.tbProp th:last-child{
+/* .tbProp th:last-child{
     border-top-right-radius: 10px;
-}
+} */
 .tbProp th:nth-child(2),
 .tbProp th:nth-child(3){
     width: 15%;
@@ -1179,9 +1253,14 @@ h1{
 .tbProp th:nth-child(6){
     width: 8%;
 }
-.tbProp th:nth-child(7),
+/* .tbProp th:nth-child(7),
 .tbProp th:nth-child(8){
     width: 10%;
+} */
+.remove.th{
+    width: 4%;
+    border-top-right-radius: 10px;
+    background-color: transparent;
 }
 .open{
     width: 50px;
@@ -1196,6 +1275,16 @@ h1{
 }
 .open a:hover{
     background: url('/../static/images/eye.png')no-repeat center;
+}
+.remove{
+    width: 50px;
+    height: 50px;
+}
+.remove a{
+    display: flex;
+    width: 100%;
+    aspect-ratio: 1;
+    background: url('/../static/images/cestino.png')no-repeat center;
 }
 .tbProp td{
     height: 50px;

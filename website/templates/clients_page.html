@@ -1,7 +1,17 @@
 {% extends 'base.html' %}
 {% block title %} Dettaglio cliente {% endblock title %}
 {% block content %}
-<div class="mainSingle">
+    <div class="mainSingle">
+        <a href="{{url_for('views.clients')}}" class="btnBack"><div class="ico"></div></a>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="message">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
         <div class="container2">
             <div class="content1">
                 <h1 style="text-align:center; color:white">Cliente</h1>
@@ -41,22 +51,30 @@
                 <center>
                     <table>
                         <thead>
-                            <tr>
-                                <th>Proprietario</th>
-                                <td class="linea">{{nome}}</td>
-                                <th>Città</th>
-                                <td class="linea">{{citta}}</td>
-                                <th>Indirizzo</th>
-                                <td class="linea">{{indirizzo}}</td>                    
-                            </tr>
-                            <tr>
-                                <th>Metri<br>Quadri</th>
-                                <td class="linea">{{mQuadri}}</td>
-                                <th>Numero<br>Stanze</th>
-                                <td class="linea">{{numStanze}}</td>
-                                <th>Stato<br>Immobile</th>
-                                <td class="linea">{{vendAff}}</td>
-                            </tr>
+                            {% if string == "" %}
+                            <a href="{{url_for('views.PropPage', nome=nome)}}" style="color: #fff;" class="btnRedirect">Immo</a>
+                                <tr>
+                                    <th>Proprietario</th>
+                                    <td class="linea">{{nome}}</td>
+                                    <th>Città</th>
+                                    <td class="linea">{{citta2}}</td>
+                                    <th>Indirizzo</th>
+                                    <td class="linea">{{indirizzo2}}</td>                    
+                                </tr>
+                                <tr>
+                                    <th>Metri<br>Quadri</th>
+                                    <td class="linea">{{mQuadri}}</td>
+                                    <th>Numero<br>Stanze</th>
+                                    <td class="linea">{{numStanze}}</td>
+                                    <th>Stato<br>Immobile</th>
+                                    <td class="linea">{{vendAff}}</td>
+                                </tr>
+                                {% else %}
+                                <tr>
+                                    <a href="{{url_for('views.insert_properties', ownerName=nome, ownerLastname=cognome)}}" class="btnNewImmo">Nuovo</a>
+                                    <h2 class="newH2">{{ string }}</h2>
+                                </tr>
+                            {% endif %}
                         </thead>
                     </table>
                 </center>
@@ -69,4 +87,5 @@
                 <p>Nessuna richiesta inserita</p>
             </div>
         </div>
+    </div>
 {% endblock %}

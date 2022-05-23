@@ -1,6 +1,5 @@
+from crypt import methods
 import datetime
-from email.utils import format_datetime
-from flask_babel import format_datetime
 from flask import Blueprint, Flask, render_template, request, session, redirect, url_for, flash
 from flask_pymongo import PyMongo
 import certifi
@@ -16,18 +15,73 @@ mongo = PyMongo(app, tlsCAFile=certifi.where())
 
 @views.route('/HomePage')
 def home():
+    form0=FormSearch()
     date = datetime.datetime.now()
     date=date.strftime("%A %d %B %Y")
-    return render_template('homepage.html', date=date)
+    return render_template('homepage.html', date=date , form0=form0)
 
-# pagina inserimento cliente
-# import
-from .models import Agent, clients_collection
+@views.context_processor
+def base():
+    form0 = FormSearch()
+    return dict(form0=form0)
 
 # importo i moduli relativi al form
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, IntegerField, RadioField, MultipleFileField, SelectField, TextAreaField, EmailField
 from wtforms.validators import DataRequired, InputRequired
+from .models import properties_collection, clients_collection
+
+class FormSearch(FlaskForm):
+    testo = StringField("", [DataRequired()])
+    submit = SubmitField("")
+
+@views.route('/HomePage', methods=['GET','POST'])
+def search():
+    testo = ""
+    form0 = FormSearch()
+    if form0.validate_on_submit():
+        testo = form0.testo.data
+        print(testo)
+        resCN = list(clients_collection.find({"nome": testo}, {"nome":1,"_id":0}))
+        resCC = list(clients_collection.find({"cognome": testo}, {"nome":1,"_id":0}))
+        resI = list(properties_collection.find({"indirizzo": testo}, {"nome":1,"_id":0}))
+        if resCN or resCC:
+            res = resCN[0]['nome']
+            print(res)
+            return redirect(url_for("views.ClientPage", nome=res))
+        elif resI:
+            res = resI[0]['nome']
+            print(res)
+            return redirect(url_for("views.PropPage", nome=res))
+        else:
+            print("non trovato")
+            flash("Nessun risultato trovato")
+        print(f"resCN = {resCN}\nresCC = {resCC}\nresI = {resI}")
+
+    form0.testo.data = ""
+    return render_template("homepage.html", form0=form0)
+
+#funzione rimuovi document dal db
+
+@views.route('/Clienti/<nome>', methods=['GET','POST'])
+def removeC(nome):
+    query = clients_collection.find_one_and_delete({"nome":nome})
+    if query:
+        flash("Cliente rimosso con successo", 'success')
+    else:
+        flash("Cliente non trovato", 'error')
+    return redirect(url_for('views.clients'))
+
+@views.route('/Immobili/<nome>', methods=['GET','POST'])
+def removeP(nome):
+    query = properties_collection.find_one_and_delete({"nome":nome})
+    if query:
+        flash("Immobile rimosso con successo", 'success')
+    else:
+        flash("Immobile non trovato", 'error')
+    return redirect(url_for('views.properties'))
+
+# pagina inserimento cliente
 
 class FormInsertClient(FlaskForm):
     nome = StringField("Nome:", [DataRequired()])
@@ -51,6 +105,7 @@ def insert_clients():
     azione =""
     agent = session['agent']
 
+    form0=FormSearch()
     form=FormInsertClient()
     if form.validate_on_submit():
         nome = form.nome.data
@@ -79,7 +134,7 @@ def insert_clients():
     form.cellulare.data = 0
     form.mail.data = ""
     form.azione.data = ""
-    return render_template('insert_clients.html', form=form, nome=nome, cognome=cognome, indirizzo=azione, citta=citta, cellulare=cellulare, mail=mail, azione=azione, agent=agent)
+    return render_template('insert_clients.html', form=form, nome=nome, cognome=cognome, indirizzo=azione, citta=citta, cellulare=cellulare, mail=mail, azione=azione, agent=agent, form0=form0)
 
 # pagina clienti totali
 
@@ -96,31 +151,30 @@ def ClientPage(nome):
     client = clients_collection.find_one({"nome": nome}, {"_id":0})
     client =list(client.values())
     cognome = client[1]
+    print(cognome, nome)
     indirizzo = client[2]
     citta = client[3]
     cellulare = client[4]
     mail = client[5]
     azione = client[6]
-    print(client)
     if client.__len__() == 9: 
         immobile = list(client[8].values())
-        print(immobile)
         indirizzo2 = immobile[0]
         citta2 = immobile[1]
         vendAff = immobile[3]
         mQuadri = immobile[4]
         totStanze = immobile[5]
+        string = ""
     else:
+        string = "Nessun immobile collegato"
         indirizzo2 = ""
         citta2 = ""
         vendAff = ""
         mQuadri = ""
         totStanze = ""
-    return render_template('clients_page.html', nome=nome, cognome=cognome, indirizzo=indirizzo, citta=citta, cellulare=cellulare, mail=mail, azione=azione, indirizzo2=indirizzo2, citta2=citta2, vendAff=vendAff, mQuadri=mQuadri, numStanze=totStanze)
+    return render_template('clients_page.html', nome=nome, cognome=cognome, indirizzo=indirizzo, citta=citta, cellulare=cellulare, mail=mail, azione=azione, indirizzo2=indirizzo2, citta2=citta2, vendAff=vendAff, mQuadri=mQuadri, numStanze=totStanze, string=string)
 
 # pagina immobili totali
-# import
-from .models import properties_collection
 
 listHead = ["Nome", "Cognome", "Indirizzo", "Citta", "Tipologia", "Vendita\nAffitto", "Metri\nquadri", "Agente"]
 @views.route('/Immobili')
@@ -160,13 +214,16 @@ class FormInsertProperties(FlaskForm):
     agent = StringField("Agente:")
     submit = SubmitField("Inserisci")
 
-@views.route('/Inserimento_Immobili', methods=["GET","POST"])
-def insert_properties():
+@views.route('/Inserimento_Immobili/<ownerName><ownerLastname>', methods=["GET","POST"])
+def insert_properties(ownerName, ownerLastname):
     # resetto tutte le variabili
     # assegno la variabile agente col nome dell agente loggato
     # assegno alla variabile form il form che ho appena creato
-    ownerName = ""
-    ownerLastname = ""
+    form = FormInsertProperties()
+    # form.ownerName.data = ownerName
+    # form.ownerLastname.data = ownerLastname
+    # print(ownerName)
+    
     address = ""
     city = ""
     tipologia = ""
@@ -176,7 +233,6 @@ def insert_properties():
     description = ""
     images = ""
     agent = session['agent']
-    form = FormInsertProperties()
 
     if form.validate_on_submit():
         ownerName = form.ownerName.data
@@ -202,8 +258,8 @@ def insert_properties():
         
     
     #resetto i dati ricevutid dal form
-    form.ownerName.data = ""
-    form.ownerLastname.data = ""
+    # form.ownerName.data = ""
+    # form.ownerLastname.data = ""
     form.address.data = ""
     form.city.data = ""
     form.tipologia.data = ""
@@ -247,9 +303,6 @@ def showImg(nome):
         listImg = v
     return render_template('show_img.html', nome=nome, listImg=listImg)
 
-@views.route('/RichiesteImmobiliari')
-def properties_request():
-    return render_template('properties_request.html')
 
 if __name__ == "__main__":
     query = clients_collection.find({})
