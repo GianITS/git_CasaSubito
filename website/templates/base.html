@@ -24,8 +24,12 @@
         <div class="logo">
             <a href="/HomePage"><img src="{{ url_for('static', filename='/images/logo.png')}}" alt=""><p>CasaSubito</p></a></div>
         <div class="search">
-            <input type="search" name="search" id="search" placeholder="Cerca...">
-            <div class="icon"></div>
+            <form action="" method="post">
+                {{form.hidden_tag()}}
+                {{form.testo.label()}}{{form.testo(id_="search",placeholder="Cerca...")}}{{form.submit(class_="icon")}}
+            </form>
+            <!-- <input type="search" name="search" id="search" placeholder="Cerca..."> -->
+            <!-- <div class="icon"></div> -->
         </div>
         <div class="logout">
             <p>{{ session["agent"] }}</p>

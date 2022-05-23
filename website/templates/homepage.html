@@ -2,6 +2,15 @@
 {% block title %} HomePage {% endblock title %}
 {% block content %}
     <div class="mainHome">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="message error">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
         <main>
             <h1>Gestione Obiettivi</h1>
             <div class="obiettivi">

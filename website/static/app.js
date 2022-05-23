@@ -11,11 +11,11 @@ btnInsert.addEventListener('click', function(){
     menu.classList.toggle("extend");
     dpList.classList.toggle("show");
 })
-const search = document.querySelector(".icon")
+// const search = document.querySelector(".icon")
 
-search.addEventListener('click', function(){
-    console.log("cerco")
-})
+// search.addEventListener('click', function(){
+//     console.log("cerco")
+// })
 const btnUser = document.querySelector(".user")
 const userMenu = document.querySelector(".userMenu")
 

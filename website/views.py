@@ -1,6 +1,5 @@
+from crypt import methods
 import datetime
-from email.utils import format_datetime
-from flask_babel import format_datetime
 from flask import Blueprint, Flask, render_template, request, session, redirect, url_for, flash
 from flask_pymongo import PyMongo
 import certifi
@@ -20,14 +19,49 @@ def home():
     date=date.strftime("%A %d %B %Y")
     return render_template('homepage.html', date=date)
 
-# pagina inserimento cliente
-# import
-from .models import Agent, clients_collection
+@views.context_processor
+def base():
+    form = FormSearch()
+    return dict(form=form)
 
 # importo i moduli relativi al form
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, IntegerField, RadioField, MultipleFileField, SelectField, TextAreaField, EmailField
 from wtforms.validators import DataRequired, InputRequired
+from .models import properties_collection, clients_collection
+
+class FormSearch(FlaskForm):
+    testo = StringField("", [DataRequired()])
+    submit = SubmitField("")
+
+@views.route('/HomePage', methods=['GET','POST'])
+def search():
+    testo = ""
+    form = FormSearch()
+    if form.validate_on_submit():
+        testo = form.testo.data
+        print(testo)
+        resCN = list(clients_collection.find({"nome": testo}, {"nome":1,"_id":0}))
+        resCC = list(clients_collection.find({"cognome": testo}, {"nome":1,"_id":0}))
+        resI = list(properties_collection.find({"indirizzo": testo}, {"nome":1,"_id":0}))
+        if resCN or resCC:
+            res = resCN[0]['nome']
+            print(res)
+            return redirect(url_for("views.ClientPage", nome=res))
+        elif resI:
+            res = resI[0]['nome']
+            print(res)
+            return redirect(url_for("views.PropPage", nome=res))
+        else:
+            print("non trovato")
+            flash("Nessun risultato trovato")
+        print(f"resCN = {resCN}\nresCC = {resCC}\nresI = {resI}")
+
+    form.testo.data = ""
+    return render_template("homepage.html", form=form)
+
+
+# pagina inserimento cliente
 
 class FormInsertClient(FlaskForm):
     nome = StringField("Nome:", [DataRequired()])
@@ -119,8 +153,6 @@ def ClientPage(nome):
     return render_template('clients_page.html', nome=nome, cognome=cognome, indirizzo=indirizzo, citta=citta, cellulare=cellulare, mail=mail, azione=azione, indirizzo2=indirizzo2, citta2=citta2, vendAff=vendAff, mQuadri=mQuadri, numStanze=totStanze, string=string)
 
 # pagina immobili totali
-# import
-from .models import properties_collection
 
 listHead = ["Nome", "Cognome", "Indirizzo", "Citta", "Tipologia", "Vendita\nAffitto", "Metri\nquadri", "Agente"]
 @views.route('/Immobili')
