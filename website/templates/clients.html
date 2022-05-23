@@ -3,6 +3,21 @@
 {% block content %}
 <div class="mainProp">
     <h1 class="mt">Clienti</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                {% if category == 'success' %}
+                    <div class="message">
+                        {{ message }}
+                    </div>
+                {% else %}
+                    <div class="message error">
+                        {{ message }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
     <table class="tbProp">
         <thead>
         <tr>
@@ -10,6 +25,7 @@
             {% for x in listHeadClient %}
                 <th>{{ x }}</th>
             {% endfor %}
+            <th class="remove th"></th>
         </tr>
         </thead>
         <tbody>
@@ -21,6 +37,7 @@
                         <td>{{ v }}</td>
                     {% endif %}
                 {% endfor %}
+                <td class="remove"><a href="{{url_for('views.removeC', nome=cliente['nome'])}}"></a></td>
             </tr>
         {% endfor %}
         </tbody>

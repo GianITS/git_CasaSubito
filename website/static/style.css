@@ -1222,11 +1222,11 @@ h1{
     border-top-left-radius: 10px;
 }
 .tbProp th{
-    width: 16%;
+    width: 3%;
 }
-.tbProp th:last-child{
+/* .tbProp th:last-child{
     border-top-right-radius: 10px;
-}
+} */
 .tbProp th:nth-child(2),
 .tbProp th:nth-child(3){
     width: 15%;
@@ -1238,9 +1238,14 @@ h1{
 .tbProp th:nth-child(6){
     width: 8%;
 }
-.tbProp th:nth-child(7),
+/* .tbProp th:nth-child(7),
 .tbProp th:nth-child(8){
     width: 10%;
+} */
+.remove.th{
+    width: 4%;
+    border-top-right-radius: 10px;
+    background-color: transparent;
 }
 .open{
     width: 50px;
@@ -1255,6 +1260,16 @@ h1{
 }
 .open a:hover{
     background: url('/../static/images/eye.png')no-repeat center;
+}
+.remove{
+    width: 50px;
+    height: 50px;
+}
+.remove a{
+    display: flex;
+    width: 100%;
+    aspect-ratio: 1;
+    background: url('/../static/images/cestino.png')no-repeat center;
 }
 .tbProp td{
     height: 50px;

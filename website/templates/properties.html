@@ -3,6 +3,15 @@
 {% block content %}
 <div class="mainProp">
     <h1>Immobili</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="message">
+                {{ message }}
+            </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
     <table class="tbProp">
         <thead>
             <tr>
@@ -10,6 +19,7 @@
                 {% for item in listHead %}
                     <th>{{ item }}</th>
                 {% endfor %}
+                <th class="remove th"></th>
             </tr>
         </thead>
         <tbody>
@@ -23,6 +33,7 @@
                         <td>{{ v }}</td>
                     {% endif %}
                 {% endfor %}
+                <td class="remove"><a href="{{url_for('views.removeP', nome=immobile['nome'])}}"></a></td>
             </tr>
             {% endfor %}
         </tbody>

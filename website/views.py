@@ -60,6 +60,25 @@ def search():
     form.testo.data = ""
     return render_template("homepage.html", form=form)
 
+#funzione rimuovi document dal db
+
+@views.route('/Clienti/<nome>', methods=['GET','POST'])
+def removeC(nome):
+    query = clients_collection.find_one_and_delete({"nome":nome})
+    if query:
+        flash("Cliente rimosso con successo", 'success')
+    else:
+        flash("Cliente non trovato", 'error')
+    return redirect(url_for('views.clients'))
+
+@views.route('/Immobili/<nome>', methods=['GET','POST'])
+def removeP(nome):
+    query = properties_collection.find_one_and_delete({"nome":nome})
+    if query:
+        flash("Immobile rimosso con successo", 'success')
+    else:
+        flash("Immobile non trovato", 'error')
+    return redirect(url_for('views.properties'))
 
 # pagina inserimento cliente
 
