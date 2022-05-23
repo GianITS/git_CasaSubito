@@ -1,7 +1,17 @@
 {% extends 'base.html' %}
 {% block title %} Dettaglio cliente {% endblock title %}
 {% block content %}
-<div class="mainSingle">
+    <div class="mainSingle">
+        <a href="{{url_for('views.clients')}}" class="btnBack"><div class="ico"></div></a>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="message">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
         <div class="container2">
             <div class="content1">
                 <h1 style="text-align:center; color:white">Cliente</h1>
@@ -61,8 +71,8 @@
                                 </tr>
                                 {% else %}
                                 <tr>
-                                    <a href="{{url_for('views.insert_properties')}}">inserisci</a>
-                                    <h2>{{ string }}</h2>
+                                    <a href="{{url_for('views.insert_properties')}}" class="btnNewImmo">Nuovo</a>
+                                    <h2 class="newH2">{{ string }}</h2>
                                 </tr>
                             {% endif %}
                         </thead>
@@ -77,4 +87,5 @@
                 <p>Nessuna richiesta inserita</p>
             </div>
         </div>
+    </div>
 {% endblock %}
