@@ -2,16 +2,16 @@ from pymongo import MongoClient
 import certifi
 
 
-# cluster = MongoClient("mongodb+srv://GianITS:ProjectITS33@clusterits.do6lt.mongodb.net", tlsCAFile=certifi.where())
-# db = cluster['Agenzia_Immo']
-# clients_collection = db['Clienti']
-# properties_collection = db['Immobili']
-# agents_collection = db['Agenti']
-cluster = MongoClient("mongodb://admin:Passw0rd!@192.168.43.75")
-db = cluster['DB_prova']
-clients_collection = db['clienti']
-properties_collection = db['immobili']
-agents_collection = db['agenti']
+cluster = MongoClient("mongodb+srv://GianITS:ProjectITS33@clusterits.do6lt.mongodb.net", tlsCAFile=certifi.where())
+db = cluster['Agenzia_Immo']
+clients_collection = db['Clienti']
+properties_collection = db['Immobili']
+agents_collection = db['Agenti']
+# cluster = MongoClient("mongodb://admin:Passw0rd!@192.168.43.75")
+# db = cluster['DB_prova']
+# clients_collection = db['clienti']
+# properties_collection = db['immobili']
+# agents_collection = db['agenti']
 
 
 class Agent():

@@ -8,10 +8,8 @@ views = Blueprint('views', __name__)
 
 # PyMongo ---------------------------------------------------------------------
 app = Flask(__name__)
-#app.config['MONGO_URI'] = "mongodb+srv://GianITS:ProjectITS33@clusterits.do6lt.mongodb.net/Agenzia_Immo?retryWrites=true&w=majority"
-app.config['MONGO_URI'] = "mongodb://admin:Passw0rd!@192.168.43.75/DB_prova?retryWrites=true&w=majority"
+app.config['MONGO_URI'] = "mongodb+srv://GianITS:ProjectITS33@clusterits.do6lt.mongodb.net/Agenzia_Immo?retryWrites=true&w=majority"
 mongo = PyMongo(app, tlsCAFile=certifi.where())
-
 
 @views.route('/HomePage')
 def home():
@@ -41,7 +39,6 @@ def search():
     form0 = FormSearch()
     if form0.validate_on_submit():
         testo = form0.testo.data
-        print(testo)
         resCN = list(clients_collection.find({"nome": testo}, {"nome":1,"_id":0}))
         resCC = list(clients_collection.find({"cognome": testo}, {"nome":1,"_id":0}))
         resI = list(properties_collection.find({"indirizzo": testo}, {"nome":1,"_id":0}))
@@ -55,7 +52,7 @@ def search():
             return redirect(url_for("views.PropPage", nome=res))
         else:
             print("non trovato")
-            flash("Nessun risultato trovato")
+            flash("Nessun risultato trovato", 'error')
         print(f"resCN = {resCN}\nresCC = {resCC}\nresI = {resI}")
 
     form0.testo.data = ""
@@ -119,12 +116,12 @@ def insert_clients():
         new_client = {"nome":nome, "cognome":cognome, "indirizzo":indirizzo, "citta":citta, "cell":cellulare, "mail":mail, "buysellrent":azione, "agente":agent}
 
         if clients_collection.find_one({"cellulare":cellulare},{}):
-            flash("Numero di telefono utilizzato da un altro cliente")
+            flash("Numero di telefono utilizzato da un altro cliente", 'error')
         elif clients_collection.find_one({"mail":mail},{}):
-            flash("Mail utilizzata da un altro cliente")
+            flash("Mail utilizzata da un altro cliente", 'error')
         else:
             clients_collection.insert_one(new_client)
-            flash("Cliente aggiunto con successo")
+            flash("Cliente aggiunto con successo", 'success')
             return redirect(url_for("views.clients"))
         
     form.nome.data = ""
@@ -151,7 +148,6 @@ def ClientPage(nome):
     client = clients_collection.find_one({"nome": nome}, {"_id":0})
     client =list(client.values())
     cognome = client[1]
-    print(cognome, nome)
     indirizzo = client[2]
     citta = client[3]
     cellulare = client[4]
@@ -253,7 +249,7 @@ def insert_properties(ownerName, ownerLastname):
         clients_collection.update_one({"nome":ownerName, "cognome":ownerLastname},{"$set":{"immobili":post1}})
         post2 = {"nome":ownerName, "cognome":ownerLastname, "indirizzo":address, "citta":city, "typehouse":tipologia, "sellrent":vendAff, "dimensioni":sqMeters, "totroom": totRoom, "textbox":description, "immagini": listImg, "agente":agent}
         properties_collection.insert_one(post2)
-        flash("Immobile inserito con successo")
+        flash("Immobile inserito con successo", 'succes')
         return redirect(url_for('views.PropPage', nome=ownerName))
         
     
