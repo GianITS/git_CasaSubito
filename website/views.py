@@ -1,5 +1,6 @@
 from crypt import methods
 import datetime
+from itertools import count
 from flask import Blueprint, Flask, render_template, request, session, redirect, url_for, flash
 from flask_pymongo import PyMongo
 import certifi
@@ -28,6 +29,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, IntegerField, RadioField, MultipleFileField, SelectField, TextAreaField, EmailField
 from wtforms.validators import DataRequired, InputRequired
 from .models import properties_collection, clients_collection
+import re
 
 class FormSearch(FlaskForm):
     testo = StringField("", [DataRequired()])
@@ -39,24 +41,26 @@ def search():
     form0 = FormSearch()
     if form0.validate_on_submit():
         testo = form0.testo.data
-        resCN = list(clients_collection.find({"nome": testo}, {"nome":1,"_id":0}))
-        resCC = list(clients_collection.find({"cognome": testo}, {"nome":1,"_id":0}))
-        resI = list(properties_collection.find({"indirizzo": testo}, {"nome":1,"_id":0}))
+        resCN = list(clients_collection.find({"nome": {"$regex" : testo}}, {"nome":1,"cognome":1,"_id":0}))[::-1]
+        resCC = list(clients_collection.find({"cognome": {"$regex" : testo}}, {"nome":1,"cognome":1,"_id":0}))[::-1]
+        resI = list(properties_collection.find({"indirizzo": {"$regex" : testo}}, {"nome":1,"cognome":1,"indirizzo":1,"_id":0}))[::-1]
+        if len(resCN) + len(resCC) + len(resI) > 1:
+            return render_template("search_results.html", resCN=resCN, resCC=resCC, resI=resI)
         if resCN or resCC:
             res = resCN[0]['nome']
-            print(res)
             return redirect(url_for("views.ClientPage", nome=res))
         elif resI:
             res = resI[0]['nome']
-            print(res)
             return redirect(url_for("views.PropPage", nome=res))
         else:
-            print("non trovato")
-            flash("Nessun risultato trovato", 'error')
-        print(f"resCN = {resCN}\nresCC = {resCC}\nresI = {resI}")
+            flash("Nessun risultato trovato")
 
     form0.testo.data = ""
-    return render_template("homepage.html", form0=form0)
+    return redirect(url_for("views.home"))
+
+@views.route('/Risultati_della_ricerca', methods=['GET','POST'])
+def searchResults(resCN, resCC, resI):
+    return render_template("search_results.html", resCN=resCN, resCC=resCC, resI=resI)
 
 #funzione rimuovi document dal db
 

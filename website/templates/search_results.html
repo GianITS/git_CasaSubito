@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %} Risultati della ricerca {% endblock title %}
+{% block content %}
+    <div class="mainSingle">
+        <h2>Risultati client name</h2>
+        {% if resCN %}
+            {% for res in resCN %}
+                <div class="result">
+                {% for k,v in res.items() %}
+                    <a href="{{ url_for('views.ClientPage', nome=res['nome']) }}"><p>{{ v }}</p></a>
+                {% endfor %}
+                </div>
+            {% endfor %}
+        {% endif %}
+        <h2>Risultati client lastname</h2>
+        {% if resCC %}
+            {% for res in resCC %}
+            <div class="result">
+                {% for k,v in res.items() %}
+                    <a href="{{ url_for('views.ClientPage', nome=res['nome']) }}"><p>{{ v }}</p></a>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        {% endif %}
+        <h2>Risultati address Immo</h2>
+        {% if resI %}
+            {% for res in resI %}
+            <div class="result">
+                {% for k,v in res.items() %}
+                    <a href="{{ url_for('views.PropPage', nome=res['nome']) }}"><p>{{ v }}</p></a>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}
